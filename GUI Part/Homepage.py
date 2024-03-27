@@ -9,7 +9,7 @@ window.title("Sales Predictor")
 
 #Window Height and Width.
 width = 500
-height = 300
+height = 400
 
 #Scale Factor
 scaleFactor = ctypes.windll.shcore.GetScaleFactorForDevice(0) / 100
@@ -39,6 +39,18 @@ CTkLabel(inputFrame,
          fg_color = "transparent").pack(side=RIGHT, pady=10)
 
 inputFrame.pack(pady = 75)
+
+window.after(2000, lambda:window.destroy())
+
+progessbar = CTkProgressBar(window, orientation="horizontal",mode="determinate", determinate_speed=0.75)
+progessbar.set(0)
+progessbar.pack()
+
+# Starting the progress bar
+progessbar.start()
+
+# Removes the window's title bar
+window.overrideredirect(True)
 
 #Entering the event main loop.
 window.mainloop()
