@@ -2,8 +2,7 @@ from tkinter import font
 from customtkinter import *
 import ctypes
 
-
-class App(CTk):
+class LoadingPageApp(CTk):
     width = 0
     height = 0
 
@@ -49,11 +48,7 @@ class App(CTk):
         progessbar.set(0)
         progessbar.pack()
         progessbar.start()
+        self.after(2000, self.destroyWindow)
 
-
-app = App(500, 400)
-app.setCenterWindow()
-app.setLabels()
-app.setProgressbar()
-app.after(2000, lambda:app.destroy())
-app.mainloop()
+    def destroyWindow(self):
+        self.destroy()
