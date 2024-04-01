@@ -26,16 +26,16 @@ class LoadingPageApp(CTk):
 
 
     def setLabels(self):
-        titleFont = CTkFont(family='Brush Script MT', size=60)
-        subtitleFont = CTkFont(family='Brush Script MT', size=36)
-        inputFrame = CTkFrame(self, fg_color = "transparent")
+        titleFont = CTkFont(family = 'Brush Script MT', size = 60)
+        subtitleFont = CTkFont(family = 'Brush Script MT', size = 36)
+        inputFrame = CTkFrame(master = self, fg_color = "transparent")
 
-        CTkLabel(inputFrame,
+        CTkLabel(master = inputFrame,
                 text = "Sales Predictor",
                 font = titleFont,
                 fg_color = "transparent").pack()
 
-        CTkLabel(inputFrame,
+        CTkLabel(master = inputFrame,
                 text = "By Prosanto Deb",
                 font = subtitleFont,
                 fg_color = "transparent").pack(side=RIGHT, pady=10)
@@ -44,11 +44,14 @@ class LoadingPageApp(CTk):
 
     
     def setProgressbar(self):
-        progessbar = CTkProgressBar(self, orientation="horizontal",mode="determinate", determinate_speed=0.75)
+        progessbar = CTkProgressBar(master = self, 
+                            orientation = "horizontal",
+                            mode = "determinate", 
+                            determinate_speed=0.75)
         progessbar.set(0)
         progessbar.pack()
         progessbar.start()
-        self.after(2000, self.destroyWindow)
+        self.after(ms = 2000, func = self.destroyWindow)
 
     def destroyWindow(self):
         self.destroy()
