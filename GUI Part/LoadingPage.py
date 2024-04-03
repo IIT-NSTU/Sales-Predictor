@@ -55,3 +55,10 @@ class LoadingPageApp(CTk):
 
     def destroyWindow(self):
         self.destroy()
+
+        from LoginPage import LoginPageApp
+        loginPageApp = LoginPageApp(width = 600, height = 450, title = "Sales Predictor")
+        loginPageApp.setCenterWindow()
+        loginPageApp.setBackgroundImage()
+        loginPageApp.setLoginFrame()
+        loginPageApp.mainloop()

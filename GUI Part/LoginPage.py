@@ -1,9 +1,7 @@
 from customtkinter import *
 from CTkMessagebox import CTkMessagebox
 from PIL import Image
-from HomePage import HomePageApp
 import ctypes
-import os
 
 
 class LoginPageApp(CTk):
@@ -32,7 +30,7 @@ class LoginPageApp(CTk):
 
     def setBackgroundImage(self):    
         current_path = os.path.dirname(os.path.realpath(__file__))
-        self.bg_image = CTkImage(Image.open(current_path + "/images/bg_gradient.jpg"),
+        self.bg_image = CTkImage(Image.open(current_path + "\\images\\bg_gradient.jpg"),
                                                size = (self.width, self.height))
         self.bg_image_label = CTkLabel(self, image = self.bg_image)
         self.bg_image_label.grid(row = 0, column = 0)    
@@ -55,13 +53,24 @@ class LoginPageApp(CTk):
     def login_event(self):
         print("Login pressed - username:", self.username_entry.get(), "password:", self.password_entry.get())
         if (self.username_entry.get() == "admin" and self.password_entry.get() == "admin") :
-            self.destroy()     
+            self.destroy()   
+
+            from HomePage import HomePageApp
             homePageApp = HomePageApp(width = 800, height = 500, title = "Sales Predictor")
             homePageApp.setCenterWindow()
             homePageApp.setComponents()
             homePageApp.mainloop()
         else:
             CTkMessagebox(title="Warning", message="Invalid Credentials!!!\nPlease Try Again", icon="cancel") 
+
+    def resource_path(self, relative_path):
+        try:
+            # PyInstaller creates a temp folder and stores path in _MEIPASS
+            base_path = sys._MEIPASS
+        except Exception:
+            base_path = os.path.abspath(".")
+
+        return os.path.join(base_path, relative_path)        
 
     
      

@@ -1,1 +1,4 @@
 GUI Part/__pycache__/
+Application.spec
+dist/
+build/
