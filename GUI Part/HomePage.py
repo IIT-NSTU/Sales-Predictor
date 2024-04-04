@@ -46,34 +46,68 @@ class HomePageApp(CTk):
 
         button_font = CTkFont(size = 14)
 
-        load_file_button = CTkButton(navigation_frame, corner_radius = 0, height = 40, border_spacing = 10, text = "  Load File", image = self.file_image,
+        self.load_file_button = CTkButton(navigation_frame, corner_radius = 0, height = 40, border_spacing = 10, text = "  Load File", image = self.file_image,
                                     font = button_font, fg_color = "transparent", text_color = ("gray10", "gray90"), hover_color = ("gray70", "gray30"),
-                                    anchor = "w", command = self.loadFileButtonClick)
-        load_file_button.grid(row = 1, column = 0, sticky = "ew")
+                                    anchor = "w", command = self.load_file_button_event)
+        self.load_file_button.grid(row = 1, column = 0, sticky = "ew")
 
-        generate_model_button = CTkButton(navigation_frame, corner_radius = 0, height = 40, border_spacing = 10, text = "  Generate Model", image = self.model_image, 
+        self.generate_model_button = CTkButton(navigation_frame, corner_radius = 0, height = 40, border_spacing = 10, text = "  Generate Model", image = self.model_image, 
                                     font = button_font, fg_color = "transparent", text_color = ("gray10", "gray90"), hover_color = ("gray70", "gray30"),
-                                    anchor = "w", command = self.loadFileButtonClick)
-        generate_model_button.grid(row = 2, column = 0, sticky = "ew")
+                                    anchor = "w", command = self.generate_model_button_event)
+        self.generate_model_button.grid(row = 2, column = 0, sticky = "ew")
 
-        predict_sales_button = CTkButton(navigation_frame, corner_radius = 0, height = 40, border_spacing = 10, text = "  Predict Sales", image = self.graph_image,
+        self.predict_sales_button = CTkButton(navigation_frame, corner_radius = 0, height = 40, border_spacing = 10, text = "  Predict Sales", image = self.graph_image,
                                     font = button_font, fg_color = "transparent", text_color = ("gray10", "gray90"), hover_color = ("gray70", "gray30"),
-                                    anchor = "w", command = self.loadFileButtonClick)
-        predict_sales_button.grid(row = 3, column = 0, sticky = "ew")
+                                    anchor = "w", command = self.predict_sales_button_event)
+        self.predict_sales_button.grid(row = 3, column = 0, sticky = "ew")
 
-        logout_button = CTkButton(navigation_frame, corner_radius = 0, height = 40, border_spacing = 10, text = "  Logout", image = self.logout_image,
+        self.logout_button = CTkButton(navigation_frame, corner_radius = 0, height = 40, border_spacing = 10, text = "  Logout", image = self.logout_image,
                                     font = button_font, fg_color = "transparent", text_color = ("gray10", "gray90"), hover_color = ("gray70", "gray30"),
-                                    anchor = "w", command = self.logoutButtonClick)
-        logout_button.grid(row = 4, column = 0, pady = 5, sticky = "ews")
+                                    anchor = "w", command = self.logout_button_event)
+        self.logout_button.grid(row = 4, column = 0, pady = 5, sticky = "ews")
 
-        mainFrame = CTkFrame(master = self, fg_color="transparent", corner_radius = 0)
-        mainFrame.grid(row = 0, column = 1, sticky = 'nsew')
+        self.load_file_frame = CTkFrame(master = self, corner_radius = 0, fg_color = "transparent")
+        CTkLabel(master=self.load_file_frame, text="LoadFile").pack()
 
+        self.generate_model_frame = CTkFrame(master = self, corner_radius = 0, fg_color = "transparent")
+        CTkLabel(master=self.generate_model_frame, text="GenerateModel").pack()
 
-    def loadFileButtonClick(self):
-        print("Hello Buddy") 
+        self.predict_sales_frame = CTkFrame(master = self, corner_radius = 0, fg_color = "transparent")
+        CTkLabel(master=self.predict_sales_frame, text="PredictSales").pack()
 
-    def logoutButtonClick(self):
+        # select default frame
+        self.select_frame_by_name("load_file")
+
+    def select_frame_by_name(self, name):
+        self.load_file_button.configure(fg_color = ("gray75", "gray25") if name == "load_file" else "transparent")
+        self.generate_model_button.configure(fg_color = ("gray75", "gray25") if name == "generate_model" else "transparent")
+        self.predict_sales_button.configure(fg_color = ("gray75", "gray25") if name == "predict_sales" else "transparent")
+
+        if name == "load_file":
+            self.load_file_frame.grid(row = 0, column = 1, sticky = "nsew")
+        else:
+            self.load_file_frame.grid_forget()
+
+        if name == "generate_model":
+            self.generate_model_frame.grid(row = 0, column = 1, sticky = "nsew")
+        else:
+            self.generate_model_frame.grid_forget()
+
+        if name == "predict_sales":
+            self.predict_sales_frame.grid(row = 0, column = 1, sticky = "nsew")  
+        else:
+            self.predict_sales_frame.grid_forget()     
+
+    def load_file_button_event(self):
+        self.select_frame_by_name("load_file")
+
+    def generate_model_button_event(self):
+        self.select_frame_by_name("generate_model")
+
+    def predict_sales_button_event(self):
+        self.select_frame_by_name("predict_sales")         
+
+    def logout_button_event(self):
         self.destroy()
 
         from LoginPage import LoginPageApp
