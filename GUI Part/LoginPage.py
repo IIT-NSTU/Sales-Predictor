@@ -30,7 +30,7 @@ class LoginPageApp(CTk):
 
     def setBackgroundImage(self):    
         current_path = os.path.dirname(os.path.realpath(__file__))
-        self.bg_image = CTkImage(Image.open(current_path + "\\images\\bg_gradient.jpg"),
+        self.bg_image = CTkImage(Image.open(current_path + "\\assets\\images\\bg_gradient.jpg"),
                                                size = (self.width, self.height))
         self.bg_image_label = CTkLabel(self, image = self.bg_image)
         self.bg_image_label.grid(row = 0, column = 0)    
