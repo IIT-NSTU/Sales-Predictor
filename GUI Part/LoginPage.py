@@ -56,7 +56,7 @@ class LoginPageApp(CTk):
             self.destroy()   
 
             from HomePage import HomePageApp
-            homePageApp = HomePageApp(width = 800, height = 500, title = "Sales Predictor")
+            homePageApp = HomePageApp(width = 800, height = 600, title = "Sales Predictor")
             homePageApp.setCenterWindow()
             homePageApp.setComponents()
             homePageApp.mainloop()
