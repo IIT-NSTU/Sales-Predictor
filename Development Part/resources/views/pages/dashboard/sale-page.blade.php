@@ -12,7 +12,7 @@
                             <p class="text-xs mx-0 my-1">User ID: <span id="CId"></span></p>
                         </div>
                         <div class="col-4">
-                            <img class="w-40" src="{{ 'images/logo.png' }}">
+                            <img class="w-40" src="{{ 'images/logo3.png' }}">
                             <p class="text-bold mx-0 my-1 text-dark">Invoice </p>
                             <p class="text-xs mx-0 my-1">Date: {{ date('Y-m-d') }} </p>
                         </div>

@@ -12,9 +12,14 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/toastify.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/jquery.dataTables.min.css') }}" rel="stylesheet" />
-    <script src="{{ asset('js/config.js') }}"></script>
-    <script src="{{ asset('js/axios.min.js') }}"></script>
 
+    <script src="{{ asset('js/bootstrap.bundle.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.7.0.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/form-validation.js') }}"></script>
+    <script src="{{ asset('js/toastify-js.js') }}"></script>
+    <script src="{{ asset('js/axios.min.js') }}"></script>
+    <script src="{{ asset('js/config.js') }}"></script>
 </head>
 
 <body>
@@ -32,7 +37,7 @@
                 <span class="icon-nav m-0 h5" onclick="MenuBarClickHandler()">
                     <img class="nav-logo-sm mx-2" src="{{ asset('images/menu.svg') }}" alt="logo" />
                 </span>
-                <img class="nav-logo  mx-2" src="{{ asset('images/logo.png') }}" alt="logo" />
+                <img class="nav-logo  mx-2" src="{{ asset('images/logo3.png') }}" alt="logo" />
             </a>
 
             <div class="float-right h-auto d-flex">
@@ -124,13 +129,6 @@
         }
         showUserName();
     </script>
-
-
-    <script src="{{ asset('js/bootstrap.bundle.js') }}"></script>
-    <script src="{{ asset('js/jquery-3.7.0.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('js/form-validation.js') }}"></script>
-    <script src="{{ asset('js/toastify-js.js') }}"></script>
 </body>
 
 </html>
