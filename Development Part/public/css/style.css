@@ -42,3 +42,9 @@ a:hover {
   box-shadow: none !important;
 }
 
+.icon-style {
+  width: 25px; /* Adjust size as needed */
+  height: 25px; /* Adjust size as needed */
+  margin-left: 15px; /* Space between the icon and the text */
+  margin-bottom: 10px;
+}

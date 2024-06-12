@@ -10202,6 +10202,10 @@ fieldset:disabled .btn {
     color: #cb0c9f !important;
 }
 
+.text-primary-2 {
+    color: #010a94 !important;
+}
+
 .text-secondary {
     color: #8392AB !important;
 }
@@ -21352,7 +21356,11 @@ label,
 }
 
 .bg-gradient-primary {
-    background-image: linear-gradient(310deg, #7928CA 0%, #FF0080 100%);
+    background-image: linear-gradient(310deg, #000000 0%, #008eff 100%);
+}
+
+.bg-gradient-primary-light {
+    background-image: linear-gradient(90deg, #061e60 30%, #4b91dd 100%);
 }
 
 .bg-gradient-secondary {
@@ -21377,6 +21385,10 @@ label,
 
 .bg-gradient-light {
     background-image: linear-gradient(310deg, #CED4DA 0%, #EBEFF4 100%);
+}
+
+.bg-gradient-light-2 {
+    background-image: linear-gradient(0deg, #000000 0%, #ffffff 0%);
 }
 
 .bg-gradient-dark {
