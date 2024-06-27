@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2024 at 09:07 AM
+-- Generation Time: Jun 27, 2024 at 09:59 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `categories` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(50) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT 1,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -39,8 +40,8 @@ CREATE TABLE `categories` (
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `name`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'Book', 1, '2024-05-23 11:12:24', '2024-05-23 11:12:31');
+INSERT INTO `categories` (`id`, `name`, `active`, `user_id`, `created_at`, `updated_at`) VALUES
+(11, 'Direct Cool Refrigerator', 1, 5, '2024-06-26 23:46:22', '2024-06-26 23:46:22');
 
 -- --------------------------------------------------------
 
@@ -53,17 +54,11 @@ CREATE TABLE `customers` (
   `name` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `mobile` varchar(50) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT 1,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `customers`
---
-
-INSERT INTO `customers` (`id`, `name`, `email`, `mobile`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'Simanto Deb', 'simanto@gmail.com', '01793222825', 1, '2024-06-11 05:59:50', '2024-06-11 05:59:50');
 
 -- --------------------------------------------------------
 
@@ -77,18 +72,12 @@ CREATE TABLE `invoices` (
   `discount` varchar(50) NOT NULL,
   `vat` varchar(50) NOT NULL,
   `payable` varchar(50) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT 1,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `customer_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `invoices`
---
-
-INSERT INTO `invoices` (`id`, `total`, `discount`, `vat`, `payable`, `user_id`, `customer_id`, `created_at`, `updated_at`) VALUES
-(1, '39600.00', '12', '1980.00', '41580.00', 1, 1, '2024-06-11 06:14:01', '2024-06-11 06:14:01');
 
 -- --------------------------------------------------------
 
@@ -106,13 +95,6 @@ CREATE TABLE `invoice_products` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `invoice_products`
---
-
-INSERT INTO `invoice_products` (`id`, `invoice_id`, `product_id`, `user_id`, `quantity`, `sale_price`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 1, '3', '45000.00', '2024-06-11 06:14:01', '2024-06-11 06:14:01');
 
 -- --------------------------------------------------------
 
@@ -137,7 +119,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (4, '2023_09_24_135939_create_products_table', 1),
 (5, '2023_09_24_140130_create_customers_table', 1),
 (6, '2023_09_28_105630_create_invoices_table', 1),
-(7, '2023_09_28_105631_create_invoice_products_table', 1);
+(7, '2023_09_28_105631_create_invoice_products_table', 1),
+(9, '2024_06_27_063651_add_details_url_to_products_table', 2);
 
 -- --------------------------------------------------------
 
@@ -170,8 +153,10 @@ CREATE TABLE `products` (
   `price` varchar(50) NOT NULL,
   `unit` varchar(50) NOT NULL,
   `img_url` varchar(100) NOT NULL,
+  `details_url` varchar(100) DEFAULT NULL,
   `category_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -180,8 +165,27 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `price`, `unit`, `img_url`, `category_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'Science Fiction Book', '15000', '12', 'uploads/1-1718107296.png', 1, 1, '2024-06-11 06:01:36', '2024-06-11 06:01:36');
+INSERT INTO `products` (`id`, `name`, `price`, `unit`, `img_url`, `details_url`, `category_id`, `user_id`, `active`, `created_at`, `updated_at`) VALUES
+(1, 'WFC-3F5-GDEL-XX (INVERTER)', '52490', '10', 'uploads/5-1719467375.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3f5-gdel-xx-inverter', 11, 5, 1, '2024-06-26 23:49:35', '2024-06-27 01:21:34'),
+(6, 'WFC-3F5-GDEL-XX', '51090', '10', 'uploads/5-1719472532.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3f5-gdel-xx', 11, 5, 1, '2024-06-27 01:15:32', '2024-06-27 01:15:32'),
+(7, 'WFC-3F5-GDNE-XX (Inverter)', '52490', '10', 'uploads/5-1719473585.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3f5-gdne-xx-inverter', 11, 5, 1, '2024-06-27 01:33:05', '2024-06-27 01:33:05'),
+(8, 'WFC-3F5-GDNE-XX', '51790', '10', 'uploads/5-1719473643.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3f5-gdne-xx', 11, 5, 1, '2024-06-27 01:34:03', '2024-06-27 01:34:03'),
+(9, 'WFC-3F5-GAXA-UX-P (Inverter)', '54690', '10', 'uploads/5-1719473713.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3f5-gaxa-ux-p-inverter', 11, 5, 1, '2024-06-27 01:35:13', '2024-06-27 01:35:13'),
+(10, 'WFC-3F5-GDXX-XX (Inverter)', '51790', '10', 'uploads/5-1719473779.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3f5-gdxx-xx-inverter', 11, 5, 1, '2024-06-27 01:36:19', '2024-06-27 01:36:19'),
+(11, 'WFC-3F5-GDEH-DD (Inverter)', '55090', '10', 'uploads/5-1719473867.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3f5-gdeh-dd-inverter', 11, 5, 1, '2024-06-27 01:37:47', '2024-06-27 01:37:47'),
+(12, 'WFC-3F5-GDEH-XX (Inverter)', '52990', '10', 'uploads/5-1719473948.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3f5-gdeh-xx-inverter', 11, 5, 1, '2024-06-27 01:39:08', '2024-06-27 01:39:08'),
+(13, 'WFC-3F5-GDEH-XX', '51990', '10', 'uploads/5-1719474012.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3f5-gdeh-xx', 11, 5, 1, '2024-06-27 01:40:12', '2024-06-27 01:40:12'),
+(14, 'WFC-3F5-GDXX-XX', '50390', '10', 'uploads/5-1719474066.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3f5-gdxx-xx', 11, 5, 1, '2024-06-27 01:41:06', '2024-06-27 01:41:06'),
+(15, 'WFE-3E8-GDXX-XX', '50690', '10', 'uploads/5-1719474120.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfe-3e8-gdxx-xx', 11, 5, 1, '2024-06-27 01:42:00', '2024-06-27 01:42:00'),
+(16, 'WFE-3E8-GDEL-XX', '51190', '10', 'uploads/5-1719474191.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfe-3e8-gdel-xx', 11, 5, 1, '2024-06-27 01:43:11', '2024-06-27 01:43:11'),
+(17, 'WFE-3E8-GDEN-XX', '51690', '10', 'uploads/5-1719474247.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfe-3e8-gden-xx', 11, 5, 1, '2024-06-27 01:44:07', '2024-06-27 01:44:07'),
+(18, 'WFC-3D8-GAXA-UX-P (Inverter)', '52990', '10', 'uploads/5-1719474369.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3d8-gaxa-ux-p-inverter', 11, 5, 1, '2024-06-27 01:46:09', '2024-06-27 01:46:09'),
+(19, 'WFC-3D8-GDEH-DD (Inverter)', '52990', '10', 'uploads/5-1719474450.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3d8-gdeh-dd-inverter', 11, 5, 1, '2024-06-27 01:47:30', '2024-06-27 01:47:30'),
+(20, 'WFC-3D8-GDEH-XX', '49490', '10', 'uploads/5-1719474809.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3d8-gdeh-xx', 11, 5, 1, '2024-06-27 01:53:29', '2024-06-27 01:53:29'),
+(21, 'WFC-3D8-GDEL-XX', '49890', '10', 'uploads/5-1719474883.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3d8-gdel-xx', 11, 5, 1, '2024-06-27 01:54:43', '2024-06-27 01:54:43'),
+(22, 'WFC-3D8-GJXB-LX-P (Inverter)', '52690', '10', 'uploads/5-1719474940.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3d8-gjxb-lx-p-inverter', 11, 5, 1, '2024-06-27 01:55:40', '2024-06-27 01:55:40'),
+(23, 'WFC-3D8-GDEH-XX (Inverter)', '50890', '10', 'uploads/5-1719475045.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3d8-gdeh-xx-inverter', 11, 5, 1, '2024-06-27 01:57:25', '2024-06-27 01:57:25'),
+(24, 'WFC-3D8-GDEL-XX (Inverter)', '50890', '10', 'uploads/5-1719475119.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3d8-gdel-xx-inverter', 11, 5, 1, '2024-06-27 01:58:39', '2024-06-27 01:58:39');
 
 -- --------------------------------------------------------
 
@@ -195,7 +199,7 @@ CREATE TABLE `users` (
   `last_name` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `mobile` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `otp` varchar(10) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -206,7 +210,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `mobile`, `password`, `otp`, `created_at`, `updated_at`) VALUES
-(1, 'Prosanto', 'Deb', 'prosanto2514@student.nstu.edu.bd', '01793222825', '12345678', '0', '2024-05-23 09:46:13', '2024-05-23 17:05:33');
+(5, 'Samir Chandra', 'Deb', 'samirelectronics7@gmail.com', '01791233473', '$2y$10$cuJlZbUCpNtj8K85zCJ3auwHjEZ4dByeXzDk0.Dyt.c/gwM3f43Qy', '0', '2024-06-26 03:31:48', '2024-06-26 03:31:48');
 
 --
 -- Indexes for dumped tables
@@ -280,31 +284,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `invoice_products`
 --
 ALTER TABLE `invoice_products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -316,13 +320,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

@@ -34,7 +34,8 @@
                                 <input type="text" class="d-none" id="updateId">
                                 <input type="text" class="d-none" id="filePath">
 
-
+                                <label class="form-label mt-3">Product Details Page Link</label>
+                                    <input type="text" class="form-control" id="productDetailsUpdate">
                             </div>
                         </div>
                     </div>
@@ -87,6 +88,7 @@
             document.getElementById('productPriceUpdate').value = res['data']['price'];
             document.getElementById('productUnitUpdate').value = res['data']['unit'];
             document.getElementById('productCategoryUpdate').value = res['data']['category_id'];
+            document.getElementById('productDetailsUpdate').value = res['data']['details_url'];
             hideLoader();
         } catch (error) {
             hideLoader();
@@ -106,6 +108,7 @@
         const productName = document.getElementById('productNameUpdate').value;
         const productPrice = document.getElementById('productPriceUpdate').value;
         const productUnit = document.getElementById('productUnitUpdate').value;
+        const productDetails = document.getElementById('productDetailsUpdate').value;
         const productImg = document.getElementById('productImgUpdate').files[0];
         const productOldImgUrl = document.getElementById('filePath').value;
 
@@ -132,6 +135,7 @@
             formData.append('price', productPrice);
             formData.append('unit', productUnit);
             formData.append('category_id', productCategory);
+            formData.append('details', productDetails);
 
             const config = {
                 headers: {

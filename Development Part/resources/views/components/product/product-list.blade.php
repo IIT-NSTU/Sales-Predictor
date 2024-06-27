@@ -60,7 +60,7 @@
         data.map((item, index) => {
             tableList.append(`<tr>
                    <td>${index+1}</td>
-                    <td><img class="w-15 h-auto" alt="" src="${item['img_url']}"></td>
+                    <td><a href='${item['details_url']}' target="_blank"><img class="w-40 h-auto" alt="" src="${item['img_url']}"></a></td>
                     <td>${item['name']}</td>
                     <td>${item['price']}</td>
                     <td>${item['unit']}</td>

@@ -32,6 +32,8 @@
                                 <label class="form-label">Image</label>
                                 <input accept="image/jpeg,image/jpg, image/png, image/webp" oninput="handleImgPreviw(event)"
                                     type="file" class="form-control" id="productImg">
+                                <label class="form-label mt-3">Product Details Page Link</label>
+                                    <input type="text" class="form-control" id="productDetails">    
                             </div>
                         </div>
                     </div>
@@ -72,6 +74,7 @@
         const productPrice = document.getElementById('productPrice').value;
         const productUnit = document.getElementById('productUnit').value;
         const productImg = document.getElementById('productImg').files[0];
+        const productDetails = document.getElementById('productDetails').value;
 
         // Validation
         if (productCategory.length === 0) {
@@ -82,8 +85,6 @@
             errorToast("Product price is required")
         } else if (productUnit.length === 0) {
             errorToast("Product unit is required")
-        } else if (!productImg) {
-            errorToast("Product image is required")
         } else {
 
             // Close Model
@@ -91,8 +92,11 @@
 
             // Genarate Form Data
             const formData = new FormData();
-            formData.append('img', productImg);
+            if (productImg) {
+                formData.append('img', productImg);
+            }
             formData.append('name', productName);
+            formData.append('details', productDetails);
             formData.append('price', productPrice);
             formData.append('unit', productUnit);
             formData.append('category_id', productCategory);
@@ -107,14 +111,14 @@
                 const res = await axios.post('/create-product', formData, config);
                 // Reset Form
                 document.getElementById("save-form").reset();
+                document.getElementById("previewImg").src = "images/default.jpg";
                 hideLoader();
                 // Refresh Table
                 await getProductList();
                 successToast(res['data']['message']);
             } catch (error) {
                 hideLoader();
-                console.log(error);
-                errorToast('Product creation failed');
+                errorToast(error.response.data.message);
             }
         }
     }

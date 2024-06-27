@@ -37,26 +37,43 @@ class productController extends Controller
     function createProduct(Request $request)
     {
         $userId = $request->header('userId');
+        $categoryId = $request->input('category_id');
 
         try {
-            $img = $request->file('img');
-            $currentTime = time();
-            $fileExtension = $img->extension();
-            $imgName = "{$userId}-{$currentTime}.{$fileExtension}";
-            $imgUrl = "uploads/{$imgName}";
+            $product = Product::where('user_id', '=', $userId)
+                              ->where('category_id', $categoryId)
+                              ->where('name', $request->input('name'))
+                              ->first();
+            if ($product) {
+                return response()->json([
+                    'status' => 'failed',
+                    'message' => 'Product Already Exists'
+                ], 400);
+            }                  
+
+            $imgUrl = "";
+
+            if ($request->hasFile('img')) {
+                $img = $request->file('img');
+                $currentTime = time();
+                $fileExtension = $img->extension();
+                $imgName = "{$userId}-{$currentTime}.{$fileExtension}";
+                $imgUrl = "uploads/{$imgName}";
+
+                // Upload File
+                $img->move(public_path('uploads'), $imgName);
+            } 
 
             // Update to Database
             Product::create([
                 'name' => $request->input('name'),
                 'price' => $request->input('price'),
                 'unit' => $request->input('unit'),
+                'details_url' => $request->input('details'),
                 'img_url' => $imgUrl,
                 'user_id' => $userId,
-                'category_id' => $request->input('category_id'),
+                'category_id' => $categoryId,
             ]);
-
-            // Upload File
-            $img->move(public_path('uploads'), $imgName);
 
             return response()->json([
                 'status' => 'success',
@@ -139,7 +156,8 @@ class productController extends Controller
                         "name" => $request->input('name'),
                         "price" => $request->input('price'),
                         "unit" => $request->input('unit'),
-                        "category_id" => $request->input('category_id')
+                        "category_id" => $request->input('category_id'),
+                        "details_url" => $request->input('details')
                     ]);
                 }
                 return response()->json([
