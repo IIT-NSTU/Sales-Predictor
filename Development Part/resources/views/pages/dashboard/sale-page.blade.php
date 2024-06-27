@@ -321,7 +321,7 @@
 
             res.data.data?.forEach(function(item, index) {
                 let row = `<tr class="text-xs">
-                        <td> <img class="w-10" src="${item['img_url']}"/> ${item['name']} ($ ${item['price']})</td>
+                        <td> <img class="w-10" src="${item['img_url']}"/> ${item['name']} (${item['price']} BDT)</td>
                         <td><a data-name="${item['name']}" data-price="${item['price']}" data-id="${item['id']}" class="btn btn-outline-dark text-xxs px-2 py-1 addProduct  btn-sm m-0">Add</a></td>
                      </tr>`
                 productList.append(row)

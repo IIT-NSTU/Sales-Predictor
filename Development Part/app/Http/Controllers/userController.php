@@ -7,6 +7,7 @@ use App\Mail\OTPMail;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Mail;
 
 class userController extends Controller
@@ -39,6 +40,7 @@ class userController extends Controller
     function userRegistration(Request $request)
     {
         try {
+            $request['password'] = Hash::make($request['password']);
             User::create($request->input());
             return response()->json([
                 "status" => "success",
@@ -47,7 +49,7 @@ class userController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 "status" => "failed",
-                "message" => "Registration failed"
+                "message" => $e
             ], 400);
         }
 
@@ -55,11 +57,9 @@ class userController extends Controller
 
     function userLogin(Request $request)
     {
-        $count = User::where('email', '=', $request->input('email'))
-            ->where('password', '=', $request->input('password'))
-            ->select('id')->first();
+        $count = User::where('email', '=', $request->input('email'))->select('id', 'password')->first();
 
-        if ($count !== null) {
+        if ($count !== null && Hash::check($request->input('password'), $count->password)) {
             $token = JWTToken::createToken($request->input('email'), $count->id, 'login');
 
             return response()->json([
@@ -70,7 +70,7 @@ class userController extends Controller
         } else {
             return response()->json([
                 "status" => "failed",
-                "message" => "unauthorized"
+                "message" => $count
             ], 401);
         }
     }

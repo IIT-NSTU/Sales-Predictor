@@ -65,6 +65,55 @@
     }
     fillCategoryDropDown();
 
+    async function Save() {
+
+        const productCategory = document.getElementById('productCategory').value;
+        const productName = document.getElementById('productName').value;
+        const productPrice = document.getElementById('productPrice').value;
+        const productUnit = document.getElementById('productUnit').value;
+        const productImg = document.getElementById('productImg').files[0];
+
+        if (productCategory.length === 0) {
+            errorToast("Product Category Required !")
+        } else if (productName.length === 0) {
+            errorToast("Product Name Required !")
+        } else if (productPrice.length === 0) {
+            errorToast("Product Price Required !")
+        } else if (productUnit.length === 0) {
+            errorToast("Product Unit Required !")
+        } else if (!productImg) {
+            errorToast("Product Image Required !")
+        } else {
+
+            document.getElementById('modal-close').click();
+
+            const formData = new FormData();
+            formData.append('img', productImg)
+            formData.append('name', productName)
+            formData.append('price', productPrice)
+            formData.append('unit', productUnit)
+            formData.append('category_id', productCategory)
+
+            const config = {
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            }
+
+            showLoader();
+            const res = await axios.post("/create-product", formData, config)
+            hideLoader();
+
+            if (res.status === 201) {
+                successToast('Request compconsted');
+                document.getElementById("save-form").reset();
+                await getList();
+            } else {
+                errorToast("Request fail !")
+            }
+        }
+    }
+
     const handleSave = async () => {
 
         const productCategory = document.getElementById('productCategory').value;

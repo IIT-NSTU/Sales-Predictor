@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->string('img_url', 100);
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');
+            $table->boolean('active')->default(true);
 
             $table->foreign('category_id')->references('id')->on('categories')
                 ->cascadeOnUpdate()->restrictOnDelete();

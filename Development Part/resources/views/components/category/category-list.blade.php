@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <hr class="bg-dark " />
-                <table class="table" id="tableData">
+                <table class="table" style="color:#344767" id="tableData">
                     <thead>
                         <tr class="bg-light">
                             <th>No</th>

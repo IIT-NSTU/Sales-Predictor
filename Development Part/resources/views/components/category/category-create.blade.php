@@ -47,7 +47,7 @@
                 await getCategoryList();
             } catch (error) {
                 hideLoader();
-                errorToast('Category creation failed')
+                errorToast(error.response.data.message);
             }
         }
     }

@@ -16,7 +16,8 @@ class categoryController extends Controller
     function categoryList(Request $request)
     {
         $userId = $request->header('userId');
-        $categories = Category::where('user_id', '=', $userId)->get();
+        $categories = Category::where('user_id', '=', $userId)
+                              ->where('active', '=', 1)->get();
 
         return response()->json([
             "status" => "success",
@@ -29,14 +30,38 @@ class categoryController extends Controller
     {
         try {
             $userId = $request->header('userId');
-            Category::create([
-                "user_id" => $userId,
-                "name" => $request->input('name')
-            ]);
-            return response()->json([
-                "status" => "success",
-                "message" => "Category created successfully"
-            ], 201);
+            $categoryName = $request->input('name');
+            $category = Category::where('user_id', '=', $userId)
+                                ->where('name', $categoryName)
+                                ->first();
+            
+            if ($category) {
+                if ($category['active'] == 0) {
+                    $updateCategory = Category::where('id', '=', $category['id']);
+                    $updateCategory->update([
+                        "active" => 1
+                    ]);
+                    return response()->json([
+                        "status" => "success",
+                        "message" => "Category created successfully"
+                    ], 201);
+                } else {
+                    return response()->json([
+                        "status" => "failed",
+                        "message" => "This Category Already Exists"
+                    ], 400);
+                }
+            } else {
+                Category::create([
+                    "user_id" => $userId,
+                    "name" => $categoryName
+                ]);
+                
+                return response()->json([
+                    "status" => "success",
+                    "message" => "Category created successfully"
+                ], 201);
+            }
         } catch (Exception $e) {
             return response()->json([
                 "status" => "failed",
@@ -85,7 +110,9 @@ class categoryController extends Controller
                 ->where('user_id', '=', $userId);
 
             if ($category->count() === 1) {
-                $category->delete();
+                $category->update([
+                    "active" => 0
+                ]);
 
                 return response()->json([
                     "status" => "success",

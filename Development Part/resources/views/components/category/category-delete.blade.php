@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-body text-center">
                 <h3 class=" mt-3 text-warning">Delete !</h3>
-                <p class="mb-3">Once delete, you can't get it back.</p>
+                <p class="mb-3">Are you sure you want to delete this category?</p>
                 <input class="d-none" id="deleteID" />
             </div>
             <div class="modal-footer justify-content-end">

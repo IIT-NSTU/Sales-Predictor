@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->string('discount', 50);
             $table->string('vat', 50);
             $table->string('payable', 50);
+            $table->boolean('active')->default(true);
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')
