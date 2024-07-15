@@ -21,7 +21,7 @@
 
                     <div class="row">
                         <div class="col-12">
-                            <table class="table w-100" id="invoiceTable">
+                            <table class="table w-100" style="color:black" id="invoiceTable">
                                 <thead class="w-100">
                                     <tr class="text-xs">
                                         <td>Name</td>
@@ -39,17 +39,47 @@
                     <hr class="mx-0 my-2 p-0 bg-secondary" />
                     <div class="row">
                         <div class="col-12">
-                            <p class="text-bold text-xs my-1 text-dark"> TOTAL: <i class="bi bi-currency-dollar"></i> <span
+                            <p class="text-bold text-xs my-3 text-dark"> TOTAL: <i class="bi bi-currency-dollar"></i> <span
                                     id="total"></span></p>
-                            <p class="text-bold text-xs my-2 text-dark"> PAYABLE: <i class="bi bi-currency-dollar"></i>
+        
+                            <span class="text-bold text-xs text-dark">DISCOUNT:</span>        
+                            <div class="d-flex">
+                                <input min="0" type="number"
+                                onchange="calculateGrandTotal()" class="form-control mx-auto w-100 form-control-sm me-2" id="discount" />
+                                
+                                <select class="form-select text-xs w-40" id="discountType" onchange="calculateGrandTotal()">
+                                    <option value="1" selected>Percentage (%)</option>
+                                    <option value="2">Amount (BDT)</option>
+                                </select>
+                            </div> 
+
+                            <p class="text-bold text-xs my-3 text-dark"> DISCOUNT AMOUNT: <i class="bi bi-currency-dollar"></i>
+                                <span id="discountAmount"></span>
+                            </p>
+
+                            <p class="text-bold text-xs my-3 text-dark"> PAYABLE: <i class="bi bi-currency-dollar"></i>
                                 <span id="payable"></span>
                             </p>
-                            <p class="text-bold text-xs my-1 text-dark"> VAT(5%): <i class="bi bi-currency-dollar"></i>
-                                <span id="vat"></span>
-                            </p>
-                            <span class="text-xxs">Discount(%):</span>
+
+
+                            <span class="text-bold text-xs text-dark">PAID:</span>
                             <input min="0" type="number" 
-                                onchange="DiscountChange()" class="form-control w-40 form-control-sm" id="discount" />
+                            onchange="calculateGrandTotal()" class="form-control w-70 form-control-sm me-2" id="paid" /> 
+
+                            <p class="text-bold text-xs my-3 text-dark"> DUE: <i class="bi bi-currency-dollar"></i>
+                                <span id="due"></span>
+                            </p>
+
+                            <div class="d-flex mt-3">
+                                <div class="form-check me-3">
+                                    <input class="form-check-input" name="invoiceType" type="radio" id="invoiceTypeSale" checked>
+                                    <label for="invoiceTypeSale"> Sale </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="invoiceType" type="radio" id="invoiceTypePurchase" >
+                                    <label for="invoiceTypePurchase"> Purchase </label>
+                                </div>
+                            </div>        
                             <p>
                                 <button onclick="handleCreateInvoice()"
                                     class="btn btn-sm my-2 bg-gradient-primary w-40">Confirm</button>
@@ -66,7 +96,7 @@
             <div class="col-md-6 col-lg-6">
                 <div class="p-2">
                     <div class="shadow-sm h-100 bg-white rounded-3 p-3">
-                        <table class="table  w-100" id="productTable">
+                        <table class="table  w-100" style="color:black" id="productTable">
                             <thead class="w-100">
                                 <tr class="text-xs">
                                     <td>Product</td>
@@ -82,7 +112,7 @@
 
                 <div class="p-2">
                     <div class="shadow-sm h-100 bg-white rounded-3 p-3">
-                        <table class="table table-sm w-100" id="customerTable">
+                        <table class="table table-sm w-100" style="color:black" id="customerTable">
                             <thead class="w-100">
                                 <tr class="text-xs">
                                     <td>Customer</td>
@@ -192,7 +222,7 @@
                 invoiceList.append(row)
             })
 
-            CalculateGrandTotal();
+            calculateGrandTotal();
 
             $('.remove').on('click', async function() {
                 let index = $(this).data('index');
@@ -206,33 +236,34 @@
             ShowInvoiceItem()
         }
 
-        function DiscountChange() {
-            CalculateGrandTotal();
-        }
-
-        function CalculateGrandTotal() {
+        function calculateGrandTotal() {
             let Total = 0;
-            let Vat = 0;
+            let Due = 0;
             let Payable = 0;
-            let discountPercentage = (parseFloat(document.getElementById('discount').value));
+            let discountAmount = 0;
 
             InvoiceItemList.forEach((item, index) => {
                 Total = Total + parseFloat(item['sale_price'])
             })
 
-            if (discountPercentage === 0) {
-                Vat = ((Total * 5) / 100).toFixed(2);
+            const discountType = document.getElementById('discountType').value;
+            const discount = document.getElementById('discount').value;
+            const paid = document.getElementById('paid').value;
+
+            if (discountType == 1) {
+                discountAmount = ((Total * discount) / 100).toFixed(2);
             } else {
-                Total = (Total - ((Total * discountPercentage) / 100)).toFixed(2);
-                Vat = ((Total * 5) / 100).toFixed(2);
+                discountAmount = parseFloat(discount);
             }
 
-            Payable = (parseFloat(Total) + parseFloat(Vat)).toFixed(2);
+            Payable = (parseFloat(Total) - parseFloat(discountAmount)).toFixed(2);
 
-
+            Due = (Payable - parseFloat(paid)).toFixed(2);
+            
             document.getElementById('total').innerText = Total;
             document.getElementById('payable').innerText = Payable;
-            document.getElementById('vat').innerText = Vat
+            document.getElementById('discountAmount').innerText = discountAmount;
+            document.getElementById('due').innerText = Due.replace(/\d(?=(\d{3})+\.)/g, '$&,');
         }
 
 
@@ -321,7 +352,7 @@
 
             res.data.data?.forEach(function(item, index) {
                 let row = `<tr class="text-xs">
-                        <td> <img class="w-10" src="${item['img_url']}"/> ${item['name']} (${item['price']} BDT)</td>
+                        <td><a target="_blank" href="${item['details_url']}"><img class="w-10" src="${item['img_url']}"/> ${item['name']} (${item['price']} BDT)</a></td>
                         <td><a data-name="${item['name']}" data-price="${item['price']}" data-id="${item['id']}" class="btn btn-outline-dark text-xxs px-2 py-1 addProduct  btn-sm m-0">Add</a></td>
                      </tr>`
                 productList.append(row)

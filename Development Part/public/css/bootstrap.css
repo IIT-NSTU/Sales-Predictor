@@ -21269,7 +21269,7 @@ fieldset:disabled .btn {
 }
 
 .form-check:not(.form-switch) .form-check-input[type="radio"]:checked {
-    padding: 6px;
+    padding: 5px;
 }
 
 .form-check:not(.form-switch) .form-check-input[type="radio"]:checked:after {
