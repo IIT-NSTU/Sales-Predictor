@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 13, 2024 at 01:36 PM
+-- Generation Time: Jul 15, 2024 at 05:14 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -41,7 +41,10 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `active`, `user_id`, `created_at`, `updated_at`) VALUES
-(11, 'Direct Cool Refrigerator', 1, 5, '2024-06-26 23:46:22', '2024-06-26 23:46:22');
+(11, 'Direct Cool Refrigerator', 1, 5, '2024-06-26 23:46:22', '2024-06-26 23:46:22'),
+(12, 'Non-Frost Refrigerator', 1, 5, '2024-07-14 00:14:46', '2024-07-14 00:14:46'),
+(13, 'Freezer', 1, 5, '2024-07-14 00:15:03', '2024-07-14 00:15:03'),
+(14, 'Beverage Cooler', 1, 5, '2024-07-14 00:15:20', '2024-07-14 00:15:20');
 
 -- --------------------------------------------------------
 
@@ -185,7 +188,31 @@ INSERT INTO `products` (`id`, `name`, `price`, `unit`, `img_url`, `details_url`,
 (21, 'WFC-3D8-GDEL-XX', '50390', '10', 'uploads/5-1719474883.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3d8-gdel-xx', 11, 5, 1, '2024-06-27 01:54:43', '2024-07-13 07:34:14'),
 (22, 'WFC-3D8-GJXB-LX-P (Inverter)', '52690', '10', 'uploads/5-1719474940.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3d8-gjxb-lx-p-inverter', 11, 5, 1, '2024-06-27 01:55:40', '2024-06-27 01:55:40'),
 (23, 'WFC-3D8-GDEH-XX (Inverter)', '51390', '10', 'uploads/5-1719475045.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3d8-gdeh-xx-inverter', 11, 5, 1, '2024-06-27 01:57:25', '2024-07-13 07:35:19'),
-(24, 'WFC-3D8-GDEL-XX (Inverter)', '51390', '10', 'uploads/5-1719475119.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3d8-gdel-xx-inverter', 11, 5, 1, '2024-06-27 01:58:39', '2024-07-13 07:35:49');
+(24, 'WFC-3D8-GDEL-XX (Inverter)', '51390', '10', 'uploads/5-1719475119.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3d8-gdel-xx-inverter', 11, 5, 1, '2024-06-27 01:58:39', '2024-07-13 07:35:49'),
+(25, 'WBB-2F0-TDXX-XX', '58,990', '10', 'uploads/5-1721012741.jpg', 'https://waltonbd.com/refrigerator-freezer/beverage-cooler/wbb-2f0-tdxx-xx', 14, 5, 1, '2024-07-14 21:05:42', '2024-07-14 21:05:42'),
+(26, 'WBQ-4D0-TDXX-XX', '80990', '10', 'uploads/5-1721012811.jpg', 'https://waltonbd.com/refrigerator-freezer/beverage-cooler/wbq-4d0-tdxx-xx', 14, 5, 1, '2024-07-14 21:06:51', '2024-07-14 21:06:51'),
+(27, 'WBA-2B4-GTXA-XX', '48990', '10', 'uploads/5-1721012857.jpg', 'https://waltonbd.com/refrigerator-freezer/beverage-cooler/wba-2b4-gtxa-xx', 14, 5, 1, '2024-07-14 21:07:37', '2024-07-14 21:07:37'),
+(28, 'WUE-3C4-GEPB-XX (Inverter)', '55200', '10', 'uploads/5-1721012977.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wue-3c4-gepb-xx-inverter', 13, 5, 1, '2024-07-14 21:09:37', '2024-07-14 21:09:37'),
+(29, 'WCF-1D5-GDEL-LX', '31190', '10', 'uploads/5-1721013024.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-1d5-gdel-lx', 13, 5, 1, '2024-07-14 21:10:24', '2024-07-14 21:10:24'),
+(30, 'WCF-1D5-GDEL-XX', '30690', '10', 'uploads/5-1721013081.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-1d5-gdel-xx', 13, 5, 1, '2024-07-14 21:11:21', '2024-07-14 21:11:21'),
+(31, 'WCF-1D5-RRXX-XX', '29390', '10', 'uploads/5-1721013120.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-1d5-rrxx-xx', 13, 5, 1, '2024-07-14 21:12:00', '2024-07-14 21:12:00'),
+(32, 'WCF-1B5-GDEL-XX', '27590', '10', 'uploads/5-1721013174.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-1b5-gdel-xx', 13, 5, 1, '2024-07-14 21:12:54', '2024-07-14 21:12:54'),
+(33, 'WCF-2T5-GDEL-GX', '36890', '10', 'uploads/5-1721013231.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-2t5-gdel-gx', 13, 5, 1, '2024-07-14 21:13:51', '2024-07-14 21:13:51'),
+(34, 'WCF-2T5-GDEL-XX', '36390', '10', 'uploads/5-1721013272.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-2t5-gdel-xx', 13, 5, 1, '2024-07-14 21:14:32', '2024-07-14 21:14:32'),
+(35, 'WCF-2T5-RRLX-XX', '35390', '10', 'uploads/5-1721013318.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-2t5-rrlx-xx', 13, 5, 1, '2024-07-14 21:15:18', '2024-07-14 21:15:18'),
+(36, 'WCF-2T5-RRLX-GX', '35890', '10', 'uploads/5-1721013374.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-2t5-rrlx-gx', 13, 5, 1, '2024-07-14 21:16:14', '2024-07-14 21:16:14'),
+(37, 'WCF-2A0-GSRE-XX-P', '37490', '10', 'uploads/5-1721019297.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-2a0-gsre-xx-p', 13, 5, 1, '2024-07-14 22:54:57', '2024-07-14 22:54:57'),
+(38, 'WCG-2E5-EHLC-XX', '37990', '10', 'uploads/5-1721019346.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcg-2e5-ehlc-xx', 13, 5, 1, '2024-07-14 22:55:46', '2024-07-14 22:55:46'),
+(39, 'WCG-2E5-EHLX-XX', '38890', '10', 'uploads/5-1721019405.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcg-2e5-ehlx-xx', 13, 5, 1, '2024-07-14 22:56:45', '2024-07-14 22:56:45'),
+(40, 'WCG-2E5-EHLX-XX (Inverter)', '39890', '10', 'uploads/5-1721019606.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcg-2e5-ehlx-xx-inverter', 13, 5, 1, '2024-07-14 23:00:06', '2024-07-14 23:00:06'),
+(41, 'WCG-2E5-GDEL-DD', '42290', '10', 'uploads/5-1721019667.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcg-2e5-gdel-dd', 13, 5, 1, '2024-07-14 23:01:07', '2024-07-14 23:01:07'),
+(42, 'WCG-2E5-GDEL-XX', '40890', '10', 'uploads/5-1721019823.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcg-2e5-gdel-xx', 13, 5, 1, '2024-07-14 23:03:43', '2024-07-14 23:03:43'),
+(43, 'WCG-2E5-GDEL-XX (Inverter)', '41890', '10', 'uploads/5-1721019911.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcg-2e5-gdel-xx-inverter', 13, 5, 1, '2024-07-14 23:05:11', '2024-07-14 23:05:11'),
+(44, 'WCG-3J0-DDGE-XX', '44690', '10', 'uploads/5-1721019963.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcg-3j0-ddge-xx', 13, 5, 1, '2024-07-14 23:06:03', '2024-07-14 23:06:03'),
+(45, 'WCG-3J0-DDXX-XX', '43690', '10', 'uploads/5-1721020112.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcg-3j0-ddxx-xx', 13, 5, 1, '2024-07-14 23:08:32', '2024-07-14 23:08:32'),
+(46, 'WCG-3J0-RXLX-GX', '44690', '10', 'uploads/5-1721020162.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcg-3j0-rxlx-gx', 13, 5, 1, '2024-07-14 23:09:22', '2024-07-14 23:09:22'),
+(47, 'WCG-3J0-RXLX-XX', '43690', '10', 'uploads/5-1721020239.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcg-3j0-rxlx-xx', 13, 5, 1, '2024-07-14 23:10:39', '2024-07-14 23:10:39'),
+(48, 'WCG-2G0-CGXX-XX', '53990', '10', 'uploads/5-1721020452.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcg-2g0-cgxx-xx', 13, 5, 1, '2024-07-14 23:14:12', '2024-07-14 23:14:12');
 
 -- --------------------------------------------------------
 
@@ -284,7 +311,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `customers`
@@ -320,7 +347,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `users`
