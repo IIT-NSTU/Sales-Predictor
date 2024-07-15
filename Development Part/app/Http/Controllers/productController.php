@@ -17,7 +17,7 @@ class productController extends Controller
     function productList(Request $request)
     {
         $userId = $request->header('userId');
-        $products = Product::where('user_id', '=', $userId)->get();
+        $products = Product::where('user_id', '=', $userId)->with('category')->get();
 
         return response()->json([
             "status" => "success",

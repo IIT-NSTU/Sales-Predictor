@@ -12,15 +12,16 @@
                     </div>
                 </div>
                 <hr class="bg-dark " />
-                <table class="table" style="color:#344767" id="tableData">
+                <table class="table text-dark" id="tableData">
                     <thead>
                         <tr class="bg-light">
                             <th>No</th>
                             <th>Category</th>
+                            <th>Products Count</th>
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody id="tableList">
+                    <tbody id="tableList" style="color:black">
 
                     </tbody>
                 </table>
@@ -57,6 +58,7 @@
             tableList.append(`<tr>
                 <td>${index+1} </td>
                 <td>${item['name']} </td>
+                <td>${item['products_count']} </td>
                  <td>
                     <button data-id = "${item['id']}" data-name = "${item['name']}" class = "btn editBtn btn-sm btn-outline-success" >Edit</button>
                     <button data-id = "${item['id']}"  class ="btn deleteBtn btn-sm btn-danger ">Delete</button>

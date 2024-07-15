@@ -17,7 +17,8 @@ class categoryController extends Controller
     {
         $userId = $request->header('userId');
         $categories = Category::where('user_id', '=', $userId)
-                              ->where('active', '=', 1)->get();
+                              ->where('active', '=', 1)
+                              ->withCount('products')->get();
 
         return response()->json([
             "status" => "success",

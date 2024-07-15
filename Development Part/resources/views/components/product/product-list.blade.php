@@ -11,19 +11,20 @@
                             class="float-end btn m-0 btn-sm bg-gradient-primary">Create</button>
                     </div>
                 </div>
-                <hr class="bg-dark " />
-                <table class="table" id="tableData">
+                <hr class="bg-dark" />
+                <table class="table text-dark" id="tableData">
                     <thead>
                         <tr class="bg-light">
                             <th>No</th>
                             <th>Image</th>
                             <th>Name</th>
+                            <th>Category</th>
                             <th>Price</th>
                             <th>Unit</th>
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody id="tableList">
+                    <tbody id="tableList" style="color:black">
 
                     </tbody>
                 </table>
@@ -60,8 +61,9 @@
         data.map((item, index) => {
             tableList.append(`<tr>
                    <td>${index+1}</td>
-                    <td><a href='${item['details_url']}' target="_blank"><img class="w-40 h-auto" alt="" src="${item['img_url']}"></a></td>
+                    <td><a href='${item['details_url']}' target="_blank"><img class="w-50 h-auto" alt="" src="${item['img_url']}"></a></td>
                     <td>${item['name']}</td>
+                    <td>`+ item.category.name +`</td>
                     <td>${item['price']}</td>
                     <td>${item['unit']}</td>
                     <td>
@@ -95,7 +97,8 @@
             order: [
                 [0, 'asc']
             ],
-            lengthMenu: [5, 10, 15, 20, 30]
+            lengthMenu: [5, 10, 15, 20, 30, 50, 100],
+            columns: [null, { width: '20%' }, null, null, null, null, null]
         });
 
 
