@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 16, 2024 at 07:49 AM
+-- Generation Time: Jul 16, 2024 at 02:53 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -70,7 +70,8 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `name`, `email`, `mobile`, `address`, `type`, `active`, `user_id`, `created_at`, `updated_at`) VALUES
-(2, 'Walton Hi-Tech industries', 'info@waltonbd.com', '008809606-555555', 'Plot-1088, Block-I, Sabrina Sobhan Road P.O-Khilkhet, P.S-Vatara, Bashundhara R/A, Dhaka-1229', '2', 1, 5, '2024-07-16 01:30:41', '2024-07-16 01:48:39');
+(2, 'Walton Hi-Tech industries', 'info@waltonbd.com', '008809606-555555', 'Plot-1088, Block-I, Sabrina Sobhan Road P.O-Khilkhet, P.S-Vatara, Bashundhara R/A, Dhaka-1229', '2', 1, 5, '2024-07-16 01:30:41', '2024-07-16 01:48:39'),
+(3, 'Prosanto Deb', 'prosanto2514@student.nstu.edu.bd', '01793222825', '32/1, North Mourail, Brahmanbaria', '1', 1, 5, '2024-07-16 07:20:40', '2024-07-16 07:20:40');
 
 -- --------------------------------------------------------
 
@@ -327,7 +328,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `invoices`

@@ -16,13 +16,7 @@ class customerController extends Controller
     function customerList(Request $request)
     {
         $userId = $request->header('userId');
-        $customers = Customer::where('user_id', '=', $userId)->get();
-
-        return response()->json([
-            "status" => "success",
-            "message" => "",
-            "data" => $customers
-        ], 200);
+        return Customer::where('user_id', '=', $userId)->get();
     }
 
     function createCustomer(Request $request)
@@ -117,5 +111,13 @@ class customerController extends Controller
         $userId = $request->header('userId');
 
         return Customer::where('user_id', '=', $userId)->where('id', '=', $customerId)->first();
+    }
+
+    function customerByType(Request $request)
+    {
+        $customerType = $request->type;
+        $userId = $request->header('userId');
+
+        return Customer::where('user_id', '=', $userId)->where('type', '=', $customerType)->get();
     }
 }

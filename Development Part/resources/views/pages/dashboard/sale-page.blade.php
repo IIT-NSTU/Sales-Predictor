@@ -7,9 +7,10 @@
                     <div class="row">
                         <div class="col-8">
                             <span class="text-bold text-dark">BILLED TO </span>
-                            <p class="text-xs mx-0 my-1">Name: <span id="CName"></span> </p>
-                            <p class="text-xs mx-0 my-1">Phone: <span id="CPhone"></span></p>
                             <p class="text-xs mx-0 my-1">User ID: <span id="CId"></span></p>
+                            <p class="text-xs mx-0 my-1">Name: <span id="CName"></span> </p>
+                            <p class="text-xs mx-0 my-1">Mobile: <span id="CMobile"></span></p>
+                            <p class="text-xs mx-0 my-1">Address: <span id="CAddress"></span></p>
                         </div>
                         <div class="col-4">
                             <img class="w-40" src="{{ 'images/logo3.png' }}">
@@ -39,8 +40,7 @@
                     <hr class="mx-0 my-2 p-0 bg-secondary" />
                     <div class="row">
                         <div class="col-12">
-                            <p class="text-bold text-xs my-3 text-dark"> TOTAL: <i class="bi bi-currency-dollar"></i> <span
-                                    id="total"></span></p>
+                            <p class="text-bold text-xs my-3 text-dark"> TOTAL: <span id="total"></span></p>
         
                             <span class="text-bold text-xs text-dark">DISCOUNT:</span>        
                             <div class="d-flex">
@@ -53,11 +53,11 @@
                                 </select>
                             </div> 
 
-                            <p class="text-bold text-xs my-3 text-dark"> DISCOUNT AMOUNT: <i class="bi bi-currency-dollar"></i>
+                            <p class="text-bold text-xs my-3 text-dark"> DISCOUNT AMOUNT:
                                 <span id="discountAmount"></span>
                             </p>
 
-                            <p class="text-bold text-xs my-3 text-dark"> PAYABLE: <i class="bi bi-currency-dollar"></i>
+                            <p class="text-bold text-xs my-3 text-dark"> PAYABLE:
                                 <span id="payable"></span>
                             </p>
 
@@ -66,17 +66,17 @@
                             <input min="0" type="number" 
                             onchange="calculateGrandTotal()" class="form-control w-70 form-control-sm me-2" id="paid" /> 
 
-                            <p class="text-bold text-xs my-3 text-dark"> DUE: <i class="bi bi-currency-dollar"></i>
+                            <p class="text-bold text-xs my-3 text-dark"> DUE:
                                 <span id="due"></span>
                             </p>
 
                             <div class="d-flex mt-3">
                                 <div class="form-check me-3">
-                                    <input class="form-check-input" name="invoiceType" type="radio" id="invoiceTypeSale" checked>
+                                    <input class="form-check-input" name="invoiceType" type="radio" id="invoiceTypeSale" onchange="setContactList()" checked>
                                     <label for="invoiceTypeSale"> Sale </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" name="invoiceType" type="radio" id="invoiceTypePurchase" >
+                                    <input class="form-check-input" name="invoiceType" type="radio" onchange="setContactList()" id="invoiceTypePurchase" >
                                     <label for="invoiceTypePurchase"> Purchase </label>
                                 </div>
                             </div>        
@@ -115,7 +115,7 @@
                         <table class="table table-sm w-100" style="color:black" id="customerTable">
                             <thead class="w-100">
                                 <tr class="text-xs">
-                                    <td>Customer</td>
+                                    <td id="customerLabel"></td>
                                     <td>Pick</td>
                                 </tr>
                             </thead>
@@ -166,7 +166,7 @@
     <script>
         (async () => {
             showLoader();
-            await CustomerList();
+            await CustomerList(1);
             await ProductList();
             hideLoader();
         })()
@@ -206,6 +206,17 @@
             }
         }
 
+        function setContactList() {
+            const saleRadio = document.getElementById('invoiceTypeSale');
+            const purchaseRadio = document.getElementById('invoiceTypePurchase');
+
+            if (saleRadio.checked) {
+                CustomerList(1);
+            } else if (purchaseRadio.checked) {
+                CustomerList(2);
+            }
+        }
+
         function ShowInvoiceItem() {
 
             let invoiceList = $('#invoiceList');
@@ -217,7 +228,7 @@
                         <td>${item['product_name']}</td>
                         <td>${item['quantity']}</td>
                         <td>${item['sale_price']}</td>
-                        <td><a data-index="${index}" class="btn remove text-xxs px-2 py-1  btn-sm m-0">Remove</a></td>
+                        <td><a data-index="${index}" class="btn remove text-xs px-2 py-1  btn-sm m-0">Remove</a></td>
                      </tr>`
                 invoiceList.append(row)
             })
@@ -303,17 +314,23 @@
         }
 
 
-        async function CustomerList() {
-            let res = await axios.get("/customer-list");
+        async function CustomerList(type) {
+            if (type == 1) {
+                $('#customerLabel').text('Customer');
+            } else {
+                $('#customerLabel').text('Supplier');
+            }
+
+            let res = await axios.get("/customersbytype/"+type);
             let customerList = $("#customerList");
             let customerTable = $("#customerTable");
             customerTable.DataTable().destroy();
             customerList.empty();
 
-            res.data?.data.forEach(function(item, index) {
-                let row = `<tr class="text-xs">
-                        <td><i class="bi bi-person"></i> ${item['name']}</td>
-                        <td><a data-name="${item['name']}" data-email="${item['email']}" data-id="${item['id']}" class="btn btn-outline-dark addCustomer  text-xxs px-2 py-1  btn-sm m-0">Add</a></td>
+            res.data.forEach(function(item, index) {
+                let row = `<tr class="text-s">
+                        <td style="white-space: normal">${item['name']} (${item['address']}) </td>
+                        <td style="vertical-align: middle"><a data-name="${item['name']}" data-mobile="${item['mobile']}" data-address="${item['address']}" data-id="${item['id']}" class="btn btn-outline-dark addCustomer  text-xs px-2 py-1  btn-sm m-0">Add</a></td>
                      </tr>`
                 customerList.append(row)
             })
@@ -323,11 +340,13 @@
 
                 let CName = $(this).data('name');
                 let CMobile = $(this).data('mobile');
+                let CAddress = $(this).data('address');
                 let CId = $(this).data('id');
 
-                $("#CName").text(CName)
-                $("#CMobile").text(CMobile)
-                $("#CId").text(CId)
+                $("#CName").text(CName);
+                $("#CMobile").text(CMobile);
+                $("#CAddress").text(CAddress);
+                $("#CId").text(CId);
 
             })
 
@@ -336,9 +355,7 @@
                 order: [
                     [0, 'desc']
                 ],
-                scrollCollapse: false,
-                info: false,
-                lengthChange: false
+                lengthMenu: [5, 10, 15, 20, 30, 50, 100],
             });
         }
 
@@ -351,9 +368,9 @@
             productList.empty();
 
             res.data.data?.forEach(function(item, index) {
-                let row = `<tr class="text-xs">
+                let row = `<tr class="text-s">
                         <td><a target="_blank" href="${item['details_url']}"><img class="w-10" src="${item['img_url']}"/> ${item['name']} (${item['price']} BDT)</a></td>
-                        <td><a data-name="${item['name']}" data-price="${item['price']}" data-id="${item['id']}" class="btn btn-outline-dark text-xxs px-2 py-1 addProduct  btn-sm m-0">Add</a></td>
+                        <td style="vertical-align: middle"><a data-name="${item['name']}" data-price="${item['price']}" data-id="${item['id']}" class="btn btn-outline-dark text-xs px-2 py-1 addProduct  btn-sm m-0">Add</a></td>
                      </tr>`
                 productList.append(row)
             })
@@ -375,9 +392,7 @@
                 order: [
                     [0, 'desc']
                 ],
-                scrollCollapse: false,
-                info: false,
-                lengthChange: false
+                lengthMenu: [5, 10, 15, 20, 30, 50, 100],
             });
         }
     </script>

@@ -94,6 +94,7 @@ Route::controller(customerController::class)->group(function () {
     Route::post('/delete-customer', 'deleteCustomer')->middleware(tokenVerficationMiddleware::class);
     Route::get('/customer-list', 'customerList')->middleware(tokenVerficationMiddleware::class);
     Route::get('/customers/{id}', 'customerById')->middleware(tokenVerficationMiddleware::class);
+    Route::get('/customersbytype/{type}', 'customerByType')->middleware(tokenVerficationMiddleware::class);
 });
 
 // Product

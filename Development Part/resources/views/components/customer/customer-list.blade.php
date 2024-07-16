@@ -60,7 +60,7 @@
                 }
             };
 
-            res.data?.data.forEach(function(item, index) {
+            res.data.forEach(function(item, index) {
                 const row = `<tr>
                 <td>${index+1} </td>
                 <td>${item['name']} </td>
