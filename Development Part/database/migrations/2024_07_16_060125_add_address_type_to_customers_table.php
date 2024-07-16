@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->string('details_url', 100)->nullable()->after('img_url');
+        Schema::table('customers', function (Blueprint $table) {
+            $table->string('address', 100)->after('mobile');
+            $table->string('type', 10)->after('address');
         });
     }
 
@@ -21,7 +22,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('products', function (Blueprint $table) {
+        Schema::table('customers', function (Blueprint $table) {
             //
         });
     }

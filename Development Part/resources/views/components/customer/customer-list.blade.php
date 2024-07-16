@@ -4,7 +4,7 @@
             <div class="card px-5 py-5">
                 <div class="row justify-content-between ">
                     <div class="align-items-center col">
-                        <h4>Customer</h4>
+                        <h4>Contacts</h4>
                     </div>
                     <div class="align-items-center col">
                         <button data-bs-toggle="modal" data-bs-target="#create-modal"
@@ -12,17 +12,19 @@
                     </div>
                 </div>
                 <hr class="bg-dark " />
-                <table class="table" id="tableData">
+                <table class="table text-dark" id="tableData">
                     <thead>
                         <tr class="bg-light">
                             <th>No</th>
                             <th>Name</th>
-                            <th>Email</th>
+                            <th>Address</th>
                             <th>Mobile</th>
+                            <th>Email</th>
+                            <th>Type</th>
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody id="tableList">
+                    <tbody id="tableList" style="color:black">
 
                     </tbody>
                 </table>
@@ -45,12 +47,27 @@
             tableData.DataTable().destroy();
             tableList.empty();
 
+            const getTypeName = (type) => {
+                switch (type) {
+                    case "1":
+                        return 'Customer';
+                    case "2":
+                        return 'Supplier';
+                    case "3":
+                        return 'Staff';
+                    default:
+                        return 'Unknown';
+                }
+            };
+
             res.data?.data.forEach(function(item, index) {
                 const row = `<tr>
                 <td>${index+1} </td>
                 <td>${item['name']} </td>
-                <td>${item['email']} </td>
+                <td style="white-space: normal">${item['address']} </td>
                 <td>${item['mobile']} </td>
+                <td>${item['email']} </td>
+                <td>${getTypeName(item.type)} </td>
                 <td>
                     <button data-id = "${item['id']}" class = "btn editBtn btn-sm btn-outline-success" >Edit</button>
                     <button data-id = "${item['id']}"  class ="btn deleteBtn btn-sm btn-danger ">Delete</button> </td>
@@ -86,7 +103,6 @@
                 [0, 'asc']
             ],
             lengthMenu: [5, 20, 30, 40]
-
         });
     }
 </script>

@@ -34,6 +34,8 @@ class customerController extends Controller
                 "name" => $request->input('name'),
                 "email" => $request->input('email'),
                 "mobile" => $request->input('mobile'),
+                "address" => $request->input('address'),
+                "type" => $request->input('type'),
             ]);
             return response()->json([
                 "status" => "success",
@@ -61,6 +63,8 @@ class customerController extends Controller
                     "name" => $request->input('name'),
                     "email" => $request->input('email'),
                     "mobile" => $request->input('mobile'),
+                    "address" => $request->input('address'),
+                    "type" => $request->input('type'),
                 ]);
 
                 return response()->json([

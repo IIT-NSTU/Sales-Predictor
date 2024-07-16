@@ -68,9 +68,9 @@
             <span class="side-bar-item-caption text-lg">Dashboard</span>
         </a>
 
-        <a href="{{ url('/customers') }}" class="side-bar-item">
+        <a href="{{ url('/contacts') }}" class="side-bar-item">
             <img src="{{ asset('icons/customer.ico') }}" alt="Customer Icon" class="icon-style">
-            <span class="side-bar-item-caption text-lg">Customers</span>
+            <span class="side-bar-item-caption text-lg">Contacts</span>
         </a>
 
         <a href="{{ url('/categories') }}" class="side-bar-item">

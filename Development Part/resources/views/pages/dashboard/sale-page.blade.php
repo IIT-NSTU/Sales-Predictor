@@ -8,7 +8,7 @@
                         <div class="col-8">
                             <span class="text-bold text-dark">BILLED TO </span>
                             <p class="text-xs mx-0 my-1">Name: <span id="CName"></span> </p>
-                            <p class="text-xs mx-0 my-1">Email: <span id="CEmail"></span></p>
+                            <p class="text-xs mx-0 my-1">Phone: <span id="CPhone"></span></p>
                             <p class="text-xs mx-0 my-1">User ID: <span id="CId"></span></p>
                         </div>
                         <div class="col-4">
@@ -322,11 +322,11 @@
             $('.addCustomer').on('click', async function() {
 
                 let CName = $(this).data('name');
-                let CEmail = $(this).data('email');
+                let CMobile = $(this).data('mobile');
                 let CId = $(this).data('id');
 
                 $("#CName").text(CName)
-                $("#CEmail").text(CEmail)
+                $("#CMobile").text(CMobile)
                 $("#CId").text(CId)
 
             })

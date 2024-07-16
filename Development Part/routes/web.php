@@ -39,7 +39,7 @@ Route::controller(productController::class)->group(function () {
 
 //Customer
 Route::controller(customerController::class)->group(function () {
-    Route::get('/customers', 'customersPage')->middleware(tokenVerficationMiddleware::class);
+    Route::get('/contacts', 'customersPage')->middleware(tokenVerficationMiddleware::class);
 });
 
 // Invoice
