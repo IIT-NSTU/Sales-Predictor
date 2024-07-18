@@ -13,10 +13,12 @@ return new class extends Migration {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             
-            $table->string('total', 50);
-            $table->string('discount', 50);
-            $table->string('vat', 50);
-            $table->string('payable', 50);
+            $table->double('total', 12, 2);
+            $table->double('discount', 12, 2);
+            $table->double('payable', 12, 2);
+            $table->double('paid', 12, 2);
+            $table->double('due', 12, 2);
+            
             $table->boolean('active')->default(true);
 
             $table->unsignedBigInteger('user_id');

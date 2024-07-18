@@ -5,17 +5,17 @@
             <div class="col-md-6 col-lg-6 p-2">
                 <div class="shadow-sm h-100 bg-white rounded-3 p-3">
                     <div class="row">
-                        <div class="col-8">
-                            <span class="text-bold text-dark">BILLED TO </span>
-                            <p class="text-xs mx-0 my-1">User ID: <span id="CId"></span></p>
-                            <p class="text-xs mx-0 my-1">Name: <span id="CName"></span> </p>
-                            <p class="text-xs mx-0 my-1">Mobile: <span id="CMobile"></span></p>
-                            <p class="text-xs mx-0 my-1">Address: <span id="CAddress"></span></p>
+                        <div class="col-8 text-dark">
+                            <span class="text-bold">BILLED TO </span>
+                            <p class="text-s mx-0 my-1">User ID: <span id="CId"></span></p>
+                            <p class="text-s mx-0 my-1">Name: <span id="CName"></span> </p>
+                            <p class="text-s mx-0 my-1">Mobile: <span id="CMobile"></span></p>
+                            <p class="text-s mx-0 my-1">Address: <span id="CAddress"></span></p>
                         </div>
                         <div class="col-4">
                             <img class="w-40" src="{{ 'images/logo3.png' }}">
                             <p class="text-bold mx-0 my-1 text-dark">Invoice </p>
-                            <p class="text-xs mx-0 my-1">Date: {{ date('Y-m-d') }} </p>
+                            <p class="text-s mx-0 my-1">Date: {{ date('Y-m-d') }} </p>
                         </div>
                     </div>
                     <hr class="mx-0 my-2 p-0 bg-secondary" />
@@ -24,7 +24,7 @@
                         <div class="col-12">
                             <table class="table w-100" style="color:black" id="invoiceTable">
                                 <thead class="w-100">
-                                    <tr class="text-xs">
+                                    <tr class="text-s">
                                         <td>Name</td>
                                         <td>Qty</td>
                                         <td>Total</td>
@@ -40,12 +40,12 @@
                     <hr class="mx-0 my-2 p-0 bg-secondary" />
                     <div class="row">
                         <div class="col-12">
-                            <p class="text-bold text-xs my-3 text-dark"> TOTAL: <span id="total"></span></p>
+                            <p class="text-bold text-s my-3 text-dark"> TOTAL: <span id="total"></span></p>
         
-                            <span class="text-bold text-xs text-dark">DISCOUNT:</span>        
+                            <span class="text-bold text-s text-dark">DISCOUNT:</span>        
                             <div class="d-flex">
                                 <input min="0" type="number"
-                                onchange="calculateGrandTotal()" class="form-control mx-auto w-100 form-control-sm me-2" id="discount" />
+                                onchange="calculateGrandTotal()" class="form-control mx-auto w-100 me-2 text-l" id="discount" />
                                 
                                 <select class="form-select text-xs w-40" id="discountType" onchange="calculateGrandTotal()">
                                     <option value="1" selected>Percentage (%)</option>
@@ -53,20 +53,20 @@
                                 </select>
                             </div> 
 
-                            <p class="text-bold text-xs my-3 text-dark"> DISCOUNT AMOUNT:
+                            <p class="text-bold text-s my-3 text-dark"> DISCOUNT AMOUNT:
                                 <span id="discountAmount"></span>
                             </p>
 
-                            <p class="text-bold text-xs my-3 text-dark"> PAYABLE:
+                            <p class="text-bold text-s my-3 text-dark"> PAYABLE:
                                 <span id="payable"></span>
                             </p>
 
 
-                            <span class="text-bold text-xs text-dark">PAID:</span>
+                            <span class="text-bold text-s text-dark">PAID:</span>
                             <input min="0" type="number" 
-                            onchange="calculateGrandTotal()" class="form-control w-70 form-control-sm me-2" id="paid" /> 
+                            onchange="calculateGrandTotal()" class="form-control w-70 me-2" id="paid" /> 
 
-                            <p class="text-bold text-xs my-3 text-dark"> DUE:
+                            <p class="text-bold text-s my-3 text-dark"> DUE:
                                 <span id="due"></span>
                             </p>
 
@@ -98,7 +98,7 @@
                     <div class="shadow-sm h-100 bg-white rounded-3 p-3">
                         <table class="table  w-100" style="color:black" id="productTable">
                             <thead class="w-100">
-                                <tr class="text-xs">
+                                <tr class="text-s">
                                     <td>Product</td>
                                     <td>Pick</td>
                                 </tr>
@@ -114,7 +114,7 @@
                     <div class="shadow-sm h-100 bg-white rounded-3 p-3">
                         <table class="table table-sm w-100" style="color:black" id="customerTable">
                             <thead class="w-100">
-                                <tr class="text-xs">
+                                <tr class="text-s">
                                     <td id="customerLabel"></td>
                                     <td>Pick</td>
                                 </tr>
@@ -224,7 +224,7 @@
             invoiceList.empty();
 
             InvoiceItemList.forEach(function(item, index) {
-                let row = `<tr class="text-xs">
+                let row = `<tr class="text-s">
                         <td>${item['product_name']}</td>
                         <td>${item['quantity']}</td>
                         <td>${item['sale_price']}</td>
