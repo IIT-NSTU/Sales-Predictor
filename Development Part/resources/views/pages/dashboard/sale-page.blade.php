@@ -149,6 +149,7 @@
                                     <input type="text" class="form-control" id="PPrice">
                                     <label class="form-label" id="PQtyLabel">Product Qty *</label>
                                     <input type="text" class="form-control" id="PQty">
+                                    <input type="text" class="form-control d-none" id="PAcQty">
                                 </div>
                             </div>
                         </div>
@@ -178,8 +179,9 @@
             const customerId = document.getElementById('CId').innerText;
             const total = document.getElementById('total').innerText;
             const discount = document.getElementById('discount').value;
-            const vat = document.getElementById('vat').innerText;
             const payable = document.getElementById('payable').innerText;
+            const paid = document.getElementById('paid').value;
+            const due = document.getElementById('due').innerText;
 
             if (customerId.length === 0) {
                 errorToast('Customer required')
@@ -187,6 +189,12 @@
                 errorToast('Product required')
             } else if (discount.length === 0) {
                 errorToast('Discount required')
+            } else if (parseFloat(discount) < 0) {
+                errorToast('Please enter positive discount.')
+            } else if (paid.length === 0) {
+                errorToast('Paid amount required')
+            } else if (parseFloat(paid) < 0) {
+                errorToast('Please enter positive paid amount.')
             } else {
                 showLoader();
                 try {
@@ -194,7 +202,8 @@
                         total: total,
                         payable: payable,
                         discount: discount,
-                        vat: vat,
+                        paid: paid,
+                        due: due,
                         customer_id: customerId,
                         products: InvoiceItemList
                     });
@@ -275,7 +284,7 @@
             document.getElementById('total').innerText = Total;
             document.getElementById('payable').innerText = Payable;
             document.getElementById('discountAmount').innerText = discountAmount;
-            document.getElementById('due').innerText = Due.replace(/\d(?=(\d{3})+\.)/g, '$&,');
+            document.getElementById('due').innerText = Due;
         }
 
 
@@ -283,7 +292,8 @@
             let PId = document.getElementById('PId').value;
             let PName = document.getElementById('PName').value;
             let PPrice = document.getElementById('PPrice').value;
-            let PQty = document.getElementById('PQty').value;
+            let PQty = parseInt(document.getElementById('PQty').value);
+            let PAcQty = document.getElementById('PAcQty').value;
             let PTotalPrice = (parseFloat(PPrice) * parseFloat(PQty)).toFixed(2);
             if (PId.length === 0) {
                 errorToast("Product ID Required");
@@ -293,24 +303,40 @@
                 errorToast("Product Price Required");
             } else if (PQty.length === 0) {
                 errorToast("Product Quantity Required");
+            } else if (PQty <= 0) {
+                errorToast("Product Quantity Can Not Be 0 or Negative.");
             } else {
-                let item = {
+                let totalItem = 0;
+                InvoiceItemList.forEach(function(item, index) {
+                    if (item.id === PId) {
+                        totalItem += parseInt(item.quantity); 
+                    }
+                })
+
+                if (PAcQty >= (totalItem + PQty)) {
+                    let item = {
                     id: PId,
                     product_name: PName,
                     quantity: PQty,
                     sale_price: PTotalPrice
-                };
-                InvoiceItemList.push(item);
-                $('#create-modal').modal('hide')
-                ShowInvoiceItem();
+                    };
+
+                    InvoiceItemList.push(item);
+
+                    $('#create-modal').modal('hide')
+                    ShowInvoiceItem();
+                } else {
+                    errorToast("Sorry! You do not have " + (totalItem + PQty) + " units of " + PName);
+                }
             }
         }
 
 
-        function addModal(id, name, price) {
+        function addModal(id, name, price, qty) {
             document.getElementById('PId').value = id
             document.getElementById('PName').value = name
             document.getElementById('PPrice').value = price
+            document.getElementById('PAcQty').value = qty
             $('#create-modal').modal('show')
         }
 
@@ -372,7 +398,9 @@
                 let row = `<tr class="text-s">
                         <td><a target="_blank" href="${item['details_url']}"><img class="w-10" src="${item['img_url']}"/> ${item['name']} (${item['price']} BDT)</a></td>
                         <td style="vertical-align: middle; text-align:right">${item['unit']}</td>
-                        <td style="vertical-align: middle; text-align:right"><a data-name="${item['name']}" data-price="${item['price']}" data-id="${item['id']}" class="btn btn-outline-dark text-xs px-2 py-1 addProduct  btn-sm m-0">Add</a></td>
+                        <td style="vertical-align: middle; text-align:right">
+                            <a data-name="${item['name']}" data-price="${item['price']}" data-qty="${item['unit']}" data-id="${item['id']}" class="btn btn-outline-dark text-xs px-2 py-1 addProduct  btn-sm m-0">Add</a>
+                        </td>
                      </tr>`
                 productList.append(row)
             })
@@ -382,8 +410,9 @@
                 let PName = $(this).data('name');
                 let PPrice = $(this).data('price');
                 let PId = $(this).data('id');
+                let PQty = $(this).data('qty');
 
-                addModal(PId, PName, PPrice)
+                addModal(PId, PName, PPrice, PQty)
 
             })
 

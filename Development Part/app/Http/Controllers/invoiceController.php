@@ -28,7 +28,8 @@ class invoiceController extends Controller
 
         $total = $request->input('total');
         $discount = $request->input('discount');
-        $vat = $request->input('vat');
+        $paid = $request->input('paid');
+        $due = $request->input('due');
         $payable = $request->input('payable');
         $customerId = $request->input('customer_id');
 
@@ -37,7 +38,8 @@ class invoiceController extends Controller
             $invoice = Invoice::create([
                 "total" => $total,
                 "discount" => $discount,
-                "vat" => $vat,
+                "paid" => $paid,
+                "due" => $due,
                 "payable" => $payable,
                 "customer_id" => $customerId,
                 "user_id" => $userId
@@ -53,6 +55,13 @@ class invoiceController extends Controller
                     "sale_price" => $product['sale_price'],
                     "quantity" => $product['quantity'],
                     "user_id" => $userId
+                ]);
+
+                $dbProduct = Product::where('id', '=', $product['id'])
+                ->where('user_id', '=', $userId)->first();
+
+                $dbProduct->update([
+                    "unit" => $dbProduct['unit'] - $product['quantity']
                 ]);
             }
             DB::commit();
