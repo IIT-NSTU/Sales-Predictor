@@ -103,6 +103,7 @@ Route::controller(productController::class)->group(function () {
     Route::post('/update-product', 'updateProduct')->middleware(tokenVerficationMiddleware::class);
     Route::post('/delete-product', 'deleteProduct')->middleware(tokenVerficationMiddleware::class);
     Route::get('/product-list', 'productList')->middleware(tokenVerficationMiddleware::class);
+    Route::get('/product-list-sale', 'productListSale')->middleware(tokenVerficationMiddleware::class);
     Route::get('/products/{id}', 'productById')->middleware(tokenVerficationMiddleware::class);
 });
 

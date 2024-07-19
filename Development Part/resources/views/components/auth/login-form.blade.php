@@ -9,7 +9,7 @@
                     <br />
                     <input id="password" placeholder="Enter password" class="form-control" type="password" />
                     <br />
-                    <button onclick="handleLogin()" class="btn w-100 btn-primary">Next</button>
+                    <button onclick="handleLogin()" class="btn w-100 bg-gradient-primary">Next</button>
                     <hr />
                     <div class="float-end mt-3">
                         <span>

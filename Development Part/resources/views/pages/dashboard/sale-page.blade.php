@@ -100,7 +100,8 @@
                             <thead class="w-100">
                                 <tr class="text-s">
                                     <td>Product</td>
-                                    <td>Pick</td>
+                                    <td style="text-align:right">Quantity</td>
+                                    <td style="text-align:right">Pick</td>
                                 </tr>
                             </thead>
                             <tbody class="w-100" id="productList">
@@ -143,10 +144,10 @@
                                     <label class="form-label d-none">Product ID *</label>
                                     <input type="text" class="form-control d-none" id="PId">
                                     <label class="form-label">Product Name *</label>
-                                    <input type="text" class="form-control" id="PName">
+                                    <input type="text" class="form-control" id="PName" disabled>
                                     <label class="form-label">Product Price *</label>
                                     <input type="text" class="form-control" id="PPrice">
-                                    <label class="form-label">Product Qty *</label>
+                                    <label class="form-label" id="PQtyLabel">Product Qty *</label>
                                     <input type="text" class="form-control" id="PQty">
                                 </div>
                             </div>
@@ -361,16 +362,17 @@
 
 
         async function ProductList() {
-            let res = await axios.get("/product-list");
+            let res = await axios.get("/product-list-sale");
             let productList = $("#productList");
             let productTable = $("#productTable");
             productTable.DataTable().destroy();
             productList.empty();
 
-            res.data.data?.forEach(function(item, index) {
+            res.data.forEach(function(item, index) {
                 let row = `<tr class="text-s">
                         <td><a target="_blank" href="${item['details_url']}"><img class="w-10" src="${item['img_url']}"/> ${item['name']} (${item['price']} BDT)</a></td>
-                        <td style="vertical-align: middle"><a data-name="${item['name']}" data-price="${item['price']}" data-id="${item['id']}" class="btn btn-outline-dark text-xs px-2 py-1 addProduct  btn-sm m-0">Add</a></td>
+                        <td style="vertical-align: middle; text-align:right">${item['unit']}</td>
+                        <td style="vertical-align: middle; text-align:right"><a data-name="${item['name']}" data-price="${item['price']}" data-id="${item['id']}" class="btn btn-outline-dark text-xs px-2 py-1 addProduct  btn-sm m-0">Add</a></td>
                      </tr>`
                 productList.append(row)
             })

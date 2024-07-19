@@ -26,6 +26,12 @@ class productController extends Controller
         ], 200);
     }
 
+    function productListSale(Request $request)
+    {
+        $userId = $request->header('userId');
+        return Product::where('user_id', '=', $userId)->where('unit', '>', '0')->get();
+    }
+
     function productById(Request $request)
     {
         $productId = $request->id;
