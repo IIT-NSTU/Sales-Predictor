@@ -4,6 +4,7 @@ use App\Http\Controllers\categoryController;
 use App\Http\Controllers\customerController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\invoiceController;
+use App\Http\Controllers\dueController;
 use App\Http\Controllers\productController;
 use App\Http\Controllers\reportController;
 use App\Http\Controllers\userController;
@@ -31,13 +32,13 @@ Route::controller(categoryController::class)->group(function () {
     Route::get('/categories', 'categoriesPage')->middleware(tokenVerficationMiddleware::class);
 });
 
-//Product 
+// Product 
 Route::controller(productController::class)->group(function () {
     Route::get('/products', 'productsPage')->middleware(tokenVerficationMiddleware::class);
 });
 
 
-//Customer
+// Customer
 Route::controller(customerController::class)->group(function () {
     Route::get('/contacts', 'customersPage')->middleware(tokenVerficationMiddleware::class);
 });
@@ -46,6 +47,11 @@ Route::controller(customerController::class)->group(function () {
 Route::controller(invoiceController::class)->group(function () {
     Route::get('/create-invoice', 'invoicePage')->middleware(tokenVerficationMiddleware::class);
     Route::get('/sales', 'invoiceListPage')->middleware(tokenVerficationMiddleware::class);
+});
+
+// Due
+Route::controller(dueController::class)->group(function () {
+    Route::get('/dues', 'duesPage')->middleware(tokenVerficationMiddleware::class);
 });
 
 
@@ -113,6 +119,11 @@ Route::controller(invoiceController::class)->group(function () {
     Route::get('/invoice-list', 'invoiceList')->middleware(tokenVerficationMiddleware::class);
     Route::post('/invoice-details', 'invoiceDetails')->middleware(tokenVerficationMiddleware::class);
     Route::post('/delete-invoice', 'deleteInvoice')->middleware(tokenVerficationMiddleware::class);
+});
+
+// Due
+Route::controller(dueController::class)->group(function () {
+    Route::get('/due-list', 'dueList')->middleware(tokenVerficationMiddleware::class);
 });
 
 // Report

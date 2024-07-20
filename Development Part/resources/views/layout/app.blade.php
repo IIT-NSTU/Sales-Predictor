@@ -88,6 +88,11 @@
             <span class="side-bar-item-caption text-lg">Sales</span>
         </a>
 
+        <a href="{{ url('/dues') }}" class="side-bar-item">
+            <img src="{{ asset('icons/sales.png') }}" alt="Dues Icon" class="icon-style">
+            <span class="side-bar-item-caption text-lg">Dues</span>
+        </a>
+
         <a href="{{ url('/create-invoice') }}" class="side-bar-item">
             <img src="{{ asset('icons/invoice.png') }}" alt="Invoice Icon" class="icon-style">
             <span class="side-bar-item-caption text-lg">Invoice</span>

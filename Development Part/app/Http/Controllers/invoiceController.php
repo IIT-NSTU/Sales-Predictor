@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\Invoice;
 use App\Models\InvoiceProduct;
 use App\Models\Product;
+use App\Models\Due;
 use DB;
 use Exception;
 use Illuminate\Http\Request;
@@ -63,6 +64,16 @@ class invoiceController extends Controller
                 $dbProduct->update([
                     "unit" => $dbProduct['unit'] - $product['quantity']
                 ]);
+
+                if ($due > 0) {
+                    Due::create([
+                        "invoice_id" => $invoiceId,
+                        "user_id" => $userId,
+                        "customer_id" => $customerId,
+                        "dates" => "",
+                        "amounts" => ""
+                    ]);
+                }
             }
             DB::commit();
 
