@@ -124,6 +124,7 @@ Route::controller(invoiceController::class)->group(function () {
 // Due
 Route::controller(dueController::class)->group(function () {
     Route::get('/due-list', 'dueList')->middleware(tokenVerficationMiddleware::class);
+    Route::post('/update-due', 'updateDue')->middleware(tokenVerficationMiddleware::class);
 });
 
 // Report

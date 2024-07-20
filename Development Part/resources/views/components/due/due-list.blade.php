@@ -61,7 +61,7 @@
                     <td style="white-space: normal"> ${item.customer.address} </td>
                     <td> ${item.invoice.due} </td>
                     <td>
-                        <button data-id="${item['id']}" class="btn editBtn btn-sm btn-outline-success">Due</button>
+                        <button data-amount="${item.invoice.due}" data-id="${item['id']}" class="btn addDue btn-sm btn-outline-success">Due</button>
                         <button data-id="${item['id']}" class="btn btn-sm bg-gradient-success">Invoice</button>
                     </td>
                  </tr>`)
@@ -75,6 +75,16 @@
             lengthMenu: [5, 10, 15, 20, 30, 50, 100],
         });
 
+        $('.addDue').on('click', async function() {
+            let DId = $(this).data('id');
+            let DAmount = $(this).data('amount');
+            addModal(DId, DAmount);
+        })
+    }
 
+    function addModal(id, amount) {
+        document.getElementById('DId').value = id;
+        document.getElementById('DActAmount').value = amount;
+        $('#create-modal').modal('show');
     }
 </script>
