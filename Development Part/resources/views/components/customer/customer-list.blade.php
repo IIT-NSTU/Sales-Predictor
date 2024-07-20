@@ -69,8 +69,8 @@
                 <td>${item['email']} </td>
                 <td>${getTypeName(item.type)} </td>
                 <td>
-                    <button data-id = "${item['id']}" class = "btn editBtn btn-sm btn-outline-success" >Edit</button>
-                    <button data-id = "${item['id']}"  class ="btn deleteBtn btn-sm btn-danger ">Delete</button> </td>
+                    <button data-id = "${item['id']}" class = "btn editBtn btn-sm bg-gradient-info" >Edit</button>
+                    <button data-id = "${item['id']}"  class ="btn deleteBtn btn-sm bg-gradient-danger">Delete</button> </td>
                 
                 </tr>`
                 tableList.append(row)

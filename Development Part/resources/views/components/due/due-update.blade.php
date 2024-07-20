@@ -55,6 +55,7 @@
                 });
                 successToast(res['data']['message']);
                 $('#create-modal').modal('hide')
+                getDueList();
             } catch (error) {
                 errorToast('Failed to update due.');
             }

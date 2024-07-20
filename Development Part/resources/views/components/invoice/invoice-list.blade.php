@@ -6,25 +6,23 @@
                 <div class="align-items-center col">
                     <h5>Invoices</h5>
                 </div>
-                <div class="align-items-center col">
-                    <a    href="{{url("/salePage")}}" class="float-end btn m-0 bg-gradient-primary">Create Sale</a>
-                </div>
             </div>
             <hr class="bg-dark "/>
-            <table class="table" id="tableData">
+            <table class="table text-dark" id="tableData">
                 <thead>
                 <tr class="bg-light">
                     <th>No</th>
                     <th>Name</th>
                     <th>Phone</th>
                     <th>Total</th>
-                    <th>Vat</th>
                     <th>Discount</th>
                     <th>Payable</th>
+                    <th>Paid</th>
+                    <th>Due</th>
                     <th>Action</th>
                 </tr>
                 </thead>
-                <tbody id="tableList">
+                <tbody id="tableList" style="color:black">
 
                 </tbody>
             </table>
@@ -57,12 +55,13 @@ async function getList() {
                     <td>${item['customer']['name']}</td>
                     <td>${item['customer']['mobile']}</td>
                     <td>${item['total']}</td>
-                    <td>${item['vat']}</td>
                     <td>${item['discount']}</td>
                     <td>${item['payable']}</td>
+                    <td>${item['paid']}</td>
+                    <td>${item['due']}</td>
                     <td>
-                        <button data-id="${item['id']}" data-cus="${item['customer']['id']}" class="viewBtn btn btn-outline-dark text-sm px-3 py-1 btn-sm m-0"><i class="fa text-sm fa-eye"></i></button>
-                        <button data-id="${item['id']}" data-cus="${item['customer']['id']}" class="deleteBtn btn btn-outline-dark text-sm px-3 py-1 btn-sm m-0"><i class="fa text-sm  fa-trash-alt"></i></button>
+                        <button data-id="${item['id']}" data-cus="${item['customer']['id']}" class="viewBtn btn btn-sm bg-gradient-info">View</button>
+                        <button data-id="${item['id']}" data-cus="${item['customer']['id']}" class="deleteBtn btn btn-sm bg-gradient-danger">Delete</button>
                     </td>
                  </tr>`
         tableList.append(row)

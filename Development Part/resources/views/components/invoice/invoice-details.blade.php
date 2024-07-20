@@ -12,14 +12,16 @@
                     <div class="row">
                         <div class="col-8">
                             <span class="text-bold text-dark">BILLED TO </span>
-                            <p class="text-xs mx-0 my-1">Name: <span id="CName"></span> </p>
-                            <p class="text-xs mx-0 my-1">Email: <span id="CEmail"></span></p>
-                            <p class="text-xs mx-0 my-1">User ID: <span id="CId"></span> </p>
+                            <p class="text-xs mx-0 my-1 text-dark">Name: <span id="CName"></span> </p>
+                            <p class="text-xs mx-0 my-1 text-dark">Name: <span id="CMobile"></span> </p>
+                            <p class="text-xs mx-0 my-1 text-dark">Email: <span id="CEmail"></span></p>
+                            <p class="text-xs mx-0 my-1 text-dark">Email: <span id="CAddress"></span></p>
+                            <p class="text-xs mx-0 my-1 text-dark">User ID: <span id="CId"></span> </p>
                         </div>
                         <div class="col-4">
                             <img class="w-40" src="{{ 'images/logo3.png' }}">
                             <p class="text-bold mx-0 my-1 text-dark">Invoice </p>
-                            <p class="text-xs mx-0 my-1">Date: {{ date('Y-m-d') }} </p>
+                            <p class="text-xs mx-0 my-1 text-dark">Date: {{ date('Y-m-d') }} </p>
                         </div>
                     </div>
                     <hr class="mx-0 my-2 p-0 bg-secondary" />
@@ -28,7 +30,7 @@
                             <table class="table w-100" id="invoiceTable">
                                 <thead class="w-100">
                                     <tr class="text-xs text-bold">
-                                        <td>Name</td>
+                                        <td>Product Name</td>
                                         <td>Qty</td>
                                         <td>Total</td>
                                     </tr>
@@ -81,17 +83,15 @@
             })
             hideLoader();
 
-
             document.getElementById('CName').innerText = res.data?.data['customer']['name']
             document.getElementById('CId').innerText = res.data?.data['customer']['id']
             document.getElementById('CEmail').innerText = res.data?.data['customer']['email']
+            document.getElementById('CMobile').innerText = res.data?.data['customer']['mobile']
+            document.getElementById('CAddress').innerText = res.data?.data['customer']['address']
             document.getElementById('total').innerText = res.data?.data['invoice']['total']
             document.getElementById('discount').innerText = res.data?.data['invoice']['discount']
             document.getElementById('vat').innerText = res.data?.data['invoice']['vat']
             document.getElementById('payable').innerText = res.data?.data['invoice']['payable']
-
-
-
 
             let invoiceList = $('#invoiceList');
 
@@ -99,8 +99,8 @@
 
             res.data?.data['products'].forEach(function(item, index) {
                 let row = `<tr class="text-xs">
-                   
-                         <td>${item['quantity']}</td>
+                        <td>${item->product->name}</td>
+                        <td>${item['quantity']}</td>
                         <td>${item['sale_price']}</td>
                       </tr>`
                 invoiceList.append(row)

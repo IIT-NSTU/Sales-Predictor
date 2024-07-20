@@ -83,19 +83,19 @@
             <span class="side-bar-item-caption text-lg">Products</span>
         </a>
 
-        <a href="{{ url('/sales') }}" class="side-bar-item">
-            <img src="{{ asset('icons/sales.png') }}" alt="Sales Icon" class="icon-style">
-            <span class="side-bar-item-caption text-lg">Sales</span>
+        <a href="{{ url('/create-invoice') }}" class="side-bar-item">
+            <img src="{{ asset('icons/invoice.png') }}" alt="Invoice Icon" class="icon-style">
+            <span class="side-bar-item-caption text-lg">Invoice</span>
+        </a>
+
+        <a href="{{ url('/invoiceList') }}" class="side-bar-item">
+            <img src="{{ asset('icons/invoice.png') }}" alt="Invoice List Icon" class="icon-style">
+            <span class="side-bar-item-caption text-lg">Invoice List</span>
         </a>
 
         <a href="{{ url('/dues') }}" class="side-bar-item">
             <img src="{{ asset('icons/sales.png') }}" alt="Dues Icon" class="icon-style">
             <span class="side-bar-item-caption text-lg">Dues</span>
-        </a>
-
-        <a href="{{ url('/create-invoice') }}" class="side-bar-item">
-            <img src="{{ asset('icons/invoice.png') }}" alt="Invoice Icon" class="icon-style">
-            <span class="side-bar-item-caption text-lg">Invoice</span>
         </a>
 
         <a href="{{url('sales-report')}}" class="side-bar-item">

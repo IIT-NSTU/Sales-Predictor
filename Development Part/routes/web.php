@@ -46,7 +46,7 @@ Route::controller(customerController::class)->group(function () {
 // Invoice
 Route::controller(invoiceController::class)->group(function () {
     Route::get('/create-invoice', 'invoicePage')->middleware(tokenVerficationMiddleware::class);
-    Route::get('/sales', 'invoiceListPage')->middleware(tokenVerficationMiddleware::class);
+    Route::get('/invoiceList', 'invoiceListPage')->middleware(tokenVerficationMiddleware::class);
 });
 
 // Due

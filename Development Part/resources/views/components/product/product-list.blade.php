@@ -67,8 +67,8 @@
                     <td>${item['price']}</td>
                     <td>${item['unit']}</td>
                     <td>
-                        <button data-path="${item['img_url']}" data-id="${item['id']}" class="btn editBtn btn-sm btn-outline-success">Edit</button>
-                        <button data-path="${item['img_url']}" data-id="${item['id']}" class="btn deleteBtn btn-sm btn-outline-danger">Delete</button>
+                        <button data-path="${item['img_url']}" data-id="${item['id']}" class="btn editBtn btn-sm bg-gradient-info">Edit</button>
+                        <button data-path="${item['img_url']}" data-id="${item['id']}" class="btn deleteBtn btn-sm bg-gradient-danger">Delete</button>
                     </td>
                  </tr>`)
         })

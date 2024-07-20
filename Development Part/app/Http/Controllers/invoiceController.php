@@ -117,20 +117,23 @@ class invoiceController extends Controller
         $userId = $request->header('userId');
 
         try {
-            $invoice = Invoice::where('user_id', $userId)->where('id', $request->input('invoice_id'))
-                ->first();
-            $customer = Customer::where('user_id', $userId, )->where('id', $request->input('customer_id'))
-                ->first();
+            $invoice = Invoice::with('customer')
+                              ->where('user_id', $userId)
+                              ->where('id', $request->input('invoice_id'))
+                              ->where('customer_id', $request->input('customer_id'))
+                              ->first();
 
-            $products = InvoiceProduct::where('invoice_id', $request->input('invoice_id'))
-                ->where('user_id', $userId)
-                ->get();
+            $products = InvoiceProduct::with('product')
+                                      ->where('invoice_id', $request->input('invoice_id'))
+                                      ->where('user_id', $userId)
+                                      ->select('product', 'quantity', 'sale_price')
+                                      ->get();
 
             return response()->json([
                 "status" => "success",
                 "message" => "",
                 "data" => [
-                    "customer" => $customer,
+                    "customer" => $invoice->customer,
                     "invoice" => $invoice,
                     "products" => $products
                 ]

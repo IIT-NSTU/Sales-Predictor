@@ -60,8 +60,8 @@
                 <td>${item['name']} </td>
                 <td>${item['products_count']} </td>
                  <td>
-                    <button data-id = "${item['id']}" data-name = "${item['name']}" class = "btn editBtn btn-sm btn-outline-success" >Edit</button>
-                    <button data-id = "${item['id']}"  class ="btn deleteBtn btn-sm btn-danger ">Delete</button>
+                    <button data-id = "${item['id']}" data-name = "${item['name']}" class = "btn editBtn btn-sm bg-gradient-info">Edit</button>
+                    <button data-id = "${item['id']}"  class ="btn deleteBtn btn-sm bg-gradient-danger">Delete</button>
                      </td>
                 </tr>`)
         })
