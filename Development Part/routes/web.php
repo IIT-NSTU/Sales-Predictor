@@ -118,6 +118,7 @@ Route::controller(invoiceController::class)->group(function () {
     Route::post('/create-invoice', 'createInvoice')->middleware(tokenVerficationMiddleware::class);
     Route::get('/invoice-list', 'invoiceList')->middleware(tokenVerficationMiddleware::class);
     Route::post('/invoice-details', 'invoiceDetails')->middleware(tokenVerficationMiddleware::class);
+    Route::post('/due-invoice-details', 'dueInvoiceDetails')->middleware(tokenVerficationMiddleware::class);
     Route::post('/delete-invoice', 'deleteInvoice')->middleware(tokenVerficationMiddleware::class);
 });
 

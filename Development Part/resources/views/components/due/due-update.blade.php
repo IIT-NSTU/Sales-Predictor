@@ -1,5 +1,5 @@
-<div class="modal" id="create-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-md">
+<div class="modal animated zoomIn" id="create-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h6 class="modal-title" id="exampleModalLabel">Update Due Amount</h6>
@@ -11,6 +11,7 @@
                             <div class="col-12 p-1">
                                 <label class="form-label d-none">Due ID *</label>
                                 <input type="text" class="form-control d-none" id="DId">
+                                <input type="text" class="form-control d-none" id="CId">
                                 <label class="form-label d-none">Actual Amount *</label>
                                 <input type="text" class="form-control d-none" id="DActAmount">
                                 <p class="form-label">Date: 
@@ -35,6 +36,7 @@
 <script>
     const add = async () => {
         let Id = document.getElementById('DId').value;
+        let CId = document.getElementById('CId').value;
         let actualAmount = parseFloat(document.getElementById('DActAmount').value);
         let amount = document.getElementById('DAmount').value;
         let cnvAmount = parseFloat(amount);
@@ -50,6 +52,7 @@
             try {
                 const res = await axios.post('/update-due', {
                     id:Id,
+                    cid:CId,
                     date:date,
                     amount:cnvAmount
                 });

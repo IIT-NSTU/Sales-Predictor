@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Due extends Model
 {
-    protected $fillable = ['invoice_id', 'user_id', 'customer_id', 'dates', 'amounts'];
+    protected $fillable = ['invoice_id', 'user_id', 'customer_id', 'date', 'amount'];
 
     public function invoice() {
         return $this->belongsTo(Invoice::class);

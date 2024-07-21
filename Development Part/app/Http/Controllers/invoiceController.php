@@ -27,6 +27,7 @@ class invoiceController extends Controller
     {
         $userId = $request->header('userId');
 
+        $type = $request->input('type');
         $total = $request->input('total');
         $discount = $request->input('discount');
         $paid = $request->input('paid');
@@ -37,10 +38,12 @@ class invoiceController extends Controller
         DB::beginTransaction();
         try {
             $invoice = Invoice::create([
+                "type" => $type,
                 "total" => $total,
                 "discount" => $discount,
                 "paid" => $paid,
-                "due" => $due,
+                "initial_due" => $due,
+                "remaining_due" => $due,
                 "payable" => $payable,
                 "customer_id" => $customerId,
                 "user_id" => $userId
@@ -64,16 +67,6 @@ class invoiceController extends Controller
                 $dbProduct->update([
                     "unit" => $dbProduct['unit'] - $product['quantity']
                 ]);
-
-                if ($due > 0) {
-                    Due::create([
-                        "invoice_id" => $invoiceId,
-                        "user_id" => $userId,
-                        "customer_id" => $customerId,
-                        "dates" => "",
-                        "amounts" => ""
-                    ]);
-                }
             }
             DB::commit();
 
@@ -135,6 +128,41 @@ class invoiceController extends Controller
                     "customer" => $invoice->customer,
                     "invoice" => $invoice,
                     "products" => $products
+                ]
+            ], 200);
+
+        } catch (Exception $e) {
+            return response()->json([
+                "status" => "failed",
+                "message" => $e,
+                "data" => []
+            ], );
+        }
+    }
+
+    function dueInvoiceDetails(Request $request)
+    {
+        $userId = $request->header('userId');
+
+        try {
+            $invoice = Invoice::with('customer')
+                              ->where('user_id', $userId)
+                              ->where('id', $request->input('invoice_id'))
+                              ->where('customer_id', $request->input('customer_id'))
+                              ->first();
+
+            $dues = Due::where('invoice_id', $request->input('invoice_id'))
+                      ->where('customer_id', $request->input('customer_id'))
+                      ->where('user_id', $userId)
+                      ->get();
+
+            return response()->json([
+                "status" => "success",
+                "message" => "",
+                "data" => [
+                    "customer" => $invoice->customer,
+                    "invoice" => $invoice,
+                    "dues" => $dues
                 ]
             ], 200);
 

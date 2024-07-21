@@ -74,7 +74,8 @@
             let discount = parseFloat(res.data?.data['invoice']['discount']);
             let payable = parseFloat(res.data?.data['invoice']['payable']);
             let paid = parseFloat(res.data?.data['invoice']['paid']);
-            let due = parseFloat(res.data?.data['invoice']['due']);
+            let initial_due = parseFloat(res.data?.data['invoice']['initial_due']);
+            let remaining_due = parseFloat(res.data?.data['invoice']['remaining_due']);
 
             if ((total - discount) == payable) {
                 discountType = " (BDT)";
@@ -112,12 +113,12 @@
                             <tr class="text-bold text-xs text-dark">
                                 <td></td>
                                 <td> Paid: </td>
-                                <td>${paid}</td>
+                                <td>${paid + (initial_due - remaining_due)}</td>
                             </tr>
                             <tr class="text-bold text-xs text-dark">
                                 <td></td>
                                 <td> Due: </td>
-                                <td>${due}</td>
+                                <td>${remaining_due}</td>
                             </tr>`;
 
             invoiceList.append(footer);                

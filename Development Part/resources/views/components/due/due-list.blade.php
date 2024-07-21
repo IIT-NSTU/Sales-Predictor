@@ -59,10 +59,10 @@
                     <td> ${item.customer.name} </td>
                     <td> ${item.customer.mobile} </td>
                     <td style="white-space: normal"> ${item.customer.address} </td>
-                    <td> ${item.invoice.due} </td>
+                    <td> ${item.remaining_due} </td>
                     <td>
-                        <button data-amount="${item.invoice.due}" data-id="${item['id']}" class="btn addDue btn-sm btn-outline-success">Due</button>
-                        <button data-id="${item['id']}" class="btn btn-sm bg-gradient-success">Invoice</button>
+                        <button data-amount="${item.remaining_due}" data-cid="${item.customer.id}" data-id="${item['id']}" class="btn addDue btn-sm bg-gradient-success">Add</button>
+                        <button data-id="${item['id']}" data-cus="${item.customer.id}" class="btn historyBtn btn-sm bg-gradient-info">History</button>
                     </td>
                  </tr>`)
         })
@@ -77,13 +77,21 @@
 
         $('.addDue').on('click', async function() {
             let DId = $(this).data('id');
+            let CId = $(this).data('cid');
             let DAmount = $(this).data('amount');
-            addModal(DId, DAmount);
+            addModal(DId, CId, DAmount);
         })
+
+        $('.historyBtn').on('click', async function () {
+        let inv_id= $(this).data('id');
+        let cus_id= $(this).data('cus');
+         await DueInvoiceDetails(cus_id,inv_id)
+    })
     }
 
-    function addModal(id, amount) {
+    function addModal(id, cid, amount) {
         document.getElementById('DId').value = id;
+        document.getElementById('CId').value = cid;
         document.getElementById('DActAmount').value = amount;
         $('#create-modal').modal('show');
     }

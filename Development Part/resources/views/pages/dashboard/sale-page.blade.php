@@ -130,8 +130,8 @@
         </div>
     </div>
 
-    <div class="modal" id="create-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-md">
+    <div class="modal animated zoomIn" id="create-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h6 class="modal-title" id="exampleModalLabel">Add Product</h6>
@@ -198,7 +198,13 @@
             } else {
                 showLoader();
                 try {
+                    const purchaseRadio = document.getElementById('invoiceTypePurchase');
+                    let type = "s"
+                    if (purchaseRadio.checked) {
+                        let type = "p"
+                    }
                     const res = await axios.post('/create-invoice', {
+                        type:type,
                         total: total,
                         payable: payable,
                         discount: discount,

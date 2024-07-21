@@ -1,9 +1,9 @@
-<div class="modal" id="delete-modal">
-    <div class="modal-dialog">
+<div class="modal animated zoomIn" id="delete-modal">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-body text-center">
                 <h3 class=" mt-3 text-warning">Delete !</h3>
-                <p class="mb-3">Are you sure you want to delete this product?</p>
+                <p class="mb-3" style="color:black">Are you sure you want to delete this product?</p>
                 <input class="d-none" id="deleteID" />
                 <input class="d-none" id="deleteFilePath" />
             </div>

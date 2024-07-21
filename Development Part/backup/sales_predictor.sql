@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 16, 2024 at 02:53 PM
+-- Generation Time: Jul 21, 2024 at 03:11 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -71,7 +71,35 @@ CREATE TABLE `customers` (
 
 INSERT INTO `customers` (`id`, `name`, `email`, `mobile`, `address`, `type`, `active`, `user_id`, `created_at`, `updated_at`) VALUES
 (2, 'Walton Hi-Tech industries', 'info@waltonbd.com', '008809606-555555', 'Plot-1088, Block-I, Sabrina Sobhan Road P.O-Khilkhet, P.S-Vatara, Bashundhara R/A, Dhaka-1229', '2', 1, 5, '2024-07-16 01:30:41', '2024-07-16 01:48:39'),
-(3, 'Prosanto Deb', 'prosanto2514@student.nstu.edu.bd', '01793222825', '32/1, North Mourail, Brahmanbaria', '1', 1, 5, '2024-07-16 07:20:40', '2024-07-16 07:20:40');
+(3, 'Prosanto Deb', 'prosanto2514@student.nstu.edu.bd', '01793222825', '32/1, North Mourail, Brahmanbaria', '1', 1, 5, '2024-07-16 07:20:40', '2024-07-19 10:58:16');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dues`
+--
+
+CREATE TABLE `dues` (
+  `id` bigint UNSIGNED NOT NULL,
+  `date` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `amount` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `invoice_id` bigint UNSIGNED NOT NULL,
+  `customer_id` bigint UNSIGNED NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `dues`
+--
+
+INSERT INTO `dues` (`id`, `date`, `amount`, `user_id`, `invoice_id`, `customer_id`, `created_at`, `updated_at`) VALUES
+(2, '2024-07-21', '100', 5, 1, 3, '2024-07-20 20:22:26', '2024-07-20 20:22:26'),
+(3, '2024-07-21', '74', 5, 1, 3, '2024-07-20 20:22:45', '2024-07-20 20:22:45'),
+(4, '2024-07-21', '1000.43', 5, 1, 3, '2024-07-20 20:22:54', '2024-07-20 20:22:54'),
+(5, '2024-07-21', '500', 5, 1, 3, '2024-07-20 20:23:01', '2024-07-20 20:23:01'),
+(6, '2024-07-21', '210', 5, 1, 3, '2024-07-20 21:11:25', '2024-07-20 21:11:25');
 
 -- --------------------------------------------------------
 
@@ -81,16 +109,26 @@ INSERT INTO `customers` (`id`, `name`, `email`, `mobile`, `address`, `type`, `ac
 
 CREATE TABLE `invoices` (
   `id` bigint UNSIGNED NOT NULL,
-  `total` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `discount` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `vat` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payable` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(1) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total` double(12,2) NOT NULL,
+  `discount` double(12,2) NOT NULL,
+  `payable` double(12,2) NOT NULL,
+  `paid` double(12,2) NOT NULL,
+  `initial_due` double(12,2) NOT NULL,
+  `remaining_due` double(12,2) NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '1',
   `user_id` bigint UNSIGNED NOT NULL,
   `customer_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `invoices`
+--
+
+INSERT INTO `invoices` (`id`, `type`, `total`, `discount`, `payable`, `paid`, `initial_due`, `remaining_due`, `active`, `user_id`, `customer_id`, `created_at`, `updated_at`) VALUES
+(1, 's', 141590.00, 12.30, 124174.43, 100000.00, 24174.43, 22290.00, 1, 5, 3, '2024-07-20 20:00:11', '2024-07-20 21:11:25');
 
 -- --------------------------------------------------------
 
@@ -108,6 +146,14 @@ CREATE TABLE `invoice_products` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `invoice_products`
+--
+
+INSERT INTO `invoice_products` (`id`, `invoice_id`, `product_id`, `user_id`, `quantity`, `sale_price`, `created_at`, `updated_at`) VALUES
+(1, 1, 28, 5, '2', '110400.00', '2024-07-20 20:00:11', '2024-07-20 20:00:11'),
+(2, 1, 29, 5, '1', '31190.00', '2024-07-20 20:00:11', '2024-07-20 20:00:11');
 
 -- --------------------------------------------------------
 
@@ -131,10 +177,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2023_09_24_064609_create_categories_table', 1),
 (4, '2023_09_24_135939_create_products_table', 1),
 (5, '2023_09_24_140130_create_customers_table', 1),
-(6, '2023_09_28_105630_create_invoices_table', 1),
-(7, '2023_09_28_105631_create_invoice_products_table', 1),
 (9, '2024_06_27_063651_add_details_url_to_products_table', 2),
-(10, '2024_07_16_060125_add_address_type_to_customers_table', 3);
+(10, '2024_07_16_060125_add_address_type_to_customers_table', 3),
+(22, '2023_09_28_105630_create_invoices_table', 4),
+(23, '2023_09_28_105631_create_invoice_products_table', 4),
+(24, '2024_07_19_235040_create_dues_table', 4);
 
 -- --------------------------------------------------------
 
@@ -181,7 +228,7 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `name`, `price`, `unit`, `img_url`, `details_url`, `category_id`, `user_id`, `active`, `created_at`, `updated_at`) VALUES
 (1, 'WFC-3F5-GDEL-XX (INVERTER)', '53090', '10', 'uploads/5-1719467375.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3f5-gdel-xx-inverter', 11, 5, 1, '2024-06-26 23:49:35', '2024-07-13 07:24:27'),
-(6, 'WFC-3F5-GDEL-XX', '51090', '10', 'uploads/5-1719472532.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3f5-gdel-xx', 11, 5, 1, '2024-06-27 01:15:32', '2024-06-27 01:15:32'),
+(6, 'WFC-3F5-GDEL-XX', '51090', '0', 'uploads/5-1719472532.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3f5-gdel-xx', 11, 5, 1, '2024-06-27 01:15:32', '2024-07-19 04:44:08'),
 (7, 'WFC-3F5-GDNE-XX (Inverter)', '53090', '10', 'uploads/5-1719473585.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3f5-gdne-xx-inverter', 11, 5, 1, '2024-06-27 01:33:05', '2024-07-13 07:24:56'),
 (8, 'WFC-3F5-GDNE-XX', '51790', '10', 'uploads/5-1719473643.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3f5-gdne-xx', 11, 5, 1, '2024-06-27 01:34:03', '2024-06-27 01:34:03'),
 (9, 'WFC-3F5-GAXA-UX-P (Inverter)', '54690', '10', 'uploads/5-1719473713.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3f5-gaxa-ux-p-inverter', 11, 5, 1, '2024-06-27 01:35:13', '2024-06-27 01:35:13'),
@@ -203,8 +250,8 @@ INSERT INTO `products` (`id`, `name`, `price`, `unit`, `img_url`, `details_url`,
 (25, 'WBB-2F0-TDXX-XX', '58,990', '10', 'uploads/5-1721012741.jpg', 'https://waltonbd.com/refrigerator-freezer/beverage-cooler/wbb-2f0-tdxx-xx', 14, 5, 1, '2024-07-14 21:05:42', '2024-07-14 21:05:42'),
 (26, 'WBQ-4D0-TDXX-XX', '80990', '10', 'uploads/5-1721012811.jpg', 'https://waltonbd.com/refrigerator-freezer/beverage-cooler/wbq-4d0-tdxx-xx', 14, 5, 1, '2024-07-14 21:06:51', '2024-07-14 21:06:51'),
 (27, 'WBA-2B4-GTXA-XX', '48990', '10', 'uploads/5-1721012857.jpg', 'https://waltonbd.com/refrigerator-freezer/beverage-cooler/wba-2b4-gtxa-xx', 14, 5, 1, '2024-07-14 21:07:37', '2024-07-14 21:07:37'),
-(28, 'WUE-3C4-GEPB-XX (Inverter)', '55200', '10', 'uploads/5-1721012977.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wue-3c4-gepb-xx-inverter', 13, 5, 1, '2024-07-14 21:09:37', '2024-07-14 21:09:37'),
-(29, 'WCF-1D5-GDEL-LX', '31190', '10', 'uploads/5-1721013024.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-1d5-gdel-lx', 13, 5, 1, '2024-07-14 21:10:24', '2024-07-14 21:10:24'),
+(28, 'WUE-3C4-GEPB-XX (Inverter)', '55200', '8', 'uploads/5-1721012977.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wue-3c4-gepb-xx-inverter', 13, 5, 1, '2024-07-14 21:09:37', '2024-07-20 20:00:11'),
+(29, 'WCF-1D5-GDEL-LX', '31190', '9', 'uploads/5-1721013024.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-1d5-gdel-lx', 13, 5, 1, '2024-07-14 21:10:24', '2024-07-20 20:00:11'),
 (30, 'WCF-1D5-GDEL-XX', '30690', '10', 'uploads/5-1721013081.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-1d5-gdel-xx', 13, 5, 1, '2024-07-14 21:11:21', '2024-07-14 21:11:21'),
 (31, 'WCF-1D5-RRXX-XX', '29390', '10', 'uploads/5-1721013120.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-1d5-rrxx-xx', 13, 5, 1, '2024-07-14 21:12:00', '2024-07-14 21:12:00'),
 (32, 'WCF-1B5-GDEL-XX', '27590', '10', 'uploads/5-1721013174.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-1b5-gdel-xx', 13, 5, 1, '2024-07-14 21:12:54', '2024-07-14 21:12:54'),
@@ -269,6 +316,15 @@ ALTER TABLE `customers`
   ADD KEY `customers_user_id_foreign` (`user_id`);
 
 --
+-- Indexes for table `dues`
+--
+ALTER TABLE `dues`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `dues_user_id_foreign` (`user_id`),
+  ADD KEY `dues_invoice_id_foreign` (`invoice_id`),
+  ADD KEY `dues_customer_id_foreign` (`customer_id`);
+
+--
 -- Indexes for table `invoices`
 --
 ALTER TABLE `invoices`
@@ -331,22 +387,28 @@ ALTER TABLE `customers`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `dues`
+--
+ALTER TABLE `dues`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `invoice_products`
 --
 ALTER TABLE `invoice_products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -383,19 +445,27 @@ ALTER TABLE `customers`
   ADD CONSTRAINT `customers_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 
 --
+-- Constraints for table `dues`
+--
+ALTER TABLE `dues`
+  ADD CONSTRAINT `dues_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  ADD CONSTRAINT `dues_invoice_id_foreign` FOREIGN KEY (`invoice_id`) REFERENCES `invoices` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  ADD CONSTRAINT `dues_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+--
 -- Constraints for table `invoices`
 --
 ALTER TABLE `invoices`
-  ADD CONSTRAINT `invoices_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `invoices_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `invoices_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  ADD CONSTRAINT `invoices_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 --
 -- Constraints for table `invoice_products`
 --
 ALTER TABLE `invoice_products`
-  ADD CONSTRAINT `invoice_products_invoice_id_foreign` FOREIGN KEY (`invoice_id`) REFERENCES `invoices` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `invoice_products_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `invoice_products_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `invoice_products_invoice_id_foreign` FOREIGN KEY (`invoice_id`) REFERENCES `invoices` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  ADD CONSTRAINT `invoice_products_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  ADD CONSTRAINT `invoice_products_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 --
 -- Constraints for table `products`

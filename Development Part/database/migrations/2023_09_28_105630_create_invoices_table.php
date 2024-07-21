@@ -13,11 +13,13 @@ return new class extends Migration {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             
+            $table->string('type', 1);
             $table->double('total', 12, 2);
             $table->double('discount', 12, 2);
             $table->double('payable', 12, 2);
             $table->double('paid', 12, 2);
-            $table->double('due', 12, 2);
+            $table->double('initial_due', 12, 2);
+            $table->double('remaining_due', 12, 2);
             
             $table->boolean('active')->default(true);
 

@@ -17,7 +17,10 @@ class dueController extends Controller
     function dueList(Request $request)
     {
         $userId = $request->header('userId');
-        $dues = Due::where('user_id', '=', $userId)->with('invoice')->with('customer')->get();
+        $dues = Invoice::with('customer')
+                       ->where('user_id', '=', $userId)
+                       ->where('remaining_due', '>', '0')
+                       ->get();
 
         return response()->json([
             "status" => "success",
@@ -29,25 +32,24 @@ class dueController extends Controller
     function updateDue(Request $request)
     {
         $userId = $request->header('userId');
-        $dueId = $request->input('id');
+        $invoice_id = $request->input('id');
 
         try {
-            $due = Due::with('invoice')
-                ->where('id', '=', $dueId)
-                ->where('user_id', '=', $userId)
-                ->first();
+            $invoice = Invoice::where('id', '=', $invoice_id)->first();
 
-            if ($due->count() === 1) {
-                $due->update([
-                    "dates" => $due->dates . $request->input('date') . ',' ,
-                    "amounts" => $due->amounts . $request->input('amount') . ','
-                ]);
-
-                $invoice = Invoice::where('id', '=', $due->invoice->id)->first();
+            if ($invoice->count() === 1) {
                 $invoice->update([
-                    "due" => $invoice->due - $request->input('amount')
+                    "remaining_due" => $invoice->remaining_due - $request->input('amount')
                 ]);
 
+                Due::create([
+                    "date" => $request->input('date'),
+                    "amount" => $request->input('amount'),
+                    "invoice_id" => $invoice_id,
+                    "user_id" => $userId,
+                    "customer_id" => $request->input('cid'),
+                ]);
+    
                 return response()->json([
                     "status" => "success",
                     "message" => "Due amount updated successfully"

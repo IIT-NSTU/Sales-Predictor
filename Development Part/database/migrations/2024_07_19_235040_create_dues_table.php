@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('dues', function (Blueprint $table) {
             $table->id();
 
-            $table->string('dates',300);
-            $table->string('amounts',200);
+            $table->string('date',50);
+            $table->string('amount',50);
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')

@@ -57,8 +57,8 @@ async function getList() {
                     <td>${item['total']}</td>
                     <td>${item['discount']}</td>
                     <td>${item['payable']}</td>
-                    <td>${item['paid']}</td>
-                    <td>${item['due']}</td>
+                    <td>${item['paid'] + (item['initial_due'] - item['remaining_due'])}</td>
+                    <td>${item['remaining_due']}</td>
                     <td>
                         <button data-id="${item['id']}" data-cus="${item['customer']['id']}" class="viewBtn btn btn-sm bg-gradient-info">View</button>
                         <button data-id="${item['id']}" data-cus="${item['customer']['id']}" class="deleteBtn btn btn-sm bg-gradient-danger">Delete</button>
