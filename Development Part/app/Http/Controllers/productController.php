@@ -109,7 +109,7 @@ class productController extends Controller
 
                 return response()->json([
                     "status" => "success",
-                    "message" => "product deleted successfully"
+                    "message" => "Product deleted successfully"
                 ], 200);
             }
 
@@ -168,7 +168,7 @@ class productController extends Controller
                 }
                 return response()->json([
                     "status" => "success",
-                    "message" => "product updated successfully"
+                    "message" => "Product updated successfully"
                 ], 200);
             }
             throw new Exception("Product not found", 404);

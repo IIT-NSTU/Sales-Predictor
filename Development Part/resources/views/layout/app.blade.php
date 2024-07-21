@@ -98,6 +98,11 @@
             <span class="side-bar-item-caption text-lg">Dues</span>
         </a>
 
+        <a href="{{ url('/expenses') }}" class="side-bar-item">
+            <img src="{{ asset('icons/sales.png') }}" alt="Expenses Icon" class="icon-style">
+            <span class="side-bar-item-caption text-lg">Expenses</span>
+        </a>
+
         <a href="{{url('sales-report')}}" class="side-bar-item">
             <img src="{{ asset('icons/report.png') }}" alt="Report Icon" class="icon-style">
             <span class="side-bar-item-caption text-lg">Report</span>

@@ -5,6 +5,7 @@ use App\Http\Controllers\customerController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\invoiceController;
 use App\Http\Controllers\dueController;
+use App\Http\Controllers\expenseController;
 use App\Http\Controllers\productController;
 use App\Http\Controllers\reportController;
 use App\Http\Controllers\userController;
@@ -30,6 +31,11 @@ Route::controller(dashboardController::class)->group(function () {
 // Category
 Route::controller(categoryController::class)->group(function () {
     Route::get('/categories', 'categoriesPage')->middleware(tokenVerficationMiddleware::class);
+});
+
+// Expense
+Route::controller(expenseController::class)->group(function () {
+    Route::get('/expenses', 'expensesPage')->middleware(tokenVerficationMiddleware::class);
 });
 
 // Product 
@@ -92,6 +98,15 @@ Route::controller(categoryController::class)->group(function () {
     Route::post('/delete-category', 'deleteCategory')->middleware(tokenVerficationMiddleware::class);
     Route::get('/category-list', 'categoryList')->middleware(tokenVerficationMiddleware::class);
     Route::get('/categorybytype/{type}', 'categoryByType')->middleware(tokenVerficationMiddleware::class);
+});
+
+// Expense
+Route::controller(expenseController::class)->group(function () {
+    Route::post('/create-expense', 'createExpense')->middleware(tokenVerficationMiddleware::class);
+    Route::post('/update-expense', 'updateExpense')->middleware(tokenVerficationMiddleware::class);
+    Route::post('/delete-expense', 'deleteExpense')->middleware(tokenVerficationMiddleware::class);
+    Route::get('/expense-list', 'expenseList')->middleware(tokenVerficationMiddleware::class);
+    Route::get('/expenses/{id}', 'expenseById')->middleware(tokenVerficationMiddleware::class);
 });
 
 // Customer
