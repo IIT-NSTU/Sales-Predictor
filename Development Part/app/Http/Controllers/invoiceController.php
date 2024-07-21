@@ -126,7 +126,6 @@ class invoiceController extends Controller
             $products = InvoiceProduct::with('product')
                                       ->where('invoice_id', $request->input('invoice_id'))
                                       ->where('user_id', $userId)
-                                      ->select('product', 'quantity', 'sale_price')
                                       ->get();
 
             return response()->json([
@@ -142,7 +141,7 @@ class invoiceController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 "status" => "failed",
-                "message" => "failed to load ",
+                "message" => $e,
                 "data" => []
             ], );
         }

@@ -28,38 +28,18 @@
                     <div class="row">
                         <div class="col-12">
                             <table class="table w-100" id="invoiceTable">
-                                <thead class="w-100">
+                                <thead class="w-100 text-dark">
                                     <tr class="text-xs text-bold">
                                         <td>Product Name</td>
                                         <td>Qty</td>
                                         <td>Total</td>
                                     </tr>
                                 </thead>
-                                <tbody class="w-100" id="invoiceList">
-
+                                <tbody class="w-100" id="invoiceList" style="color:black">
+                                
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-                    <hr class="mx-0 my-2 p-0 bg-secondary" />
-                    <div class="row">
-                        <div class="col-12">
-                            <p class="text-bold text-xs my-1 text-dark"> TOTAL: <i class="bi bi-currency-dollar"></i>
-                                <span id="total"></span>
-                            </p>
-                            <p class="text-bold text-xs my-1 text-dark"> Discount: <i class="bi bi-currency-dollar"></i>
-                                <span id="discount"></span>
-                            </p>
-                            <hr class="mx-0 my-2 p-0 bg-secondary" />
-                            <p class="text-bold text-xs my-1 text-dark"> VAT(5%): <i class="bi bi-currency-dollar"></i>
-                                <span id="vat"></span>
-                            </p>
-                            <p class="text-bold text-xs my-2 text-dark"> PAYABLE: <i class="bi bi-currency-dollar"></i>
-                                <span id="payable"></span>
-                            </p>
-
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -88,10 +68,17 @@
             document.getElementById('CEmail').innerText = res.data?.data['customer']['email']
             document.getElementById('CMobile').innerText = res.data?.data['customer']['mobile']
             document.getElementById('CAddress').innerText = res.data?.data['customer']['address']
-            document.getElementById('total').innerText = res.data?.data['invoice']['total']
-            document.getElementById('discount').innerText = res.data?.data['invoice']['discount']
-            document.getElementById('vat').innerText = res.data?.data['invoice']['vat']
-            document.getElementById('payable').innerText = res.data?.data['invoice']['payable']
+
+            let discountType = " (%)";
+            let total = parseFloat(res.data?.data['invoice']['total']);
+            let discount = parseFloat(res.data?.data['invoice']['discount']);
+            let payable = parseFloat(res.data?.data['invoice']['payable']);
+            let paid = parseFloat(res.data?.data['invoice']['paid']);
+            let due = parseFloat(res.data?.data['invoice']['due']);
+
+            if ((total - discount) == payable) {
+                discountType = " (BDT)";
+            }
 
             let invoiceList = $('#invoiceList');
 
@@ -99,13 +86,41 @@
 
             res.data?.data['products'].forEach(function(item, index) {
                 let row = `<tr class="text-xs">
-                        <td>${item->product->name}</td>
+                        <td>${item.product.name}</td>
                         <td>${item['quantity']}</td>
                         <td>${item['sale_price']}</td>
                       </tr>`
                 invoiceList.append(row)
             });
 
+            let footer = `
+                            <tr class="text-bold text-xs text-dark">
+                                <td></td>
+                                <td> Total: </td>
+                                <td>${total}</td>
+                            </tr>
+                            <tr class="text-bold text-xs text-dark">
+                                <td></td>
+                                <td> Discount: </td>
+                                <td>${discount + discountType}</td>
+                            </tr>
+                            <tr class="text-bold text-xs text-dark">
+                                <td></td>
+                                <td> Payable: </td>
+                                <td>${payable}</td>
+                            </tr>
+                            <tr class="text-bold text-xs text-dark">
+                                <td></td>
+                                <td> Paid: </td>
+                                <td>${paid}</td>
+                            </tr>
+                            <tr class="text-bold text-xs text-dark">
+                                <td></td>
+                                <td> Due: </td>
+                                <td>${due}</td>
+                            </tr>`;
+
+            invoiceList.append(footer);                
 
             hideLoader();
             $("#details-modal").modal('show')
