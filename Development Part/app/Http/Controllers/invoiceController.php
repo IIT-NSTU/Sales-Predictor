@@ -33,6 +33,7 @@ class invoiceController extends Controller
         $paid = $request->input('paid');
         $due = $request->input('due');
         $payable = $request->input('payable');
+        $date = $request->input('date');
         $customerId = $request->input('customer_id');
 
         DB::beginTransaction();
@@ -45,6 +46,7 @@ class invoiceController extends Controller
                 "initial_due" => $due,
                 "remaining_due" => $due,
                 "payable" => $payable,
+                "date" => $date,
                 "customer_id" => $customerId,
                 "user_id" => $userId
             ]);

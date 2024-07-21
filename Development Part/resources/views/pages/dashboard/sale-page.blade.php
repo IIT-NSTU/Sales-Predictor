@@ -15,7 +15,7 @@
                         <div class="col-4">
                             <img class="w-40" src="{{ 'images/logo3.png' }}">
                             <p class="text-bold mx-0 my-1 text-dark">Invoice </p>
-                            <p class="text-s mx-0 my-1">Date: {{ date('Y-m-d') }} </p>
+                            <p class="text-s mx-0 my-1">Date: <span id="date">{{ date('Y-m-d') }}</span></p>
                         </div>
                     </div>
                     <hr class="mx-0 my-2 p-0 bg-secondary" />
@@ -182,6 +182,7 @@
             const payable = document.getElementById('payable').innerText;
             const paid = document.getElementById('paid').value;
             const due = document.getElementById('due').innerText;
+            const date = document.getElementById('date').innerText;
 
             if (customerId.length === 0) {
                 errorToast('Customer required')
@@ -210,6 +211,7 @@
                         discount: discount,
                         paid: paid,
                         due: due,
+                        date: date,
                         customer_id: customerId,
                         products: InvoiceItemList
                     });

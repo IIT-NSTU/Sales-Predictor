@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('comment', 500);
             $table->double('amount', 12, 2);
+            $table->string('date',50);
 
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')

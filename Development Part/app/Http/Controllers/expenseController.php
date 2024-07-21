@@ -30,6 +30,7 @@ class expenseController extends Controller
             Expense::create([
                 "user_id" => $userId,
                 "amount" => $request->input('amount'),
+                "date" => $request->input('date'),
                 "comment" => $comment,
                 "category_id" => $request->input('category_id')
             ]);
@@ -61,6 +62,7 @@ class expenseController extends Controller
             if ($expense->count() === 1) {
                 $expense->update([
                     "amount" => $request->input('amount'),
+                    "date" => $request->input('date'),
                     "comment" => $comment,
                     "category_id" => $request->input('category_id')
                 ]);

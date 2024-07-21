@@ -9,6 +9,8 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-12 p-1">
+                                <label class="form-label">Date *</label>
+                                <input type="text" class="form-control" id="expenseDateUpdate">
                                 <label class="form-label">Select Expense Category *</label>
                                 <select type="text" class="form-control form-select" id="expenseCategoryUpdate">
                                 </select>
@@ -61,6 +63,7 @@
             document.getElementById('expenseCategoryUpdate').value = res.data['category_id'];
             document.getElementById('expenseAmountUpdate').value = res.data['amount'];
             document.getElementById('expenseCommentUpdate').value = res.data['comment'];
+            document.getElementById('expenseDateUpdate').value = res.data['date'];
         } catch (error) {
             console.log(error);
         }
@@ -71,8 +74,11 @@
         let category_id = document.getElementById('expenseCategoryUpdate').value;
         let amount = document.getElementById('expenseAmountUpdate').value
         let comment = document.getElementById('expenseCommentUpdate').value;
+        let date = document.getElementById('expenseDateUpdate').value;
 
-        if (amount.length === 0) {
+        if (date.length === 0) {
+            errorToast("Date is Required");
+        } else if (amount.length === 0) {
             errorToast("Expense amount is Required");
         } else if (parseFloat(amount) <= 0) {
             errorToast("Sorry! Please enter a positive expense amount.");
@@ -86,7 +92,8 @@
                     id: id,
                     category_id: category_id,
                     amount:amount,
-                    comment:comment
+                    comment:comment,
+                    date:date
                 })
                 hideLoader();
                 successToast(res.data['message']);

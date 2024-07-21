@@ -21,7 +21,7 @@
                         <div class="col-4">
                             <img class="w-40" src="{{ 'images/logo3.png' }}">
                             <p class="text-bold mx-0 my-1 text-dark">Due Record</p>
-                            <p class="text-xs mx-0 my-1 text-dark">Date: {{ date('Y-m-d') }} </p>
+                            <p class="text-xs mx-0 my-1 text-dark">Date: <span id="date"></span> </p>
                         </div>
                     </div>
                     <hr class="mx-0 my-2 p-0 bg-secondary" />
@@ -93,6 +93,7 @@
             document.getElementById('CEmail').innerText = res.data?.data['customer']['email'];
             document.getElementById('CMobile').innerText = res.data?.data['customer']['mobile'];
             document.getElementById('CAddress').innerText = res.data?.data['customer']['address'];
+            document.getElementById('date').innerText = res.data?.data['invoice']['date'];
 
             let discountType = " (%)";
             let total = parseFloat(res.data?.data['invoice']['total']);

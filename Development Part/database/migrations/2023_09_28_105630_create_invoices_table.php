@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->double('paid', 12, 2);
             $table->double('initial_due', 12, 2);
             $table->double('remaining_due', 12, 2);
+            $table->string('date',50);
             
             $table->boolean('active')->default(true);
 

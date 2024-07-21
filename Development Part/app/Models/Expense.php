@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Expense extends Model
 {
-    protected $fillable = ['comment', 'amount', 'category_id', 'user_id'];
+    protected $fillable = ['comment', 'amount', 'date', 'category_id', 'user_id'];
 
     public function category() {
         return $this->belongsTo(Category::class);

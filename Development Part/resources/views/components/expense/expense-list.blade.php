@@ -16,6 +16,7 @@
                     <thead>
                         <tr class="bg-light">
                             <th>No</th>
+                            <th>Date</th>
                             <th>Category</th>
                             <th>Amount</th>
                             <th>Comment</th>
@@ -48,6 +49,7 @@
             res.data.forEach(function(item, index) {
                 const row = `<tr>
                 <td>${index+1} </td>
+                <td>${item['date']} </td>
                 <td>${item.category.name} </td>
                 <td>${item['amount']} </td>
                 <td style="white-space: normal">${item['comment']} </td>

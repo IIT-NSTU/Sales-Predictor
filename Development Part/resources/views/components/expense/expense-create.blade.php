@@ -9,6 +9,8 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-12 p-1">
+                                <label class="form-label">Date *</label>
+                                <input type="text" value="{{ date('Y-m-d') }}" class="form-control" id="expenseDate">
                                 <label class="form-label">Select Expense Category *</label>
                                 <select type="text" class="form-control form-select" id="expenseCategory">
                                 </select>
@@ -49,12 +51,15 @@
     fillExpenseDropDown();
 
     const handleSave = async () => {
+        const date = document.getElementById('expenseDate').value;
         const category = document.getElementById('expenseCategory').value;
         const amount = document.getElementById('expenseAmount').value;
         const comment = document.getElementById('expenseComment').value;
 
         // Validation
-        if (amount.length === 0) {
+        if (date.length === 0) {
+            errorToast("Date is Required");
+        } else if (amount.length === 0) {
             errorToast("Expense amount is Required");
         } else if (parseFloat(amount) <= 0) {
             errorToast("Sorry! Please enter a positive expense amount.");
@@ -67,7 +72,8 @@
                 const res = await axios.post('/create-expense', {
                     category_id:category,
                     comment:comment,
-                    amount:amount
+                    amount:amount,
+                    date:date
                 })
                 hideLoader();
                 successToast(res.data['message'])
