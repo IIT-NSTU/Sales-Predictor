@@ -13,6 +13,17 @@
                                 <input type="text" class="form-control" id="categoryNameUpdate">
                                 <input class="d-none" id="updateID">
                             </div>
+
+                            <div class="d-flex mt-3">
+                                <div class="form-check me-3">
+                                    <input class="form-check-input" name="categoryType" type="radio" id="productTypeUpdate" checked>
+                                    <label for="productTypeUpdate"> Product </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="categoryType" type="radio" id="expenseTypeUpdate" >
+                                    <label for="expenseTypeUpdate"> Expense </label>
+                                </div>
+                            </div> 
                         </div>
                     </div>
                 </form>
@@ -41,9 +52,15 @@
 
             showLoader();
             try {
+                const expense = document.getElementById('expenseTypeUpdate');
+                let type = "1";
+                if (expense.checked) {
+                    type = "2";
+                }
                 const res = await axios.post('/update-category', {
                     id: categoryid,
-                    name: updatedCatagoryName
+                    name: updatedCatagoryName,
+                    type:type
                 })
                 hideLoader();
                 successToast(res.data['message']);

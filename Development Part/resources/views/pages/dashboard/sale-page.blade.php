@@ -201,7 +201,7 @@
                     const purchaseRadio = document.getElementById('invoiceTypePurchase');
                     let type = "s"
                     if (purchaseRadio.checked) {
-                        let type = "p"
+                        type = "p"
                     }
                     const res = await axios.post('/create-invoice', {
                         type:type,

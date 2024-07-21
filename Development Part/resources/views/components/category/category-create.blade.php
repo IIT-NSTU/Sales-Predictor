@@ -12,6 +12,17 @@
                                 <label class="form-label">Category Name *</label>
                                 <input type="text" class="form-control" id="categoryName">
                             </div>
+
+                            <div class="d-flex mt-3">
+                                <div class="form-check me-3">
+                                    <input class="form-check-input" name="categoryType" type="radio" id="productType" checked>
+                                    <label for="productType"> Product </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="categoryType" type="radio" id="expenseType" >
+                                    <label for="expenseType"> Expense </label>
+                                </div>
+                            </div>      
                         </div>
                     </div>
                 </form>
@@ -38,8 +49,14 @@
             
             showLoader();
             try {
+                const expense = document.getElementById('expenseType');
+                let type = "1";
+                if (expense.checked) {
+                    type = "2";
+                }
                 const res = await axios.post('/create-category', {
-                    name: categoryName
+                    name: categoryName,
+                    type:type
                 })
                 hideLoader();
                 successToast(res.data['message'])

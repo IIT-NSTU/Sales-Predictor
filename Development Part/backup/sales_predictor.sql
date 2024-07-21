@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 21, 2024 at 03:11 AM
+-- Generation Time: Jul 21, 2024 at 10:49 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `categories` (
   `id` bigint UNSIGNED NOT NULL,
   `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(1) COLLATE utf8mb4_unicode_ci NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '1',
   `user_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -40,11 +41,12 @@ CREATE TABLE `categories` (
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `name`, `active`, `user_id`, `created_at`, `updated_at`) VALUES
-(11, 'Direct Cool Refrigerator', 1, 5, '2024-06-26 23:46:22', '2024-06-26 23:46:22'),
-(12, 'Non-Frost Refrigerator', 1, 5, '2024-07-14 00:14:46', '2024-07-14 00:14:46'),
-(13, 'Freezer', 1, 5, '2024-07-14 00:15:03', '2024-07-14 00:15:03'),
-(14, 'Beverage Cooler', 1, 5, '2024-07-14 00:15:20', '2024-07-14 00:15:20');
+INSERT INTO `categories` (`id`, `name`, `type`, `active`, `user_id`, `created_at`, `updated_at`) VALUES
+(11, 'Direct Cool Refrigerator', '1', 1, 5, '2024-06-26 23:46:22', '2024-07-21 09:59:51'),
+(12, 'Non-Frost Refrigerator', '1', 1, 5, '2024-07-14 00:14:46', '2024-07-21 09:59:55'),
+(13, 'Freezer', '1', 1, 5, '2024-07-14 00:15:03', '2024-07-21 09:59:58'),
+(14, 'Beverage Cooler', '1', 1, 5, '2024-07-14 00:15:20', '2024-07-21 04:47:04'),
+(15, 'Electricity Bill', '2', 1, 5, '2024-07-21 04:48:10', '2024-07-21 04:48:10');
 
 -- --------------------------------------------------------
 
@@ -181,7 +183,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (10, '2024_07_16_060125_add_address_type_to_customers_table', 3),
 (22, '2023_09_28_105630_create_invoices_table', 4),
 (23, '2023_09_28_105631_create_invoice_products_table', 4),
-(24, '2024_07_19_235040_create_dues_table', 4);
+(24, '2024_07_19_235040_create_dues_table', 4),
+(26, '2024_07_21_095620_add_type_to_categories_table', 5);
 
 -- --------------------------------------------------------
 
@@ -378,7 +381,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `customers`
@@ -408,7 +411,7 @@ ALTER TABLE `invoice_products`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`

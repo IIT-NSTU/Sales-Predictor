@@ -17,7 +17,8 @@
                         <tr class="bg-light">
                             <th>No</th>
                             <th>Category</th>
-                            <th>Products Count</th>
+                            <th>Type</th>
+                            <th>Count</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -55,9 +56,14 @@
 
         // Render Rows
         data.map((item, index) => {
+            let type = "Product";
+            if (item.type == 2) {
+                type = "Expense";
+            }
             tableList.append(`<tr>
                 <td>${index+1} </td>
                 <td>${item['name']} </td>
+                <td>${type} </td>
                 <td>${item['products_count']} </td>
                  <td>
                     <button data-id = "${item['id']}" data-name = "${item['name']}" class = "btn editBtn btn-sm bg-gradient-info">Edit</button>

@@ -91,6 +91,7 @@ Route::controller(categoryController::class)->group(function () {
     Route::post('/update-category', 'updateCategory')->middleware(tokenVerficationMiddleware::class);
     Route::post('/delete-category', 'deleteCategory')->middleware(tokenVerficationMiddleware::class);
     Route::get('/category-list', 'categoryList')->middleware(tokenVerficationMiddleware::class);
+    Route::get('/categorybytype/{type}', 'categoryByType')->middleware(tokenVerficationMiddleware::class);
 });
 
 // Customer

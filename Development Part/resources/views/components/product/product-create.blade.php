@@ -54,8 +54,8 @@
         const categoryDropdown = document.getElementById('productCategory');
 
         try {
-            const res = await axios.get('/category-list');
-            res['data']['data'].map(category => {
+            const res = await axios.get('/categorybytype/1');
+            res.data.map(category => {
                 categoryDropdown.innerHTML += (
                     `<option value="${category['id']}">
                         ${category['name']}

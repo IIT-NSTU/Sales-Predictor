@@ -32,6 +32,7 @@ class categoryController extends Controller
         try {
             $userId = $request->header('userId');
             $categoryName = $request->input('name');
+            $type = $request->input('type');
             $category = Category::where('user_id', '=', $userId)
                                 ->where('name', $categoryName)
                                 ->first();
@@ -55,7 +56,8 @@ class categoryController extends Controller
             } else {
                 Category::create([
                     "user_id" => $userId,
-                    "name" => $categoryName
+                    "name" => $categoryName,
+                    "type" => $type
                 ]);
                 
                 return response()->json([
@@ -82,7 +84,8 @@ class categoryController extends Controller
 
             if ($category->count() === 1) {
                 $category->update([
-                    "name" => $request->input('name')
+                    "name" => $request->input('name'),
+                    "type" => $request->input('type')
                 ]);
 
                 return response()->json([
@@ -128,5 +131,16 @@ class categoryController extends Controller
                 "message" => "Category deleting failed"
             ], 400);
         }
+    }
+
+    function categoryByType(Request $request)
+    {
+        $categoryType = $request->type;
+        $userId = $request->header('userId');
+
+        return Category::where('user_id', '=', $userId)
+                       ->where('active', '=', 1)
+                       ->where('type', '=', $categoryType)
+                       ->get();
     }
 }

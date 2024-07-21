@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $fillable = ['name', 'user_id'];
+    protected $fillable = ['name', 'type', 'user_id'];
 
     // Set Default Value
     protected $attributes = [
