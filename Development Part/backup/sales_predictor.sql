@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 22, 2024 at 07:17 AM
+-- Generation Time: Jul 22, 2024 at 08:22 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -47,7 +47,9 @@ INSERT INTO `categories` (`id`, `name`, `type`, `active`, `user_id`, `created_at
 (13, 'Freezer', '1', 1, 5, '2024-07-14 00:15:03', '2024-07-21 14:49:36'),
 (14, 'Beverage Cooler', '1', 1, 5, '2024-07-14 00:15:20', '2024-07-21 14:49:38'),
 (15, 'Electricity Bill', '2', 1, 5, '2024-07-21 04:48:10', '2024-07-21 14:49:41'),
-(16, 'Staff Cost', '2', 1, 5, '2024-07-21 07:05:26', '2024-07-21 14:49:44');
+(16, 'Staff Cost', '2', 1, 5, '2024-07-21 07:05:26', '2024-07-21 14:49:44'),
+(17, 'Mixer Grinder', '1', 1, 5, '2024-07-22 01:25:50', '2024-07-22 01:25:50'),
+(18, 'Rechargeable Table Fan', '1', 1, 5, '2024-07-22 02:17:28', '2024-07-22 02:17:28');
 
 -- --------------------------------------------------------
 
@@ -76,7 +78,11 @@ INSERT INTO `customers` (`id`, `name`, `email`, `mobile`, `address`, `type`, `ac
 (2, 'Walton Hi-Tech industries', 'info@waltonbd.com', '008809606-555555', 'Plot-1088, Block-I, Sabrina Sobhan Road P.O-Khilkhet, P.S-Vatara, Bashundhara R/A, Dhaka-1229', '2', 1, 5, '2024-07-16 01:30:41', '2024-07-16 01:48:39'),
 (4, 'Foyez Mia', 'N/A', '01726222233, 01813032777, 01839022598', 'Shonkoradoho, Nasirnagar, Brahmanbaria', '1', 1, 5, '2024-07-22 00:16:27', '2024-07-22 00:24:44'),
 (5, 'Saddam Hossain', 'N/A', '01739701775', 'Madhabpur, Habiganj', '1', 1, 5, '2024-07-22 00:23:13', '2024-07-22 00:24:56'),
-(6, 'Nusrat Jahan', 'N/A', '01754694194, 01722786571', 'Mohammad Ali Dental Care, Madhabpur', '1', 1, 5, '2024-07-22 00:32:07', '2024-07-22 00:32:07');
+(6, 'Nusrat Jahan', 'N/A', '01754694194, 01722786571', 'Mohammad Ali Dental Care, Madhabpur', '1', 1, 5, '2024-07-22 00:32:07', '2024-07-22 00:32:07'),
+(7, 'Ayesha Begum', 'N/A', '01708024486, 01314792404', 'Shomojdipur, Madhabpur', '1', 1, 5, '2024-07-22 01:39:49', '2024-07-22 01:39:49'),
+(8, 'Rima Akhter (Police)', 'N/A', '01992221666, 01640011110', 'Madhabpur Thana, Habiganj', '1', 1, 5, '2024-07-22 01:57:23', '2024-07-22 01:57:23'),
+(9, 'Bimol Debnath', 'N/A', '01765784602', 'Haluapara, Madhabpur, Habiganj', '1', 1, 5, '2024-07-22 02:09:23', '2024-07-22 02:09:23'),
+(10, 'Juel Rahman', 'N/A', '01726358489, 01758601984', 'Shahpur, Vangarua', '1', 1, 5, '2024-07-22 02:15:17', '2024-07-22 02:15:17');
 
 -- --------------------------------------------------------
 
@@ -101,7 +107,13 @@ CREATE TABLE `dues` (
 
 INSERT INTO `dues` (`id`, `date`, `amount`, `user_id`, `invoice_id`, `customer_id`, `created_at`, `updated_at`) VALUES
 (3, '2023-05-25', '5000', 5, 6, 6, '2024-07-22 00:56:18', '2024-07-22 06:58:46'),
-(4, '2023-07-06', '6500', 5, 6, 6, '2024-07-22 00:59:56', '2024-07-22 00:59:56');
+(4, '2023-07-06', '6500', 5, 6, 6, '2024-07-22 00:59:56', '2024-07-22 00:59:56'),
+(5, '2022-05-16', '7000', 5, 8, 7, '2024-07-22 01:46:45', '2024-07-22 01:46:45'),
+(6, '2022-05-24', '3000', 5, 8, 7, '2024-07-22 01:47:14', '2024-07-22 01:47:14'),
+(7, '2022-05-15', '6000', 5, 9, 8, '2024-07-22 02:00:56', '2024-07-22 02:00:56'),
+(8, '2022-07-16', '6000', 5, 9, 8, '2024-07-22 02:01:07', '2024-07-22 02:01:07'),
+(9, '2022-04-17', '16000', 5, 10, 9, '2024-07-22 02:12:09', '2024-07-22 02:12:09'),
+(10, '2022-05-17', '11000', 5, 10, 9, '2024-07-22 02:12:20', '2024-07-22 02:12:20');
 
 -- --------------------------------------------------------
 
@@ -149,7 +161,12 @@ CREATE TABLE `invoices` (
 
 INSERT INTO `invoices` (`id`, `type`, `total`, `discount`, `payable`, `paid`, `initial_due`, `remaining_due`, `date`, `active`, `user_id`, `customer_id`, `created_at`, `updated_at`) VALUES
 (5, 's', 36390.00, 6390.00, 30000.00, 30000.00, 0.00, 0.00, '2023-04-15 09:47:22 AM', 1, 5, 4, '2024-07-22 00:20:27', '2024-07-22 06:35:12'),
-(6, 's', 36390.00, 4890.00, 31500.00, 20000.00, 11500.00, 0.00, '2023-04-15 10:07:11 AM', 1, 5, 6, '2024-07-22 00:34:00', '2024-07-22 00:59:56');
+(6, 's', 36390.00, 4890.00, 31500.00, 20000.00, 11500.00, 0.00, '2023-04-15 10:07:11 AM', 1, 5, 6, '2024-07-22 00:34:00', '2024-07-22 00:59:56'),
+(7, 's', 5400.00, 1000.00, 4400.00, 4400.00, 0.00, 0.00, '2022-04-16 09:07:24 AM', 1, 5, 4, '2024-07-22 01:31:50', '2024-07-22 01:31:50'),
+(8, 's', 33090.00, 9090.00, 24000.00, 14000.00, 10000.00, 0.00, '2022-04-16 09:07:47 AM', 1, 5, 7, '2024-07-22 01:44:02', '2024-07-22 01:47:14'),
+(9, 's', 33690.00, 9690.00, 24000.00, 12000.00, 12000.00, 0.00, '2022-04-16 11:07:37 AM', 1, 5, 8, '2024-07-22 01:59:45', '2024-07-22 02:01:07'),
+(10, 's', 46190.00, 18190.00, 28000.00, 1000.00, 27000.00, 0.00, '2022-04-16 11:07:31 AM', 1, 5, 9, '2024-07-22 02:11:17', '2024-07-22 02:12:20'),
+(11, 's', 6290.00, 2490.00, 3800.00, 3800.00, 0.00, 0.00, '2022-04-16 11:07:54 AM', 1, 5, 10, '2024-07-22 02:21:27', '2024-07-22 02:21:27');
 
 -- --------------------------------------------------------
 
@@ -174,7 +191,12 @@ CREATE TABLE `invoice_products` (
 
 INSERT INTO `invoice_products` (`id`, `invoice_id`, `product_id`, `user_id`, `quantity`, `sale_price`, `created_at`, `updated_at`) VALUES
 (7, 5, 34, 5, '1', '36390.00', '2024-07-22 00:20:27', '2024-07-22 00:20:27'),
-(8, 6, 34, 5, '1', '36390.00', '2024-07-22 00:34:00', '2024-07-22 00:34:00');
+(8, 6, 34, 5, '1', '36390.00', '2024-07-22 00:34:00', '2024-07-22 00:34:00'),
+(9, 7, 50, 5, '1', '5400.00', '2024-07-22 01:31:50', '2024-07-22 01:31:50'),
+(10, 8, 51, 5, '1', '33090.00', '2024-07-22 01:44:02', '2024-07-22 01:44:02'),
+(11, 9, 52, 5, '1', '33690.00', '2024-07-22 01:59:45', '2024-07-22 01:59:45'),
+(12, 10, 53, 5, '1', '46190.00', '2024-07-22 02:11:17', '2024-07-22 02:11:17'),
+(13, 11, 54, 5, '1', '6290.00', '2024-07-22 02:21:27', '2024-07-22 02:21:27');
 
 -- --------------------------------------------------------
 
@@ -293,7 +315,13 @@ INSERT INTO `products` (`id`, `name`, `price`, `unit`, `img_url`, `details_url`,
 (45, 'WCG-3J0-DDXX-XX', '43690', '10', 'uploads/5-1721020112.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcg-3j0-ddxx-xx', 13, 5, 1, '2024-07-14 23:08:32', '2024-07-14 23:08:32'),
 (46, 'WCG-3J0-RXLX-GX', '44690', '10', 'uploads/5-1721020162.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcg-3j0-rxlx-gx', 13, 5, 1, '2024-07-14 23:09:22', '2024-07-14 23:09:22'),
 (47, 'WCG-3J0-RXLX-XX', '43690', '10', 'uploads/5-1721020239.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcg-3j0-rxlx-xx', 13, 5, 1, '2024-07-14 23:10:39', '2024-07-14 23:10:39'),
-(48, 'WCG-2G0-CGXX-XX', '53990', '10', 'uploads/5-1721020452.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcg-2g0-cgxx-xx', 13, 5, 1, '2024-07-14 23:14:12', '2024-07-14 23:14:12');
+(48, 'WCG-2G0-CGXX-XX', '53990', '10', 'uploads/5-1721020452.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcg-2g0-cgxx-xx', 13, 5, 1, '2024-07-14 23:14:12', '2024-07-14 23:14:12'),
+(49, 'WBL-VK85N', '5600', '10', '', 'n/a', 17, 5, 1, '2024-07-22 01:27:43', '2024-07-22 01:27:43'),
+(50, 'WBL-VK01N', '5400', '9', '', 'n/a', 17, 5, 1, '2024-07-22 01:28:39', '2024-07-22 01:31:50'),
+(51, 'WFD-1F3-GDEL-XX', '33090', '9', '', NULL, 11, 5, 1, '2024-07-22 01:41:35', '2024-07-22 01:44:02'),
+(52, 'WFD-1F3-GDSH-XX', '33690', '9', '', NULL, 11, 5, 1, '2024-07-22 01:52:57', '2024-07-22 01:59:45'),
+(53, 'WFC-3X7-GDXX-XX', '46190', '9', '', NULL, 11, 5, 1, '2024-07-22 02:06:44', '2024-07-22 02:11:17'),
+(54, 'W170A-MS', '6290', '19', '', NULL, 18, 5, 1, '2024-07-22 02:18:26', '2024-07-22 02:21:27');
 
 -- --------------------------------------------------------
 
@@ -409,19 +437,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `dues`
 --
 ALTER TABLE `dues`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `expenses`
@@ -433,13 +461,13 @@ ALTER TABLE `expenses`
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `invoice_products`
 --
 ALTER TABLE `invoice_products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -457,7 +485,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `users`

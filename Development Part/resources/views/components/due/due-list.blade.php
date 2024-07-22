@@ -54,7 +54,7 @@
 
         // Render Rows
         data.map((item, index) => {
-            if (item.dues_count > 0) {
+            if (item.dues_count > 0 || item.remaining_due > 0) {
             tableList.append(`<tr>
                    <td>${index+1}</td>
                     <td> ${item.customer.name} </td>

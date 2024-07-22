@@ -54,7 +54,7 @@ async function getList() {
         let row=`<tr>
                     <td>${index+1}</td>
                     <td style="white-space: normal">${item['date']}</td>
-                    <td>${item['customer']['name']}</td>
+                    <td style="white-space: normal">${item['customer']['name']}</td>
                     <td style="white-space: normal">${item['customer']['mobile']}</td>
                     <td>${item['total']}</td>
                     <td>${item['discount']}</td>
