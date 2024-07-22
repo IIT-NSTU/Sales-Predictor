@@ -15,7 +15,9 @@
                         <div class="col-4">
                             <img class="w-40" src="{{ 'images/logo3.png' }}">
                             <p class="text-bold mx-0 my-1 text-dark">Invoice </p>
-                            <p class="text-s mx-0 my-1">Date: <span id="date">{{ date('Y-m-d') }}</span></p>
+                            <p class="text-s mx-0 my-1">Date: 
+                                <input id="date" class="" type="text" value="{{ date('Y-m-d h:m:s A') }}" />
+                            </p>
                         </div>
                     </div>
                     <hr class="mx-0 my-2 p-0 bg-secondary" />
@@ -182,7 +184,7 @@
             const payable = document.getElementById('payable').innerText;
             const paid = document.getElementById('paid').value;
             const due = document.getElementById('due').innerText;
-            const date = document.getElementById('date').innerText;
+            const date = document.getElementById('date').value;
 
             if (customerId.length === 0) {
                 errorToast('Customer required')
@@ -196,6 +198,8 @@
                 errorToast('Paid amount required')
             } else if (parseFloat(paid) < 0) {
                 errorToast('Please enter positive paid amount.')
+            } else if (parseFloat(due) < 0) {
+                errorToast('Due can not be negative.')
             } else {
                 showLoader();
                 try {
