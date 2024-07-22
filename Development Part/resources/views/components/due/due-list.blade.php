@@ -54,10 +54,11 @@
 
         // Render Rows
         data.map((item, index) => {
+            if (item.dues_count > 0) {
             tableList.append(`<tr>
                    <td>${index+1}</td>
                     <td> ${item.customer.name} </td>
-                    <td> ${item.customer.mobile} </td>
+                    <td style="white-space: normal"> ${item.customer.mobile} </td>
                     <td style="white-space: normal"> ${item.customer.address} </td>
                     <td> ${item.remaining_due} </td>
                     <td>
@@ -65,6 +66,7 @@
                         <button data-id="${item['id']}" data-cus="${item.customer.id}" class="btn historyBtn btn-sm bg-gradient-info">History</button>
                     </td>
                  </tr>`)
+            }     
         })
 
         // Initalizing JQuery Data table 

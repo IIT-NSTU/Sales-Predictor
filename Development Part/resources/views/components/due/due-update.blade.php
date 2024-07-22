@@ -15,7 +15,7 @@
                                 <label class="form-label d-none">Actual Amount *</label>
                                 <input type="text" class="form-control d-none" id="DActAmount">
                                 <p class="form-label">Date: 
-                                    <span id="updateDate">{{ date('Y-m-d') }}</span>
+                                    <input id="updateDate" value="{{ date('Y-m-d') }}" />
                                 </p>
                                 <label class="form-label">Enter Amount *</label>
                                 <input type="text" class="form-control" id="DAmount">
@@ -40,7 +40,7 @@
         let actualAmount = parseFloat(document.getElementById('DActAmount').value);
         let amount = document.getElementById('DAmount').value;
         let cnvAmount = parseFloat(amount);
-        let date = document.getElementById('updateDate').innerText;
+        let date = document.getElementById('updateDate').value;
 
         if (amount.length === 0) {
             errorToast('Due amount is required');

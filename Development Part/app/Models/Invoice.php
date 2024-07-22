@@ -21,4 +21,9 @@ class Invoice extends Model
         return $this->hasMany(InvoiceProduct::class);
     }
 
+    function dues(): HasMany
+    {
+        return $this->hasMany(Due::class);
+    }
+
 }

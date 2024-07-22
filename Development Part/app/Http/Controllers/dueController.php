@@ -18,8 +18,8 @@ class dueController extends Controller
     {
         $userId = $request->header('userId');
         $dues = Invoice::with('customer')
+                       ->withCount('dues')
                        ->where('user_id', '=', $userId)
-                       ->where('remaining_due', '>', '0')
                        ->get();
 
         return response()->json([
@@ -35,9 +35,10 @@ class dueController extends Controller
         $invoice_id = $request->input('id');
 
         try {
-            $invoice = Invoice::where('id', '=', $invoice_id)->first();
+            $invoice = Invoice::where('id', '=', $invoice_id)
+                              ->where('user_id', '=', $userId)
+                              ->first();
 
-            if ($invoice->count() === 1) {
                 $invoice->update([
                     "remaining_due" => $invoice->remaining_due - $request->input('amount')
                 ]);
@@ -54,8 +55,6 @@ class dueController extends Controller
                     "status" => "success",
                     "message" => "Due amount updated successfully"
                 ], 200);
-            }
-            throw new Exception("not found", 404);
 
         } catch (Exception $e) {
             return response()->json([

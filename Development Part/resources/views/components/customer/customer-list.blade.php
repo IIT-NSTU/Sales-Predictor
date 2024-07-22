@@ -65,7 +65,7 @@
                 <td>${index+1} </td>
                 <td>${item['name']} </td>
                 <td style="white-space: normal">${item['address']} </td>
-                <td>${item['mobile']} </td>
+                <td style="white-space: normal">${item['mobile']} </td>
                 <td>${item['email']} </td>
                 <td>${getTypeName(item.type)} </td>
                 <td>

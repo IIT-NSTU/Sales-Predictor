@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 22, 2024 at 01:43 AM
+-- Generation Time: Jul 22, 2024 at 07:17 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -74,7 +74,9 @@ CREATE TABLE `customers` (
 
 INSERT INTO `customers` (`id`, `name`, `email`, `mobile`, `address`, `type`, `active`, `user_id`, `created_at`, `updated_at`) VALUES
 (2, 'Walton Hi-Tech industries', 'info@waltonbd.com', '008809606-555555', 'Plot-1088, Block-I, Sabrina Sobhan Road P.O-Khilkhet, P.S-Vatara, Bashundhara R/A, Dhaka-1229', '2', 1, 5, '2024-07-16 01:30:41', '2024-07-16 01:48:39'),
-(3, 'Prosanto Deb', 'prosanto2514@student.nstu.edu.bd', '01793222825', '32/1, North Mourail, Brahmanbaria', '1', 1, 5, '2024-07-16 07:20:40', '2024-07-19 10:58:16');
+(4, 'Foyez Mia', 'N/A', '01726222233, 01813032777, 01839022598', 'Shonkoradoho, Nasirnagar, Brahmanbaria', '1', 1, 5, '2024-07-22 00:16:27', '2024-07-22 00:24:44'),
+(5, 'Saddam Hossain', 'N/A', '01739701775', 'Madhabpur, Habiganj', '1', 1, 5, '2024-07-22 00:23:13', '2024-07-22 00:24:56'),
+(6, 'Nusrat Jahan', 'N/A', '01754694194, 01722786571', 'Mohammad Ali Dental Care, Madhabpur', '1', 1, 5, '2024-07-22 00:32:07', '2024-07-22 00:32:07');
 
 -- --------------------------------------------------------
 
@@ -92,6 +94,14 @@ CREATE TABLE `dues` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `dues`
+--
+
+INSERT INTO `dues` (`id`, `date`, `amount`, `user_id`, `invoice_id`, `customer_id`, `created_at`, `updated_at`) VALUES
+(3, '2023-05-25', '5000', 5, 6, 6, '2024-07-22 00:56:18', '2024-07-22 06:58:46'),
+(4, '2023-07-06', '6500', 5, 6, 6, '2024-07-22 00:59:56', '2024-07-22 00:59:56');
 
 -- --------------------------------------------------------
 
@@ -133,6 +143,14 @@ CREATE TABLE `invoices` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `invoices`
+--
+
+INSERT INTO `invoices` (`id`, `type`, `total`, `discount`, `payable`, `paid`, `initial_due`, `remaining_due`, `date`, `active`, `user_id`, `customer_id`, `created_at`, `updated_at`) VALUES
+(5, 's', 36390.00, 6390.00, 30000.00, 30000.00, 0.00, 0.00, '2023-04-15 09:47:22 AM', 1, 5, 4, '2024-07-22 00:20:27', '2024-07-22 06:35:12'),
+(6, 's', 36390.00, 4890.00, 31500.00, 20000.00, 11500.00, 0.00, '2023-04-15 10:07:11 AM', 1, 5, 6, '2024-07-22 00:34:00', '2024-07-22 00:59:56');
+
 -- --------------------------------------------------------
 
 --
@@ -149,6 +167,14 @@ CREATE TABLE `invoice_products` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `invoice_products`
+--
+
+INSERT INTO `invoice_products` (`id`, `invoice_id`, `product_id`, `user_id`, `quantity`, `sale_price`, `created_at`, `updated_at`) VALUES
+(7, 5, 34, 5, '1', '36390.00', '2024-07-22 00:20:27', '2024-07-22 00:20:27'),
+(8, 6, 34, 5, '1', '36390.00', '2024-07-22 00:34:00', '2024-07-22 00:34:00');
 
 -- --------------------------------------------------------
 
@@ -225,7 +251,7 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `name`, `price`, `unit`, `img_url`, `details_url`, `category_id`, `user_id`, `active`, `created_at`, `updated_at`) VALUES
 (1, 'WFC-3F5-GDEL-XX (INVERTER)', '53090', '10', 'uploads/5-1719467375.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3f5-gdel-xx-inverter', 11, 5, 1, '2024-06-26 23:49:35', '2024-07-21 06:48:38'),
-(6, 'WFC-3F5-GDEL-XX', '51090', '0', 'uploads/5-1719472532.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3f5-gdel-xx', 11, 5, 1, '2024-06-27 01:15:32', '2024-07-19 04:44:08'),
+(6, 'WFC-3F5-GDEL-XX', '51090', '10', 'uploads/5-1719472532.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3f5-gdel-xx', 11, 5, 1, '2024-06-27 01:15:32', '2024-07-21 19:46:01'),
 (7, 'WFC-3F5-GDNE-XX (Inverter)', '53090', '10', 'uploads/5-1719473585.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3f5-gdne-xx-inverter', 11, 5, 1, '2024-06-27 01:33:05', '2024-07-13 07:24:56'),
 (8, 'WFC-3F5-GDNE-XX', '51790', '10', 'uploads/5-1719473643.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3f5-gdne-xx', 11, 5, 1, '2024-06-27 01:34:03', '2024-06-27 01:34:03'),
 (9, 'WFC-3F5-GAXA-UX-P (Inverter)', '54690', '10', 'uploads/5-1719473713.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3f5-gaxa-ux-p-inverter', 11, 5, 1, '2024-06-27 01:35:13', '2024-06-27 01:35:13'),
@@ -236,7 +262,7 @@ INSERT INTO `products` (`id`, `name`, `price`, `unit`, `img_url`, `details_url`,
 (14, 'WFC-3F5-GDXX-XX', '50390', '10', 'uploads/5-1719474066.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3f5-gdxx-xx', 11, 5, 1, '2024-06-27 01:41:06', '2024-06-27 01:41:06'),
 (15, 'WFE-3E8-GDXX-XX', '51290', '10', 'uploads/5-1719474120.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfe-3e8-gdxx-xx', 11, 5, 1, '2024-06-27 01:42:00', '2024-07-13 07:31:17'),
 (16, 'WFE-3E8-GDEL-XX', '51790', '10', 'uploads/5-1719474191.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfe-3e8-gdel-xx', 11, 5, 1, '2024-06-27 01:43:11', '2024-07-13 07:31:49'),
-(17, 'WFE-3E8-GDEN-XX', '52290', '8', 'uploads/5-1719474247.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfe-3e8-gden-xx', 11, 5, 1, '2024-06-27 01:44:07', '2024-07-21 09:00:26'),
+(17, 'WFE-3E8-GDEN-XX', '52290', '10', 'uploads/5-1719474247.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfe-3e8-gden-xx', 11, 5, 1, '2024-06-27 01:44:07', '2024-07-21 19:46:40'),
 (18, 'WFC-3D8-GAXA-UX-P (Inverter)', '52990', '10', 'uploads/5-1719474369.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3d8-gaxa-ux-p-inverter', 11, 5, 1, '2024-06-27 01:46:09', '2024-06-27 01:46:09'),
 (19, 'WFC-3D8-GDEH-DD (Inverter)', '53890', '10', 'uploads/5-1719474450.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3d8-gdeh-dd-inverter', 11, 5, 1, '2024-06-27 01:47:30', '2024-07-13 07:33:25'),
 (20, 'WFC-3D8-GDEH-XX', '49490', '10', 'uploads/5-1719474809.jpg', 'https://waltonbd.com/direct-cool-refrigerator/wfc-3d8-gdeh-xx', 11, 5, 1, '2024-06-27 01:53:29', '2024-06-27 01:53:29'),
@@ -247,13 +273,13 @@ INSERT INTO `products` (`id`, `name`, `price`, `unit`, `img_url`, `details_url`,
 (25, 'WBB-2F0-TDXX-XX', '58,990', '10', 'uploads/5-1721012741.jpg', 'https://waltonbd.com/refrigerator-freezer/beverage-cooler/wbb-2f0-tdxx-xx', 14, 5, 1, '2024-07-14 21:05:42', '2024-07-14 21:05:42'),
 (26, 'WBQ-4D0-TDXX-XX', '80990', '10', 'uploads/5-1721012811.jpg', 'https://waltonbd.com/refrigerator-freezer/beverage-cooler/wbq-4d0-tdxx-xx', 14, 5, 1, '2024-07-14 21:06:51', '2024-07-14 21:06:51'),
 (27, 'WBA-2B4-GTXA-XX', '48990', '10', 'uploads/5-1721012857.jpg', 'https://waltonbd.com/refrigerator-freezer/beverage-cooler/wba-2b4-gtxa-xx', 14, 5, 1, '2024-07-14 21:07:37', '2024-07-14 21:07:37'),
-(28, 'WUE-3C4-GEPB-XX (Inverter)', '55200', '3', 'uploads/5-1721012977.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wue-3c4-gepb-xx-inverter', 13, 5, 1, '2024-07-14 21:09:37', '2024-07-21 19:41:08'),
-(29, 'WCF-1D5-GDEL-LX', '31190', '6', 'uploads/5-1721013024.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-1d5-gdel-lx', 13, 5, 1, '2024-07-14 21:10:24', '2024-07-21 09:00:26'),
+(28, 'WUE-3C4-GEPB-XX (Inverter)', '55200', '10', 'uploads/5-1721012977.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wue-3c4-gepb-xx-inverter', 13, 5, 1, '2024-07-14 21:09:37', '2024-07-21 19:46:09'),
+(29, 'WCF-1D5-GDEL-LX', '31190', '10', 'uploads/5-1721013024.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-1d5-gdel-lx', 13, 5, 1, '2024-07-14 21:10:24', '2024-07-21 19:46:23'),
 (30, 'WCF-1D5-GDEL-XX', '30690', '10', 'uploads/5-1721013081.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-1d5-gdel-xx', 13, 5, 1, '2024-07-14 21:11:21', '2024-07-14 21:11:21'),
 (31, 'WCF-1D5-RRXX-XX', '29390', '10', 'uploads/5-1721013120.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-1d5-rrxx-xx', 13, 5, 1, '2024-07-14 21:12:00', '2024-07-14 21:12:00'),
 (32, 'WCF-1B5-GDEL-XX', '27590', '10', 'uploads/5-1721013174.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-1b5-gdel-xx', 13, 5, 1, '2024-07-14 21:12:54', '2024-07-14 21:12:54'),
 (33, 'WCF-2T5-GDEL-GX', '36890', '10', 'uploads/5-1721013231.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-2t5-gdel-gx', 13, 5, 1, '2024-07-14 21:13:51', '2024-07-14 21:13:51'),
-(34, 'WCF-2T5-GDEL-XX', '36390', '10', 'uploads/5-1721013272.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-2t5-gdel-xx', 13, 5, 1, '2024-07-14 21:14:32', '2024-07-14 21:14:32'),
+(34, 'WCF-2T5-GDEL-XX', '36390', '8', 'uploads/5-1721013272.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-2t5-gdel-xx', 13, 5, 1, '2024-07-14 21:14:32', '2024-07-22 00:34:00'),
 (35, 'WCF-2T5-RRLX-XX', '35390', '10', 'uploads/5-1721013318.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-2t5-rrlx-xx', 13, 5, 1, '2024-07-14 21:15:18', '2024-07-14 21:15:18'),
 (36, 'WCF-2T5-RRLX-GX', '35890', '10', 'uploads/5-1721013374.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-2t5-rrlx-gx', 13, 5, 1, '2024-07-14 21:16:14', '2024-07-14 21:16:14'),
 (37, 'WCF-2A0-GSRE-XX-P', '37490', '10', 'uploads/5-1721019297.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-2a0-gsre-xx-p', 13, 5, 1, '2024-07-14 22:54:57', '2024-07-14 22:54:57'),
@@ -389,13 +415,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `dues`
 --
 ALTER TABLE `dues`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `expenses`
@@ -407,13 +433,13 @@ ALTER TABLE `expenses`
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `invoice_products`
 --
 ALTER TABLE `invoice_products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `migrations`

@@ -33,7 +33,7 @@ class customerController extends Controller
             ]);
             return response()->json([
                 "status" => "success",
-                "message" => "customer created successfully"
+                "message" => "Customer created successfully"
             ], 201);
         } catch (Exception $e) {
             return response()->json([
