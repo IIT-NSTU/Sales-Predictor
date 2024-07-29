@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 22, 2024 at 08:22 AM
+-- Generation Time: Jul 29, 2024 at 05:55 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -49,7 +49,15 @@ INSERT INTO `categories` (`id`, `name`, `type`, `active`, `user_id`, `created_at
 (15, 'Electricity Bill', '2', 1, 5, '2024-07-21 04:48:10', '2024-07-21 14:49:41'),
 (16, 'Staff Cost', '2', 1, 5, '2024-07-21 07:05:26', '2024-07-21 14:49:44'),
 (17, 'Mixer Grinder', '1', 1, 5, '2024-07-22 01:25:50', '2024-07-22 01:25:50'),
-(18, 'Rechargeable Table Fan', '1', 1, 5, '2024-07-22 02:17:28', '2024-07-22 02:17:28');
+(18, 'Rechargeable Fan', '1', 1, 5, '2024-07-22 02:17:28', '2024-07-28 23:02:51'),
+(19, 'Extension Socket', '1', 0, 5, '2024-07-28 22:01:47', '2024-07-28 23:02:18'),
+(20, 'Mobile', '1', 1, 5, '2024-07-28 22:27:03', '2024-07-28 22:27:03'),
+(21, 'Speaker', '1', 0, 5, '2024-07-28 22:46:14', '2024-07-28 23:02:31'),
+(22, 'LED Light', '1', 0, 5, '2024-07-28 22:52:36', '2024-07-28 23:02:27'),
+(23, 'Accessories', '1', 1, 5, '2024-07-28 23:00:13', '2024-07-28 23:00:13'),
+(24, 'Fan', '1', 1, 5, '2024-07-28 23:09:44', '2024-07-28 23:09:44'),
+(25, 'Home Appliances', '1', 1, 5, '2024-07-28 23:31:54', '2024-07-28 23:31:54'),
+(26, 'Kitchen Appliances', '1', 1, 5, '2024-07-28 23:50:52', '2024-07-28 23:50:52');
 
 -- --------------------------------------------------------
 
@@ -320,8 +328,34 @@ INSERT INTO `products` (`id`, `name`, `price`, `unit`, `img_url`, `details_url`,
 (50, 'WBL-VK01N', '5400', '9', '', 'n/a', 17, 5, 1, '2024-07-22 01:28:39', '2024-07-22 01:31:50'),
 (51, 'WFD-1F3-GDEL-XX', '33090', '9', '', NULL, 11, 5, 1, '2024-07-22 01:41:35', '2024-07-22 01:44:02'),
 (52, 'WFD-1F3-GDSH-XX', '33690', '9', '', NULL, 11, 5, 1, '2024-07-22 01:52:57', '2024-07-22 01:59:45'),
-(53, 'WFC-3X7-GDXX-XX', '46190', '9', '', NULL, 11, 5, 1, '2024-07-22 02:06:44', '2024-07-22 02:11:17'),
-(54, 'W170A-MS', '6290', '19', '', NULL, 18, 5, 1, '2024-07-22 02:18:26', '2024-07-22 02:21:27');
+(53, 'WFC-3X7-GDXX-XX', '46190', '8', '', NULL, 11, 5, 1, '2024-07-22 02:06:44', '2024-07-23 09:32:24'),
+(54, 'W17OA-MS (17\")', '6290', '10', 'uploads/5-1722226026.jpg', 'https://waltonbd.com/fan/rechargeable-fan/w17oa-ms-17', 18, 5, 1, '2024-07-22 02:18:26', '2024-07-28 22:11:38'),
+(55, 'Extension Socket 1500W', '845', '10', 'uploads/5-1722225772.jpg', 'https://waltonbd.com/switch-sockets/extension-socket/without-usb/wes2p4e-white-1500w', 23, 5, 1, '2024-07-28 22:02:52', '2024-07-28 23:45:00'),
+(56, 'WRTF14A (14\")', '4490', '10', 'uploads/5-1722226426.jpg', 'https://waltonbd.com/fan/rechargeable-fan/wrtf14a-14', 18, 5, 1, '2024-07-28 22:13:46', '2024-07-28 22:13:46'),
+(57, 'WRTF12B (12\")', '3990', '10', 'uploads/5-1722226651.jpg', 'https://waltonbd.com/fan/rechargeable-fan/wrtf12b-12', 18, 5, 1, '2024-07-28 22:17:31', '2024-07-28 22:17:31'),
+(58, 'Olvio L29', '1050', '10', 'uploads/5-1722227281.jpg', 'https://waltonbd.com/mobile/feature-phone/olvio-l29', 20, 5, 1, '2024-07-28 22:28:01', '2024-07-28 22:28:01'),
+(59, 'NEXG N25', '14999', '10', 'uploads/5-1722228048.jpg', 'https://waltonbd.com/mobile/smart-phone/nexg-n25', 20, 5, 1, '2024-07-28 22:40:48', '2024-07-28 22:40:48'),
+(60, 'PRIMO GH11', '9523', '10', 'uploads/5-1722228226.jpg', 'https://waltonbd.com/mobile/smart-phone/primo-gh11', 20, 5, 1, '2024-07-28 22:43:46', '2024-07-28 22:43:46'),
+(61, 'Speaker (WS2149)', '5850', '10', 'uploads/5-1722228514.png', 'https://waltondigitech.com/products/music/speaker', 23, 5, 1, '2024-07-28 22:48:34', '2024-07-28 23:01:29'),
+(62, 'LED Light (WLED-DC24V-10W)', '430', '10', 'uploads/5-1722228892.png', 'https://waltonbd.com/led-light/indoor/luminaries/dc-tube/wled-dc24v-10w', 23, 5, 1, '2024-07-28 22:54:52', '2024-07-28 23:02:03'),
+(64, 'Weight Machine (WBWS-G18A 180KG)', '1200', '10', 'uploads/5-1722229466.jpg', 'https://waltonbd.com/hardware-sanitary-solutions/weight-machine/wbws-g18a-180', 23, 5, 1, '2024-07-28 23:04:26', '2024-07-28 23:46:29'),
+(65, 'LOTUS CEILING FAN (52\")', '2750', '10', 'uploads/5-1722230225.jpg', 'https://waltonbd.com/fan/ceiling-fan/lotus-ceiling-fan-52', 24, 5, 1, '2024-07-28 23:17:05', '2024-07-28 23:17:05'),
+(66, 'Tornado Fan (WTF9S5 09\")', '1090', '10', 'uploads/5-1722230390.png', 'https://waltonbd.com/fan/tornado-fan', 24, 5, 1, '2024-07-28 23:19:50', '2024-07-28 23:19:50'),
+(67, 'Pedestal Fan (WPF-24A-PBC 24\")', '7990', '10', 'uploads/5-1722230810.jpg', 'https://waltonbd.com/fan/pedestal-fan/wpf-24a-pbc-24', 24, 5, 1, '2024-07-28 23:26:50', '2024-07-28 23:45:56'),
+(68, 'Wall Fan (W18OA-RGC 18\")', '3130', '10', 'uploads/5-1722230985.jpg', 'https://waltonbd.com/fan/wall-fan/w18oa-rgc-18', 24, 5, 1, '2024-07-28 23:29:45', '2024-07-28 23:29:45'),
+(69, 'Water Purifier (WWP-UF20L)', '3900', '10', 'uploads/5-1722231353.png', 'https://waltonbd.com/home-appliances/water-purifier-dispenser/wwp-uf20l-purifier', 25, 5, 1, '2024-07-28 23:35:53', '2024-07-28 23:35:53'),
+(70, 'Geyser (WG-C45L)', '9290', '10', 'uploads/5-1722231578.png', 'https://waltonbd.com/hardware-sanitary-solutions/water-heater-geyser?product_id=5711', 25, 5, 1, '2024-07-28 23:39:38', '2024-07-28 23:40:34'),
+(71, 'Gas Stove (WGS-GNS1 LPG / NG)', '4090', '10', 'uploads/5-1722232376.jpg', 'https://waltonbd.com/kitchen-appliances/gas-stove/glass-top-double-burner/wgs-gns1-en', 26, 5, 1, '2024-07-28 23:52:56', '2024-07-28 23:52:56'),
+(72, 'Fry Pan (WCW-SFGC2200)', '1190', '10', 'uploads/5-1722233097.jpg', 'https://waltonbd.com/kitchen-appliances/kitchen-cookware/non-induction-cookware?product_id=5858', 26, 5, 1, '2024-07-29 00:04:57', '2024-07-29 00:04:57'),
+(73, 'Oven (WEO-J28EDK)', '7750', '10', 'uploads/5-1722272487.jpg', 'https://waltonbd.com/microwave-and-electric-oven/electric-oven?product_id=5913', 26, 5, 1, '2024-07-29 11:01:27', '2024-07-29 11:01:27'),
+(74, 'Ruti Tawa (WCW-TPS2801)', '850', '10', 'uploads/5-1722273000.jpg', 'https://eplaza.waltonbd.com/index.php?route=product/product&product_id=3089', 26, 5, 1, '2024-07-29 11:10:01', '2024-07-29 11:10:01'),
+(75, 'Kettle (WK-LJSS170)', '1050', '10', 'uploads/5-1722273814.jpg', 'https://waltonbd.com/home-appliances/kettle-electric/wk-ljss170', 25, 5, 1, '2024-07-29 11:23:34', '2024-07-29 11:23:34'),
+(76, 'Iron (WIR-D02)', '1220', '10', 'uploads/5-1722274085.png', 'https://waltonbd.com/home-appliances/iron/wir-d02', 25, 5, 1, '2024-07-29 11:28:05', '2024-07-29 11:28:05'),
+(77, 'Induction Cooker (WI-F15)', '4590', '10', 'uploads/5-1722274659.jpg', 'https://bitly.cx/0P0x', 26, 5, 1, '2024-07-29 11:37:39', '2024-07-29 11:37:39'),
+(78, 'Infrared Cooker (WIR-KS20)', '5590', '10', 'uploads/5-1722274788.png', 'https://bitly.cx/oVJ8A', 26, 5, 1, '2024-07-29 11:39:48', '2024-07-29 11:39:48'),
+(79, 'Multi Cooker (WDC-SDE280)', '3990', '10', 'uploads/5-1722275005.png', 'https://waltonbd.com/kitchen-appliances/multi-cooker-electric?product_id=5912', 26, 5, 1, '2024-07-29 11:43:25', '2024-07-29 11:43:25'),
+(80, 'Pressure Cooker (WPC-MSC350)', '1590', '10', 'uploads/5-1722275250.jpg', 'https://waltonbd.com/kitchen-appliances/pressure-cooker-electric-manual/wpc-msc350', 26, 5, 1, '2024-07-29 11:47:30', '2024-07-29 11:47:30'),
+(81, 'Rice Cooker (WRC-SGAE18)', '2790', '10', 'uploads/5-1722275674.jpg', 'https://waltonbd.com/kitchen-appliances/rice-cooker-electric/wrc-sgae18', 26, 5, 1, '2024-07-29 11:54:34', '2024-07-29 11:54:34');
 
 -- --------------------------------------------------------
 
@@ -437,7 +471,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `customers`
@@ -449,7 +483,7 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `dues`
 --
 ALTER TABLE `dues`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `expenses`
@@ -461,13 +495,13 @@ ALTER TABLE `expenses`
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `invoice_products`
 --
 ALTER TABLE `invoice_products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -485,7 +519,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `users`

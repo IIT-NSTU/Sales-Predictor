@@ -15,7 +15,7 @@
                 <table class="table text-dark" id="tableData">
                     <thead>
                         <tr class="bg-light">
-                            <th>No</th>
+                            <th>ID</th>
                             <th>Image</th>
                             <th>Name</th>
                             <th>Category</th>
@@ -60,8 +60,8 @@
         // Render Rows
         data.map((item, index) => {
             tableList.append(`<tr>
-                   <td>${index+1}</td>
-                    <td><a href='${item['details_url']}' target="_blank"><img class="w-50 h-auto" alt="" src="${item['img_url']}"></a></td>
+                    <td>${item['id']}</td>
+                    <td><a href='${item['details_url']}' target="_blank"><img class="w-75 h-auto" alt="" src="${item['img_url']}"></a></td>
                     <td>${item['name']}</td>
                     <td>`+ item.category.name +`</td>
                     <td>${item['price']}</td>
@@ -95,9 +95,9 @@
         // Initalizing JQuery Data table 
         new DataTable('#tableData', {
             order: [
-                [0, 'asc']
+                [0, 'dsc']
             ],
-            lengthMenu: [5, 10, 15, 20, 30, 50, 100],
+            lengthMenu: [30, 50, 75, 100],
             columns: [null, { width: '20%' }, null, null, null, null, null]
         });
 
