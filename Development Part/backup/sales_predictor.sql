@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 29, 2024 at 05:55 PM
+-- Generation Time: Jul 30, 2024 at 05:11 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -57,7 +57,8 @@ INSERT INTO `categories` (`id`, `name`, `type`, `active`, `user_id`, `created_at
 (23, 'Accessories', '1', 1, 5, '2024-07-28 23:00:13', '2024-07-28 23:00:13'),
 (24, 'Fan', '1', 1, 5, '2024-07-28 23:09:44', '2024-07-28 23:09:44'),
 (25, 'Home Appliances', '1', 1, 5, '2024-07-28 23:31:54', '2024-07-28 23:31:54'),
-(26, 'Kitchen Appliances', '1', 1, 5, '2024-07-28 23:50:52', '2024-07-28 23:50:52');
+(26, 'Kitchen Appliances', '1', 1, 5, '2024-07-28 23:50:52', '2024-07-28 23:50:52'),
+(27, 'Television', '1', 1, 5, '2024-07-29 22:09:14', '2024-07-29 22:09:14');
 
 -- --------------------------------------------------------
 
@@ -339,7 +340,7 @@ INSERT INTO `products` (`id`, `name`, `price`, `unit`, `img_url`, `details_url`,
 (61, 'Speaker (WS2149)', '5850', '10', 'uploads/5-1722228514.png', 'https://waltondigitech.com/products/music/speaker', 23, 5, 1, '2024-07-28 22:48:34', '2024-07-28 23:01:29'),
 (62, 'LED Light (WLED-DC24V-10W)', '430', '10', 'uploads/5-1722228892.png', 'https://waltonbd.com/led-light/indoor/luminaries/dc-tube/wled-dc24v-10w', 23, 5, 1, '2024-07-28 22:54:52', '2024-07-28 23:02:03'),
 (64, 'Weight Machine (WBWS-G18A 180KG)', '1200', '10', 'uploads/5-1722229466.jpg', 'https://waltonbd.com/hardware-sanitary-solutions/weight-machine/wbws-g18a-180', 23, 5, 1, '2024-07-28 23:04:26', '2024-07-28 23:46:29'),
-(65, 'LOTUS CEILING FAN (52\")', '2750', '10', 'uploads/5-1722230225.jpg', 'https://waltonbd.com/fan/ceiling-fan/lotus-ceiling-fan-52', 24, 5, 1, '2024-07-28 23:17:05', '2024-07-28 23:17:05'),
+(65, 'CEILING FAN (WCF5601 WR 56\")', '4390', '10', 'uploads/5-1722316164.jpg', 'https://waltonbd.com/fan/ceiling-fan/lotus-ceiling-fan-52', 24, 5, 1, '2024-07-28 23:17:05', '2024-07-29 23:09:24'),
 (66, 'Tornado Fan (WTF9S5 09\")', '1090', '10', 'uploads/5-1722230390.png', 'https://waltonbd.com/fan/tornado-fan', 24, 5, 1, '2024-07-28 23:19:50', '2024-07-28 23:19:50'),
 (67, 'Pedestal Fan (WPF-24A-PBC 24\")', '7990', '10', 'uploads/5-1722230810.jpg', 'https://waltonbd.com/fan/pedestal-fan/wpf-24a-pbc-24', 24, 5, 1, '2024-07-28 23:26:50', '2024-07-28 23:45:56'),
 (68, 'Wall Fan (W18OA-RGC 18\")', '3130', '10', 'uploads/5-1722230985.jpg', 'https://waltonbd.com/fan/wall-fan/w18oa-rgc-18', 24, 5, 1, '2024-07-28 23:29:45', '2024-07-28 23:29:45'),
@@ -355,7 +356,18 @@ INSERT INTO `products` (`id`, `name`, `price`, `unit`, `img_url`, `details_url`,
 (78, 'Infrared Cooker (WIR-KS20)', '5590', '10', 'uploads/5-1722274788.png', 'https://bitly.cx/oVJ8A', 26, 5, 1, '2024-07-29 11:39:48', '2024-07-29 11:39:48'),
 (79, 'Multi Cooker (WDC-SDE280)', '3990', '10', 'uploads/5-1722275005.png', 'https://waltonbd.com/kitchen-appliances/multi-cooker-electric?product_id=5912', 26, 5, 1, '2024-07-29 11:43:25', '2024-07-29 11:43:25'),
 (80, 'Pressure Cooker (WPC-MSC350)', '1590', '10', 'uploads/5-1722275250.jpg', 'https://waltonbd.com/kitchen-appliances/pressure-cooker-electric-manual/wpc-msc350', 26, 5, 1, '2024-07-29 11:47:30', '2024-07-29 11:47:30'),
-(81, 'Rice Cooker (WRC-SGAE18)', '2790', '10', 'uploads/5-1722275674.jpg', 'https://waltonbd.com/kitchen-appliances/rice-cooker-electric/wrc-sgae18', 26, 5, 1, '2024-07-29 11:54:34', '2024-07-29 11:54:34');
+(81, 'Rice Cooker (WRC-SGAE18)', '2790', '10', 'uploads/5-1722275674.jpg', 'https://waltonbd.com/kitchen-appliances/rice-cooker-electric/wrc-sgae18', 26, 5, 1, '2024-07-29 11:54:34', '2024-07-29 11:54:34'),
+(82, 'Blender (WBL-13C330N)', '2290', '10', 'uploads/5-1722309398.jpg', 'https://waltonbd.com/blender-and-mixer-grinder/blender/wbl-13c330n', 26, 5, 1, '2024-07-29 21:16:38', '2024-07-29 21:16:38'),
+(83, 'Mixer Grinder (WBL-VK01N)', '5490', '10', 'uploads/5-1722309494.png', 'https://waltonbd.com/blender-and-mixer-grinder/mixer-grinder/wbl-vk01n', 26, 5, 1, '2024-07-29 21:18:14', '2024-07-29 21:18:14'),
+(84, 'Washing Machine (WWM-TWG110)', '19900', '10', 'uploads/5-1722310322.jpg', 'https://waltonbd.com/n-a', 25, 5, 1, '2024-07-29 21:32:02', '2024-07-29 21:43:16'),
+(85, 'Room Heater (WRH-PTC0X)', '2680', '10', 'uploads/5-1722311582.jpg', 'https://bitly.cx/9z7G', 23, 5, 1, '2024-07-29 21:53:02', '2024-07-29 21:53:02'),
+(86, 'TV Remote Controller', '500', '10', 'uploads/5-1722312176.png', 'https://waltonbd.com/television/tv-accessories/remote-controller', 23, 5, 1, '2024-07-29 22:02:56', '2024-07-29 22:02:56'),
+(87, '24 inch (WD24HLR 610mm)', '16,900', '10', 'uploads/5-1722312637.jpg', 'https://waltonbd.com/television/led-tv/wd24hlr', 27, 5, 1, '2024-07-29 22:10:37', '2024-07-29 22:10:37'),
+(88, '32 inch (W32D120BL 813mm)', '19900', '10', 'uploads/5-1722312830.jpg', 'https://waltonbd.com/television/led-tv/w32d120bl-813mm', 27, 5, 1, '2024-07-29 22:13:50', '2024-07-29 22:13:50'),
+(89, '40 inch (WD40HLR (1.016m)', '26900', '10', 'uploads/5-1722312983.jpg', 'https://waltonbd.com/television/led-tv/wd40hlr-1-016m', 27, 5, 1, '2024-07-29 22:16:23', '2024-07-29 22:16:23'),
+(90, '43 inch (W43D210TS)', '33990', '10', 'uploads/5-1722313480.jpg', 'https://waltonbd.com/television/led-tv?product_id=7020', 27, 5, 1, '2024-07-29 22:24:40', '2024-07-29 22:24:40'),
+(91, 'Voltage Stabilizer (WVS-1000 SD)', '4700', '10', 'uploads/5-1722315171.jpg', 'https://waltonbd.com/home-appliances/voltage-stabilizer-protector/wvs-1000-sd', 25, 5, 1, '2024-07-29 22:52:51', '2024-07-29 22:52:51'),
+(92, 'Automatic Voltage Protector (WVP-SG15)', '1200', '10', 'uploads/5-1722315353.jpg', 'https://bitly.cx/Rebk', 25, 5, 1, '2024-07-29 22:55:53', '2024-07-29 22:55:53');
 
 -- --------------------------------------------------------
 
@@ -471,7 +483,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `customers`
@@ -519,7 +531,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `users`
