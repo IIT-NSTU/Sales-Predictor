@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 01, 2024 at 12:38 PM
+-- Generation Time: Aug 01, 2024 at 03:54 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -111,20 +111,6 @@ CREATE TABLE `dues` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `dues`
---
-
-INSERT INTO `dues` (`id`, `date`, `amount`, `user_id`, `invoice_id`, `customer_id`, `created_at`, `updated_at`) VALUES
-(3, '2023-05-25', '5000', 5, 6, 6, '2024-07-22 00:56:18', '2024-07-22 06:58:46'),
-(4, '2023-07-06', '6500', 5, 6, 6, '2024-07-22 00:59:56', '2024-07-22 00:59:56'),
-(5, '2022-05-16', '7000', 5, 8, 7, '2024-07-22 01:46:45', '2024-07-22 01:46:45'),
-(6, '2022-05-24', '3000', 5, 8, 7, '2024-07-22 01:47:14', '2024-07-22 01:47:14'),
-(7, '2022-05-15', '6000', 5, 9, 8, '2024-07-22 02:00:56', '2024-07-22 02:00:56'),
-(8, '2022-07-16', '6000', 5, 9, 8, '2024-07-22 02:01:07', '2024-07-22 02:01:07'),
-(9, '2022-04-17', '16000', 5, 10, 9, '2024-07-22 02:12:09', '2024-07-22 02:12:09'),
-(10, '2022-05-17', '11000', 5, 10, 9, '2024-07-22 02:12:20', '2024-07-22 02:12:20');
-
 -- --------------------------------------------------------
 
 --
@@ -165,19 +151,6 @@ CREATE TABLE `invoices` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `invoices`
---
-
-INSERT INTO `invoices` (`id`, `type`, `total`, `discount`, `payable`, `paid`, `initial_due`, `remaining_due`, `date`, `active`, `user_id`, `customer_id`, `created_at`, `updated_at`) VALUES
-(5, 's', 36390.00, 6390.00, 30000.00, 30000.00, 0.00, 0.00, '2023-04-15 09:47:22 AM', 1, 5, 4, '2024-07-22 00:20:27', '2024-07-22 06:35:12'),
-(6, 's', 36390.00, 4890.00, 31500.00, 20000.00, 11500.00, 0.00, '2023-04-15 10:07:11 AM', 1, 5, 6, '2024-07-22 00:34:00', '2024-07-22 00:59:56'),
-(7, 's', 5400.00, 1000.00, 4400.00, 4400.00, 0.00, 0.00, '2022-04-16 09:07:24 AM', 1, 5, 4, '2024-07-22 01:31:50', '2024-07-22 01:31:50'),
-(8, 's', 33090.00, 9090.00, 24000.00, 14000.00, 10000.00, 0.00, '2022-04-16 09:07:47 AM', 1, 5, 7, '2024-07-22 01:44:02', '2024-07-22 01:47:14'),
-(9, 's', 33690.00, 9690.00, 24000.00, 12000.00, 12000.00, 0.00, '2022-04-16 11:07:37 AM', 1, 5, 8, '2024-07-22 01:59:45', '2024-07-22 02:01:07'),
-(10, 's', 46190.00, 18190.00, 28000.00, 1000.00, 27000.00, 0.00, '2022-04-16 11:07:31 AM', 1, 5, 9, '2024-07-22 02:11:17', '2024-07-22 02:12:20'),
-(11, 's', 6290.00, 2490.00, 3800.00, 3800.00, 0.00, 0.00, '2022-04-16 11:07:54 AM', 1, 5, 10, '2024-07-22 02:21:27', '2024-07-22 02:21:27');
-
 -- --------------------------------------------------------
 
 --
@@ -194,19 +167,6 @@ CREATE TABLE `invoice_products` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `invoice_products`
---
-
-INSERT INTO `invoice_products` (`id`, `invoice_id`, `product_id`, `user_id`, `quantity`, `sale_price`, `created_at`, `updated_at`) VALUES
-(7, 5, 34, 5, '1', '36390.00', '2024-07-22 00:20:27', '2024-07-22 00:20:27'),
-(8, 6, 34, 5, '1', '36390.00', '2024-07-22 00:34:00', '2024-07-22 00:34:00'),
-(9, 7, 50, 5, '1', '5400.00', '2024-07-22 01:31:50', '2024-07-22 01:31:50'),
-(10, 8, 51, 5, '1', '33090.00', '2024-07-22 01:44:02', '2024-07-22 01:44:02'),
-(11, 9, 52, 5, '1', '33690.00', '2024-07-22 01:59:45', '2024-07-22 01:59:45'),
-(12, 10, 53, 5, '1', '46190.00', '2024-07-22 02:11:17', '2024-07-22 02:11:17'),
-(13, 11, 54, 5, '1', '6290.00', '2024-07-22 02:21:27', '2024-07-22 02:21:27');
 
 -- --------------------------------------------------------
 
@@ -326,11 +286,7 @@ INSERT INTO `products` (`id`, `name`, `price`, `unit`, `img_url`, `details_url`,
 (46, 'WCG-3J0-RXLX-GX', '44690', '10', 'uploads/5-1721020162.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcg-3j0-rxlx-gx', 13, 5, 1, '2024-07-14 23:09:22', '2024-07-14 23:09:22'),
 (47, 'WCG-3J0-RXLX-XX', '43690', '10', 'uploads/5-1721020239.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcg-3j0-rxlx-xx', 13, 5, 1, '2024-07-14 23:10:39', '2024-07-14 23:10:39'),
 (48, 'WCG-2G0-CGXX-XX', '53990', '10', 'uploads/5-1721020452.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcg-2g0-cgxx-xx', 13, 5, 1, '2024-07-14 23:14:12', '2024-07-14 23:14:12'),
-(49, 'WBL-VK85N', '5600', '10', '', 'n/a', 17, 5, 1, '2024-07-22 01:27:43', '2024-07-22 01:27:43'),
-(50, 'WBL-VK01N', '5400', '9', '', 'n/a', 17, 5, 1, '2024-07-22 01:28:39', '2024-07-22 01:31:50'),
-(51, 'WFD-1F3-GDEL-XX', '33090', '9', '', NULL, 11, 5, 1, '2024-07-22 01:41:35', '2024-07-22 01:44:02'),
-(52, 'WFD-1F3-GDSH-XX', '33690', '9', '', NULL, 11, 5, 1, '2024-07-22 01:52:57', '2024-07-22 01:59:45'),
-(53, 'WFC-3X7-GDXX-XX', '46190', '8', '', NULL, 11, 5, 1, '2024-07-22 02:06:44', '2024-07-23 09:32:24'),
+(53, 'WFC-3X7-GDXX-XX', '46190', '8', 'uploads/5-1722527038.jpg', NULL, 11, 5, 1, '2024-07-22 02:06:44', '2024-08-01 09:43:58'),
 (54, 'W17OA-MS (17\")', '6290', '10', 'uploads/5-1722226026.jpg', 'https://waltonbd.com/fan/rechargeable-fan/w17oa-ms-17', 18, 5, 1, '2024-07-22 02:18:26', '2024-07-28 22:11:38'),
 (55, 'Extension Socket 1500W', '845', '10', 'uploads/5-1722225772.jpg', 'https://waltonbd.com/switch-sockets/extension-socket/without-usb/wes2p4e-white-1500w', 23, 5, 1, '2024-07-28 22:02:52', '2024-07-28 23:45:00'),
 (56, 'WRTF14A (14\")', '4490', '10', 'uploads/5-1722226426.jpg', 'https://waltonbd.com/fan/rechargeable-fan/wrtf14a-14', 18, 5, 1, '2024-07-28 22:13:46', '2024-07-28 22:13:46'),
@@ -354,21 +310,21 @@ INSERT INTO `products` (`id`, `name`, `price`, `unit`, `img_url`, `details_url`,
 (75, 'Kettle (WK-LJSS170)', '1050', '10', 'uploads/5-1722273814.jpg', 'https://waltonbd.com/home-appliances/kettle-electric/wk-ljss170', 25, 5, 1, '2024-07-29 11:23:34', '2024-07-29 11:23:34'),
 (76, 'Iron (WIR-D02)', '1220', '10', 'uploads/5-1722274085.png', 'https://waltonbd.com/home-appliances/iron/wir-d02', 25, 5, 1, '2024-07-29 11:28:05', '2024-07-29 11:28:05'),
 (77, 'Induction Cooker (WI-F15)', '4590', '10', 'uploads/5-1722274659.jpg', 'https://bitly.cx/0P0x', 26, 5, 1, '2024-07-29 11:37:39', '2024-07-29 11:37:39'),
-(78, 'Infrared Cooker (WIR-KS20)', '5590', '10', 'uploads/5-1722274788.png', 'https://bitly.cx/oVJ8A', 26, 5, 1, '2024-07-29 11:39:48', '2024-07-29 11:39:48'),
+(78, 'Infrared Cooker (WIR-KS20)', '5590', '10', 'uploads/5-1722274788.png', 'https://waltonbd.com/infrared-cooker/wir-ks20-en', 26, 5, 1, '2024-07-29 11:39:48', '2024-08-01 07:00:00'),
 (79, 'Multi Cooker (WDC-SDE280)', '3990', '10', 'uploads/5-1722275005.png', 'https://waltonbd.com/kitchen-appliances/multi-cooker-electric?product_id=5912', 26, 5, 1, '2024-07-29 11:43:25', '2024-07-29 11:43:25'),
 (80, 'Pressure Cooker (WPC-MSC350)', '1590', '10', 'uploads/5-1722275250.jpg', 'https://waltonbd.com/kitchen-appliances/pressure-cooker-electric-manual/wpc-msc350', 26, 5, 1, '2024-07-29 11:47:30', '2024-07-29 11:47:30'),
 (81, 'Rice Cooker (WRC-SGAE18)', '2790', '10', 'uploads/5-1722275674.jpg', 'https://waltonbd.com/kitchen-appliances/rice-cooker-electric/wrc-sgae18', 26, 5, 1, '2024-07-29 11:54:34', '2024-07-29 11:54:34'),
 (82, 'Blender (WBL-13C330N)', '2290', '10', 'uploads/5-1722309398.jpg', 'https://waltonbd.com/blender-and-mixer-grinder/blender/wbl-13c330n', 26, 5, 1, '2024-07-29 21:16:38', '2024-07-29 21:16:38'),
 (83, 'Mixer Grinder (WBL-VK01N)', '5490', '10', 'uploads/5-1722309494.png', 'https://waltonbd.com/blender-and-mixer-grinder/mixer-grinder/wbl-vk01n', 26, 5, 1, '2024-07-29 21:18:14', '2024-07-29 21:18:14'),
 (84, 'Washing Machine (WWM-TWG110)', '19900', '10', 'uploads/5-1722310322.jpg', 'https://waltonbd.com/n-a', 25, 5, 1, '2024-07-29 21:32:02', '2024-07-29 21:43:16'),
-(85, 'Room Heater (WRH-PTC0X)', '2680', '10', 'uploads/5-1722311582.jpg', 'https://bitly.cx/9z7G', 23, 5, 1, '2024-07-29 21:53:02', '2024-07-29 21:53:02'),
+(85, 'Room Heater (WRH-PTC0X)', '2680', '10', 'uploads/5-1722311582.jpg', 'https://waltonbd.com/wrh-ptc0x', 23, 5, 1, '2024-07-29 21:53:02', '2024-08-01 06:59:03'),
 (86, 'TV Remote Controller', '500', '10', 'uploads/5-1722312176.png', 'https://waltonbd.com/television/tv-accessories/remote-controller', 23, 5, 1, '2024-07-29 22:02:56', '2024-07-29 22:02:56'),
 (87, '24 inch (WD24HLR 610mm)', '16,900', '10', 'uploads/5-1722312637.jpg', 'https://waltonbd.com/television/led-tv/wd24hlr', 27, 5, 1, '2024-07-29 22:10:37', '2024-07-29 22:10:37'),
 (88, '32 inch (W32D120BL 813mm)', '19900', '10', 'uploads/5-1722312830.jpg', 'https://waltonbd.com/television/led-tv/w32d120bl-813mm', 27, 5, 1, '2024-07-29 22:13:50', '2024-07-29 22:13:50'),
 (89, '40 inch (WD40HLR (1.016m)', '26900', '10', 'uploads/5-1722312983.jpg', 'https://waltonbd.com/television/led-tv/wd40hlr-1-016m', 27, 5, 1, '2024-07-29 22:16:23', '2024-07-29 22:16:23'),
 (90, '43 inch (W43D210TS)', '33990', '10', 'uploads/5-1722313480.jpg', 'https://waltonbd.com/television/led-tv?product_id=7020', 27, 5, 1, '2024-07-29 22:24:40', '2024-07-29 22:24:40'),
 (91, 'Voltage Stabilizer (WVS-1000 SD)', '4700', '10', 'uploads/5-1722315171.jpg', 'https://waltonbd.com/home-appliances/voltage-stabilizer-protector/wvs-1000-sd', 25, 5, 1, '2024-07-29 22:52:51', '2024-07-29 22:52:51'),
-(92, 'Automatic Voltage Protector (WVP-SG15)', '1200', '10', 'uploads/5-1722315353.jpg', 'https://bitly.cx/Rebk', 25, 5, 1, '2024-07-29 22:55:53', '2024-07-29 22:55:53'),
+(92, 'Automatic Voltage Protector (WVP-SG15)', '1200', '10', 'uploads/5-1722315353.jpg', 'https://waltonbd.com/wvp-sg15-automatic-voltage-protector', 25, 5, 1, '2024-07-29 22:55:53', '2024-08-01 06:57:08'),
 (93, 'WFC-3D8-GDXX-XX (348 Ltr)', '49390', '10', 'uploads/5-1722505137.jpg', 'https://waltonbd.com/refrigerator-freezer/direct-cool-refrigerator/wfc-3d8-gdxx-xx', 11, 5, 1, '2024-08-01 03:38:57', '2024-08-01 03:38:57'),
 (94, 'WFC-3D8-GDXX-XX Inverter (348 Ltr)', '50390', '10', 'uploads/5-1722505780.jpg', 'https://waltonbd.com/refrigerator-freezer/direct-cool-refrigerator/wfc-3d8-gdxx-xx-inverter', 11, 5, 1, '2024-08-01 03:49:41', '2024-08-01 03:49:41'),
 (95, 'WNI-5F3-GDEL-DD (563 Ltr)', '98990', '10', 'uploads/5-1722512090.jpg', 'https://waltonbd.com/refrigerator-freezer/non-frost-refrigerator/wni-5f3-gdel-dd', 12, 5, 1, '2024-08-01 05:34:50', '2024-08-01 05:34:50'),
@@ -376,10 +332,27 @@ INSERT INTO `products` (`id`, `name`, `price`, `unit`, `img_url`, `details_url`,
 (97, 'Air Cooler (WEA-B128R)', '9850', '10', 'uploads/5-1722512398.png', 'https://waltonbd.com/home-appliances/air-cooler/wea-b128r', 25, 5, 1, '2024-08-01 05:39:58', '2024-08-01 05:39:58'),
 (98, 'WSI-KRYSTALINE-18F (1.5 Ton)', '73490', '10', 'uploads/5-1722513290.jpg', 'https://waltonbd.com/split-ac/5275-watts-18000-btu-hr/wsi-krystaline-18f-plasma', 28, 5, 1, '2024-08-01 05:54:51', '2024-08-01 05:54:51'),
 (99, 'WSN-VENTURI-18A (1.5 Ton)', '49900', '10', 'uploads/5-1722513571.jpg', 'https://waltonbd.com/split-ac/5275-watts-18000-btu-hr/wsn-venturi-18a', 28, 5, 1, '2024-08-01 05:59:31', '2024-08-01 05:59:31'),
-(100, 'WSI-COATEC SUPERSAVER-18C (1.5 Ton)', '108500', '10', 'uploads/5-1722513866.jpg', 'https://bitly.cx/X11s', 28, 5, 1, '2024-08-01 06:04:26', '2024-08-01 06:04:26'),
-(101, 'WSI-INVERNA-12C (1 Ton)', '67300', '10', 'uploads/5-1722514178.jpg', 'https://bitly.cx/Ihhui', 28, 5, 1, '2024-08-01 06:09:38', '2024-08-01 06:09:38'),
-(102, 'WSI-KRYSTALINE-24C (2 Ton)', '88000', '10', 'uploads/5-1722514341.jpg', 'https://bitly.cx/hHyFJ', 28, 5, 1, '2024-08-01 06:12:21', '2024-08-01 06:12:21'),
-(103, 'WSN-RIVERINE-24B (2 Ton)', '76500', '10', 'uploads/5-1722514645.jpg', 'https://waltonbd.com/split-ac/7034-watts-24000-btu-hr/wsn-riverine-24b', 28, 5, 1, '2024-08-01 06:17:25', '2024-08-01 06:17:25');
+(100, 'WSI-COATEC SUPERSAVER-18C (1.5 Ton)', '108500', '10', 'uploads/5-1722513866.jpg', 'https://waltonbd.com/wsi-coatec-supersaver-18c-solar-hybrid', 28, 5, 1, '2024-08-01 06:04:26', '2024-08-01 06:54:05'),
+(101, 'WSI-INVERNA-12C (1 Ton)', '67300', '10', 'uploads/5-1722514178.jpg', 'https://waltonbd.com/wsi-inverna-extreme-saver-12c-smart-6-star', 28, 5, 1, '2024-08-01 06:09:38', '2024-08-01 06:54:55'),
+(102, 'WSI-KRYSTALINE-24C (2 Ton)', '88000', '10', 'uploads/5-1722514341.jpg', 'https://waltonbd.com/wsi-krystaline-24c-smart-defender', 28, 5, 1, '2024-08-01 06:12:21', '2024-08-01 06:55:54'),
+(103, 'WSN-RIVERINE-24B (2 Ton)', '76500', '10', 'uploads/5-1722514645.jpg', 'https://waltonbd.com/split-ac/7034-watts-24000-btu-hr/wsn-riverine-24b', 28, 5, 1, '2024-08-01 06:17:25', '2024-08-01 06:17:25'),
+(104, 'WFE-3B0-GDEL-XX (320 Ltr)', '48690', '10', 'uploads/5-1722516161.jpg', 'https://waltonbd.com/refrigerator-freezer/direct-cool-refrigerator/wfe-3b0-gdel-xx', 11, 5, 1, '2024-08-01 06:42:41', '2024-08-01 06:42:41'),
+(105, 'WFE-3B0-GDXX-XX Inverter (320 Ltr)', '48690', '10', 'uploads/5-1722516403.jpg', 'https://waltonbd.com/wfe-3b0-gdxx-xx-inverter', 11, 5, 1, '2024-08-01 06:46:43', '2024-08-01 06:51:02'),
+(106, 'WFE-3B0-GDXX-XX (320 Ltr)', '48190', '10', 'uploads/5-1722516625.jpg', 'https://waltonbd.com/refrigerator-freezer/direct-cool-refrigerator/wfe-3b0-gdxx-xx', 11, 5, 1, '2024-08-01 06:50:25', '2024-08-01 06:50:25'),
+(107, 'WFC-3D8-GDSH Inverter (348 Ltr)', '51890', '10', 'uploads/5-1722517610.jpg', 'https://waltonbd.com/wfc-3d8-gdsh-xx-inverter', 11, 5, 1, '2024-08-01 07:06:50', '2024-08-01 07:06:50'),
+(108, 'WFC-3A7-GDNE-XX (317 Ltr)', '47090', '10', 'uploads/5-1722517933.jpg', 'https://waltonbd.com/wfc-3a7-gdne-xx', 11, 5, 1, '2024-08-01 07:12:13', '2024-08-01 07:12:13'),
+(109, 'WFC-3A7-GDXX-XX (317 Ltr)', '46590', '10', 'uploads/5-1722518105.jpg', 'https://waltonbd.com/wfc-3a7-gdxx-xx', 11, 5, 1, '2024-08-01 07:15:05', '2024-08-01 07:15:05'),
+(110, 'WFE-3A2-GDEN-DD (312 Ltr)', '49590', '10', 'uploads/5-1722518325.jpg', 'https://waltonbd.com/wfe-3a2-gden-dd', 11, 5, 1, '2024-08-01 07:18:45', '2024-08-01 07:18:45'),
+(111, 'WFE-3A2-GDEL-XX (312 Ltr)', '46690', '10', 'uploads/5-1722518455.jpg', 'https://waltonbd.com/wfe-3a2-gdel-xx', 11, 5, 1, '2024-08-01 07:20:55', '2024-08-01 07:20:55'),
+(112, 'WFE-3A2-GDXX-XX (312 Ltr)', '46190', '10', 'uploads/5-1722518608.jpg', 'https://waltonbd.com/wfe-3a2-gdxx-xx', 11, 5, 1, '2024-08-01 07:23:28', '2024-08-01 07:23:28'),
+(113, 'WFE-3X9-GDEL-XX (309 Ltr)', '47690', '10', 'uploads/5-1722518809.jpg', 'https://waltonbd.com/wfe-3x9-gdel-xx', 11, 5, 1, '2024-08-01 07:26:49', '2024-08-01 07:26:49'),
+(114, 'WFE-3X9-GDXX-XX (309 Ltr)', '47190', '10', 'uploads/5-1722518921.jpg', 'https://waltonbd.com/wfe-3x9-gdxx-xx', 11, 5, 1, '2024-08-01 07:28:41', '2024-08-01 07:28:41'),
+(115, 'WFC-3X7-GDEL-XX (307 Ltr)', '46690', '10', 'uploads/5-1722519085.jpg', 'https://waltonbd.com/wfc-3x7-gdel-xx', 11, 5, 1, '2024-08-01 07:31:25', '2024-08-01 07:31:25'),
+(116, 'WFC-3X7-GDEH-DD Inverter (307 Ltr)', '50090', '10', 'uploads/5-1722525904.jpg', 'https://waltonbd.com/wfc-3x7-gdeh-dd-inverter', 11, 5, 1, '2024-08-01 09:25:04', '2024-08-01 09:25:04'),
+(117, 'WFE-2N5-GDEL Inverter (295 Ltr)', '46290', '10', 'uploads/5-1722526165.jpg', 'https://waltonbd.com/wfe-2n5-gdel-xx-inverter', 11, 5, 1, '2024-08-01 09:29:25', '2024-08-01 09:29:25'),
+(118, 'WFE-2N5-GDEL (295 Ltr)', '44790', '10', 'uploads/5-1722526437.jpg', 'https://waltonbd.com/wfe-2n5-gdel-xx', 11, 5, 1, '2024-08-01 09:33:57', '2024-08-01 09:33:57'),
+(119, 'WFE-2N5-GDXX (295 Ltr)', '44290', '10', 'uploads/5-1722526671.jpg', 'https://waltonbd.com/wfe-2n5-gdxx-xx', 11, 5, 1, '2024-08-01 09:37:51', '2024-08-01 09:37:51'),
+(120, 'WFE-2N5-GDEN (295 Ltr)', '45290', '10', 'uploads/5-1722526883.jpg', 'https://waltonbd.com/wfe-2n5-gden-xx', 11, 5, 1, '2024-08-01 09:41:23', '2024-08-01 09:41:23');
 
 -- --------------------------------------------------------
 
@@ -543,7 +516,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- AUTO_INCREMENT for table `users`
