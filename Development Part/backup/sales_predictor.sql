@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 30, 2024 at 05:11 AM
+-- Generation Time: Aug 01, 2024 at 12:38 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -58,7 +58,8 @@ INSERT INTO `categories` (`id`, `name`, `type`, `active`, `user_id`, `created_at
 (24, 'Fan', '1', 1, 5, '2024-07-28 23:09:44', '2024-07-28 23:09:44'),
 (25, 'Home Appliances', '1', 1, 5, '2024-07-28 23:31:54', '2024-07-28 23:31:54'),
 (26, 'Kitchen Appliances', '1', 1, 5, '2024-07-28 23:50:52', '2024-07-28 23:50:52'),
-(27, 'Television', '1', 1, 5, '2024-07-29 22:09:14', '2024-07-29 22:09:14');
+(27, 'Television', '1', 1, 5, '2024-07-29 22:09:14', '2024-07-29 22:09:14'),
+(28, 'Air Conditioner', '1', 1, 5, '2024-08-01 05:42:01', '2024-08-01 05:42:01');
 
 -- --------------------------------------------------------
 
@@ -367,7 +368,18 @@ INSERT INTO `products` (`id`, `name`, `price`, `unit`, `img_url`, `details_url`,
 (89, '40 inch (WD40HLR (1.016m)', '26900', '10', 'uploads/5-1722312983.jpg', 'https://waltonbd.com/television/led-tv/wd40hlr-1-016m', 27, 5, 1, '2024-07-29 22:16:23', '2024-07-29 22:16:23'),
 (90, '43 inch (W43D210TS)', '33990', '10', 'uploads/5-1722313480.jpg', 'https://waltonbd.com/television/led-tv?product_id=7020', 27, 5, 1, '2024-07-29 22:24:40', '2024-07-29 22:24:40'),
 (91, 'Voltage Stabilizer (WVS-1000 SD)', '4700', '10', 'uploads/5-1722315171.jpg', 'https://waltonbd.com/home-appliances/voltage-stabilizer-protector/wvs-1000-sd', 25, 5, 1, '2024-07-29 22:52:51', '2024-07-29 22:52:51'),
-(92, 'Automatic Voltage Protector (WVP-SG15)', '1200', '10', 'uploads/5-1722315353.jpg', 'https://bitly.cx/Rebk', 25, 5, 1, '2024-07-29 22:55:53', '2024-07-29 22:55:53');
+(92, 'Automatic Voltage Protector (WVP-SG15)', '1200', '10', 'uploads/5-1722315353.jpg', 'https://bitly.cx/Rebk', 25, 5, 1, '2024-07-29 22:55:53', '2024-07-29 22:55:53'),
+(93, 'WFC-3D8-GDXX-XX (348 Ltr)', '49390', '10', 'uploads/5-1722505137.jpg', 'https://waltonbd.com/refrigerator-freezer/direct-cool-refrigerator/wfc-3d8-gdxx-xx', 11, 5, 1, '2024-08-01 03:38:57', '2024-08-01 03:38:57'),
+(94, 'WFC-3D8-GDXX-XX Inverter (348 Ltr)', '50390', '10', 'uploads/5-1722505780.jpg', 'https://waltonbd.com/refrigerator-freezer/direct-cool-refrigerator/wfc-3d8-gdxx-xx-inverter', 11, 5, 1, '2024-08-01 03:49:41', '2024-08-01 03:49:41'),
+(95, 'WNI-5F3-GDEL-DD (563 Ltr)', '98990', '10', 'uploads/5-1722512090.jpg', 'https://waltonbd.com/refrigerator-freezer/non-frost-refrigerator/wni-5f3-gdel-dd', 12, 5, 1, '2024-08-01 05:34:50', '2024-08-01 05:34:50'),
+(96, 'WNI-5F3-GDEL-ID (563 Ltr)', '93490', '10', 'uploads/5-1722512181.jpg', 'https://waltonbd.com/refrigerator-freezer/non-frost-refrigerator/wni-5f3-gdel-id', 12, 5, 1, '2024-08-01 05:36:21', '2024-08-01 05:36:21'),
+(97, 'Air Cooler (WEA-B128R)', '9850', '10', 'uploads/5-1722512398.png', 'https://waltonbd.com/home-appliances/air-cooler/wea-b128r', 25, 5, 1, '2024-08-01 05:39:58', '2024-08-01 05:39:58'),
+(98, 'WSI-KRYSTALINE-18F (1.5 Ton)', '73490', '10', 'uploads/5-1722513290.jpg', 'https://waltonbd.com/split-ac/5275-watts-18000-btu-hr/wsi-krystaline-18f-plasma', 28, 5, 1, '2024-08-01 05:54:51', '2024-08-01 05:54:51'),
+(99, 'WSN-VENTURI-18A (1.5 Ton)', '49900', '10', 'uploads/5-1722513571.jpg', 'https://waltonbd.com/split-ac/5275-watts-18000-btu-hr/wsn-venturi-18a', 28, 5, 1, '2024-08-01 05:59:31', '2024-08-01 05:59:31'),
+(100, 'WSI-COATEC SUPERSAVER-18C (1.5 Ton)', '108500', '10', 'uploads/5-1722513866.jpg', 'https://bitly.cx/X11s', 28, 5, 1, '2024-08-01 06:04:26', '2024-08-01 06:04:26'),
+(101, 'WSI-INVERNA-12C (1 Ton)', '67300', '10', 'uploads/5-1722514178.jpg', 'https://bitly.cx/Ihhui', 28, 5, 1, '2024-08-01 06:09:38', '2024-08-01 06:09:38'),
+(102, 'WSI-KRYSTALINE-24C (2 Ton)', '88000', '10', 'uploads/5-1722514341.jpg', 'https://bitly.cx/hHyFJ', 28, 5, 1, '2024-08-01 06:12:21', '2024-08-01 06:12:21'),
+(103, 'WSN-RIVERINE-24B (2 Ton)', '76500', '10', 'uploads/5-1722514645.jpg', 'https://waltonbd.com/split-ac/7034-watts-24000-btu-hr/wsn-riverine-24b', 28, 5, 1, '2024-08-01 06:17:25', '2024-08-01 06:17:25');
 
 -- --------------------------------------------------------
 
@@ -483,7 +495,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `customers`
@@ -531,7 +543,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
 -- AUTO_INCREMENT for table `users`
