@@ -103,7 +103,7 @@
             let initial_due = parseFloat(res.data?.data['invoice']['initial_due']);
 
             if ((total - discount) == payable) {
-                discountType = " (BDT)";
+                discountType = "";
             }
 
             document.getElementById('total').innerText = total;

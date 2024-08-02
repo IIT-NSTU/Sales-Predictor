@@ -59,9 +59,9 @@
                                 <span id="discountAmount"></span>
                             </p>
 
-                            <p class="text-bold text-s my-3 text-dark"> PAYABLE:
-                                <span id="payable"></span>
-                            </p>
+                            <span class="text-bold text-s text-dark">PAYABLE:</span>
+                            <input min="0" type="number" 
+                            onchange="updateDiscount()" class="form-control w-70 me-2" id="payable" /> 
 
 
                             <span class="text-bold text-s text-dark">PAID:</span>
@@ -181,7 +181,7 @@
             const customerId = document.getElementById('CId').innerText;
             const total = document.getElementById('total').innerText;
             const discount = document.getElementById('discount').value;
-            const payable = document.getElementById('payable').innerText;
+            const payable = document.getElementById('payable').value;
             const paid = document.getElementById('paid').value;
             const due = document.getElementById('due').innerText;
             const date = document.getElementById('date').value;
@@ -269,6 +269,16 @@
             ShowInvoiceItem()
         }
 
+        function updateDiscount() {
+            const payable = document.getElementById('payable').value;
+            const total = document.getElementById('total').innerText;
+            if (payable && total) {
+                document.getElementById('discountAmount').innerText = total - payable;
+                document.getElementById('discount').value = total - payable;
+                document.getElementById('discountType').value = 2;
+            }
+        }
+
         function calculateGrandTotal() {
             let Total = 0;
             let Due = 0;
@@ -294,7 +304,7 @@
             Due = (Payable - parseFloat(paid)).toFixed(2);
             
             document.getElementById('total').innerText = Total;
-            document.getElementById('payable').innerText = Payable;
+            document.getElementById('payable').value = Payable;
             document.getElementById('discountAmount').innerText = discountAmount;
             document.getElementById('due').innerText = Due;
         }

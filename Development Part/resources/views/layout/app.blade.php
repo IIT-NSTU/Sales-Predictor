@@ -83,23 +83,28 @@
             <span class="side-bar-item-caption text-lg">Products</span>
         </a>
 
-        <a href="{{ url('/create-invoice') }}" class="side-bar-item">
-            <img src="{{ asset('icons/invoice.png') }}" alt="Invoice Icon" class="icon-style">
-            <span class="side-bar-item-caption text-lg">Invoice</span>
-        </a>
-
-        <a href="{{ url('/invoiceList') }}" class="side-bar-item">
-            <img src="{{ asset('icons/invoice.png') }}" alt="Invoice List Icon" class="icon-style">
-            <span class="side-bar-item-caption text-lg">Invoice List</span>
-        </a>
+        <div class="dropdown">
+            <a class="side-bar-item"" type="button" id="invoiceDropDown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="{{ asset('icons/invoice.png') }}" alt="Invoice Icon" class="icon-style">
+                <span class="side-bar-item-caption text-lg">Invoice</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="invoiceDropDown">
+                <li>
+                    <a href="{{ url('/create-invoice') }}" class="dropdown-item side-bar-item-caption">Create Invoice</a>
+                </li>
+                <li>
+                    <a href="{{ url('/invoiceList') }}" class="dropdown-item side-bar-item-caption">Invoice List</a>
+                </li>
+            </ul>
+        </div>
 
         <a href="{{ url('/dues') }}" class="side-bar-item">
-            <img src="{{ asset('icons/sales.png') }}" alt="Dues Icon" class="icon-style">
+            <img src="{{ asset('icons/due.png') }}" alt="Dues Icon" class="icon-style">
             <span class="side-bar-item-caption text-lg">Dues</span>
         </a>
 
         <a href="{{ url('/expenses') }}" class="side-bar-item">
-            <img src="{{ asset('icons/sales.png') }}" alt="Expenses Icon" class="icon-style">
+            <img src="{{ asset('icons/expenses.png') }}" alt="Expenses Icon" class="icon-style">
             <span class="side-bar-item-caption text-lg">Expenses</span>
         </a>
 

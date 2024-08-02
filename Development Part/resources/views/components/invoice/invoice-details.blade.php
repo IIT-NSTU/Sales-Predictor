@@ -30,9 +30,10 @@
                             <table class="table w-100" id="invoiceTable">
                                 <thead class="w-100 text-dark">
                                     <tr class="text-xs text-bold">
+                                        <td>No.</td>
                                         <td>Product Name</td>
                                         <td>Qty</td>
-                                        <td>Total</td>
+                                        <td class="text-end">Total</td>
                                     </tr>
                                 </thead>
                                 <tbody class="w-100" id="invoiceList" style="color:black">
@@ -79,7 +80,7 @@
             let remaining_due = parseFloat(res.data?.data['invoice']['remaining_due']);
 
             if ((total - discount) == payable) {
-                discountType = " (BDT)";
+                discountType = "";
             }
 
             let invoiceList = $('#invoiceList');
@@ -88,9 +89,10 @@
 
             res.data?.data['products'].forEach(function(item, index) {
                 let row = `<tr class="text-xs">
+                        <td>${++index}</td>
                         <td>${item.product.name}</td>
                         <td>${item['quantity']}</td>
-                        <td>${item['sale_price']}</td>
+                        <td class="text-end">${item['sale_price']}</td>
                       </tr>`
                 invoiceList.append(row)
             });
@@ -98,28 +100,33 @@
             let footer = `
                             <tr class="text-bold text-xs text-dark">
                                 <td></td>
+                                <td></td>
                                 <td> Total: </td>
-                                <td>${total}</td>
+                                <td class="text-end">${total}</td>
                             </tr>
                             <tr class="text-bold text-xs text-dark">
+                                <td></td>
                                 <td></td>
                                 <td> Discount: </td>
-                                <td>${discount + discountType}</td>
+                                <td class="text-end">${discount + discountType}</td>
                             </tr>
                             <tr class="text-bold text-xs text-dark">
+                                <td></td>
                                 <td></td>
                                 <td> Payable: </td>
-                                <td>${payable}</td>
+                                <td class="text-end">${payable}</td>
                             </tr>
                             <tr class="text-bold text-xs text-dark">
+                                <td></td>
                                 <td></td>
                                 <td> Paid: </td>
-                                <td>${paid + (initial_due - remaining_due)}</td>
+                                <td class="text-end">${paid + (initial_due - remaining_due)}</td>
                             </tr>
                             <tr class="text-bold text-xs text-dark">
                                 <td></td>
+                                <td></td>
                                 <td> Due: </td>
-                                <td>${remaining_due}</td>
+                                <td class="text-end">${remaining_due}</td>
                             </tr>`;
 
             invoiceList.append(footer);                

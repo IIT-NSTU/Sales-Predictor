@@ -29,7 +29,7 @@
                 invoice_id: id
             })
             hideLoader();
-            successToast("Request completed")
+            successToast(res.data['message'])
             await getList();
             
         } catch (error) {
