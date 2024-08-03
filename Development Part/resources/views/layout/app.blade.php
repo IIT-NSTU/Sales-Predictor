@@ -88,12 +88,12 @@
                 <img src="{{ asset('icons/invoice.png') }}" alt="Invoice Icon" class="icon-style">
                 <span class="side-bar-item-caption text-lg">Invoice</span>
             </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="invoiceDropDown">
+            <ul class="dropdown-menu dropdown-menu-end text-dark" aria-labelledby="invoiceDropDown">
                 <li>
-                    <a href="{{ url('/create-invoice') }}" class="dropdown-item side-bar-item-caption">Create Invoice</a>
+                    <a href="{{ url('/create-invoice') }}" class="side-bar-item">Create Invoice</a>
                 </li>
                 <li>
-                    <a href="{{ url('/invoiceList') }}" class="dropdown-item side-bar-item-caption">Invoice List</a>
+                    <a href="{{ url('/invoiceList') }}" class="side-bar-item">Invoice List</a>
                 </li>
             </ul>
         </div>

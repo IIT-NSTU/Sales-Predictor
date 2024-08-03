@@ -16,7 +16,7 @@
                             <img class="w-40" src="{{ 'images/logo3.png' }}">
                             <p class="text-bold mx-0 my-1 text-dark">Invoice </p>
                             <p class="text-s mx-0 my-1">Date: 
-                                <input id="date" class="" type="text" value="{{ date('Y-m-d h:m:s A') }}" />
+                                <input id="date" class="" type="text" value="{{ date('Y-m-d h:i:s A') }}" />
                             </p>
                         </div>
                     </div>
