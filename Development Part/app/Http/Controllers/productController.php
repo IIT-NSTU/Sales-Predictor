@@ -180,4 +180,18 @@ class productController extends Controller
             ], 400);
         }
     }
+
+    function productByCategory(Request $request) {
+        $userId = $request->header('userId');
+        $categoryId = $request->id;
+        if ($categoryId == 0) {
+            return Product::where('user_id', '=', $userId)
+                           ->orderBy('category_id', 'asc')
+                           ->get();
+        } else {
+            return Product::where('user_id', '=', $userId)
+                          ->where('category_id', '=', $categoryId)
+                          ->orderBy('name', 'asc')->get();
+        }
+    }
 }

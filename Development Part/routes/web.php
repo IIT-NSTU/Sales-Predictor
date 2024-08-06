@@ -8,6 +8,7 @@ use App\Http\Controllers\dueController;
 use App\Http\Controllers\expenseController;
 use App\Http\Controllers\productController;
 use App\Http\Controllers\reportController;
+use App\Http\Controllers\chartController;
 use App\Http\Controllers\userController;
 use App\Http\Middleware\tokenVerficationMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -60,6 +61,10 @@ Route::controller(dueController::class)->group(function () {
     Route::get('/dues', 'duesPage')->middleware(tokenVerficationMiddleware::class);
 });
 
+// Chart
+Route::controller(chartController::class)->group(function () {
+    Route::get('/charts', 'chartPage')->middleware(tokenVerficationMiddleware::class);
+});
 
 // Report
 Route::controller(reportController::class)->group(function () {
@@ -127,6 +132,7 @@ Route::controller(productController::class)->group(function () {
     Route::get('/product-list', 'productList')->middleware(tokenVerficationMiddleware::class);
     Route::get('/product-list-sale', 'productListSale')->middleware(tokenVerficationMiddleware::class);
     Route::get('/products/{id}', 'productById')->middleware(tokenVerficationMiddleware::class);
+    Route::get('/productbycategory/{id}', 'productByCategory')->middleware(tokenVerficationMiddleware::class);
 });
 
 // Invoice
@@ -147,4 +153,9 @@ Route::controller(dueController::class)->group(function () {
 // Report
 Route::controller(reportController::class)->group(function () {
     Route::get('/sales-report/{from}/{to}', 'salesReport')->middleware(tokenVerficationMiddleware::class);
+});
+
+// Due
+Route::controller(chartController::class)->group(function () {
+    Route::post('/generate-chart', 'generateChart')->middleware(tokenVerficationMiddleware::class);
 });

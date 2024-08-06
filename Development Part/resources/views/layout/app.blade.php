@@ -108,6 +108,11 @@
             <span class="side-bar-item-caption text-lg">Expenses</span>
         </a>
 
+        <a href="{{url('charts')}}" class="side-bar-item">
+            <img src="{{ asset('icons/chart.png') }}" alt="Chart Icon" class="icon-style">
+            <span class="side-bar-item-caption text-lg">Charts</span>
+        </a>
+
         <a href="{{url('sales-report')}}" class="side-bar-item">
             <img src="{{ asset('icons/report.png') }}" alt="Report Icon" class="icon-style">
             <span class="side-bar-item-caption text-lg">Report</span>
