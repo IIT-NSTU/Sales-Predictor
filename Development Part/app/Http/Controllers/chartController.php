@@ -19,6 +19,7 @@ class chartController extends Controller
 
         return InvoiceProduct::join('invoices', 'invoice_products.invoice_id', '=', 'invoices.id')
                              ->where('invoice_products.product_id', $productId)
+                             ->where('invoice_products.user_id', $userId)
                              ->whereRaw("STR_TO_DATE(invoices.date, '%Y-%c-%e %r') BETWEEN STR_TO_DATE(?, '%Y-%c-%e %r') AND STR_TO_DATE(?, '%Y-%c-%e %r')", [$fromDate, $toDate])
                              ->select('invoice_products.quantity', 'invoices.date')
                              ->get();

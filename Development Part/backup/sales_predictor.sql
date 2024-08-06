@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 06, 2024 at 08:35 AM
+-- Generation Time: Aug 06, 2024 at 11:10 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -47,7 +47,7 @@ INSERT INTO `categories` (`id`, `name`, `type`, `active`, `user_id`, `created_at
 (13, 'Freezer', '1', 1, 5, '2024-07-14 00:15:03', '2024-07-21 14:49:36'),
 (14, 'Beverage Cooler', '1', 1, 5, '2024-07-14 00:15:20', '2024-07-21 14:49:38'),
 (15, 'Electricity Bill', '2', 1, 5, '2024-07-21 04:48:10', '2024-07-21 14:49:41'),
-(16, 'Staff Cost', '2', 1, 5, '2024-07-21 07:05:26', '2024-07-21 14:49:44'),
+(16, 'Staff Salary', '2', 1, 5, '2024-07-21 07:05:26', '2024-08-06 22:13:50'),
 (17, 'Mixer Grinder', '1', 0, 5, '2024-07-22 01:25:50', '2024-08-03 16:18:05'),
 (18, 'Rechargeable Fan', '1', 1, 5, '2024-07-22 02:17:28', '2024-07-28 23:02:51'),
 (19, 'Extension Socket', '1', 0, 5, '2024-07-28 22:01:47', '2024-07-28 23:02:18'),
@@ -111,6 +111,14 @@ CREATE TABLE `dues` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `dues`
+--
+
+INSERT INTO `dues` (`id`, `date`, `amount`, `user_id`, `invoice_id`, `customer_id`, `created_at`, `updated_at`) VALUES
+(15, '2022-04-20', '2000', 5, 384, 2, '2024-08-06 23:02:55', '2024-08-06 23:02:55'),
+(16, '2022-04-20', '1000', 5, 384, 2, '2024-08-06 23:03:11', '2024-08-06 23:03:11');
+
 -- --------------------------------------------------------
 
 --
@@ -127,6 +135,14 @@ CREATE TABLE `expenses` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `expenses`
+--
+
+INSERT INTO `expenses` (`id`, `comment`, `amount`, `date`, `category_id`, `user_id`, `created_at`, `updated_at`) VALUES
+(2, '', 1500.00, '2022-04-17', 15, 5, '2024-08-06 22:12:16', '2024-08-06 22:30:05'),
+(3, 'Rajon Debnath', 7000.00, '2022-04-25', 16, 5, '2024-08-06 22:13:21', '2024-08-06 22:13:21');
 
 -- --------------------------------------------------------
 
@@ -521,7 +537,8 @@ INSERT INTO `invoices` (`id`, `type`, `total`, `discount`, `payable`, `paid`, `i
 (380, 's', 160100.00, 0.00, 160100.00, 160100.00, 0.00, 0.00, '2023-4-11 10:12:05 AM', 1, 5, 5, '2024-08-03 08:04:02', '2024-08-03 08:04:02'),
 (381, 's', 263550.00, 0.00, 263550.00, 263550.00, 0.00, 0.00, '2023-4-12 07:31:19 PM', 1, 5, 5, '2024-08-03 08:04:02', '2024-08-03 08:04:02'),
 (382, 's', 222850.00, 0.00, 222850.00, 222850.00, 0.00, 0.00, '2023-4-13 07:19:13 PM', 1, 5, 5, '2024-08-03 08:04:02', '2024-08-03 08:04:02'),
-(383, 's', 114600.00, 0.00, 114600.00, 114600.00, 0.00, 0.00, '2023-4-14 12:30:13 PM', 1, 5, 5, '2024-08-03 08:04:02', '2024-08-03 08:04:02');
+(383, 's', 114600.00, 0.00, 114600.00, 114600.00, 0.00, 0.00, '2023-4-14 12:30:13 PM', 1, 5, 5, '2024-08-03 08:04:02', '2024-08-03 08:04:02'),
+(384, 'p', 110400.00, 25400.00, 85000.00, 80000.00, 5000.00, 2000.00, '2022-04-19 09:30:14 AM', 1, 5, 2, '2024-08-06 22:31:35', '2024-08-06 23:03:11');
 
 -- --------------------------------------------------------
 
@@ -2736,7 +2753,8 @@ INSERT INTO `invoice_products` (`id`, `invoice_id`, `product_id`, `user_id`, `qu
 (2202, 383, 92, 5, '1.0', '1200.0', '2024-08-03 08:53:17', '2024-08-03 08:53:17'),
 (2203, 383, 148, 5, '1.0', '33690.0', '2024-08-03 08:53:17', '2024-08-03 08:53:17'),
 (2204, 383, 141, 5, '1.0', '35190.0', '2024-08-03 08:53:17', '2024-08-03 08:53:17'),
-(2205, 383, 10, 5, '1.0', '52390.0', '2024-08-03 08:53:17', '2024-08-03 08:53:17');
+(2205, 383, 10, 5, '1.0', '52390.0', '2024-08-03 08:53:17', '2024-08-03 08:53:17'),
+(2206, 384, 28, 5, '2', '110400.00', '2024-08-06 22:31:35', '2024-08-06 22:31:35');
 
 -- --------------------------------------------------------
 
@@ -2835,7 +2853,7 @@ INSERT INTO `products` (`id`, `name`, `price`, `unit`, `img_url`, `details_url`,
 (25, 'WBB-2F0-TDXX-XX', '58990', '10', 'uploads/5-1721012741.jpg', 'https://waltonbd.com/refrigerator-freezer/beverage-cooler/wbb-2f0-tdxx-xx', 14, 5, 1, '2024-07-14 21:05:42', '2024-08-03 07:20:40'),
 (26, 'WBQ-4D0-TDXX-XX', '80990', '10', 'uploads/5-1721012811.jpg', 'https://waltonbd.com/refrigerator-freezer/beverage-cooler/wbq-4d0-tdxx-xx', 14, 5, 1, '2024-07-14 21:06:51', '2024-07-14 21:06:51'),
 (27, 'WBA-2B4-GTXA-XX', '48990', '10', 'uploads/5-1721012857.jpg', 'https://waltonbd.com/refrigerator-freezer/beverage-cooler/wba-2b4-gtxa-xx', 14, 5, 1, '2024-07-14 21:07:37', '2024-07-14 21:07:37'),
-(28, 'WUE-3C4-GEPB-XX (Inverter)', '55200', '8', 'uploads/5-1721012977.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wue-3c4-gepb-xx-inverter', 13, 5, 1, '2024-07-14 21:09:37', '2024-08-01 23:47:27'),
+(28, 'WUE-3C4-GEPB-XX (Inverter)', '55200', '6', 'uploads/5-1721012977.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wue-3c4-gepb-xx-inverter', 13, 5, 1, '2024-07-14 21:09:37', '2024-08-06 22:31:35'),
 (29, 'WCF-1D5-GDEL-LX', '31190', '10', 'uploads/5-1721013024.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-1d5-gdel-lx', 13, 5, 1, '2024-07-14 21:10:24', '2024-07-21 19:46:23'),
 (30, 'WCF-1D5-GDEL-XX', '30690', '10', 'uploads/5-1721013081.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-1d5-gdel-xx', 13, 5, 1, '2024-07-14 21:11:21', '2024-07-14 21:11:21'),
 (31, 'WCF-1D5-RRXX-XX', '29390', '10', 'uploads/5-1721013120.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-1d5-rrxx-xx', 13, 5, 1, '2024-07-14 21:12:00', '2024-07-14 21:12:00'),
@@ -3092,25 +3110,25 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `dues`
 --
 ALTER TABLE `dues`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=384;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=385;
 
 --
 -- AUTO_INCREMENT for table `invoice_products`
 --
 ALTER TABLE `invoice_products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2206;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2207;
 
 --
 -- AUTO_INCREMENT for table `migrations`

@@ -66,7 +66,7 @@
                 <td>${type} </td>
                 <td>${item['products_count']} </td>
                  <td>
-                    <button data-id = "${item['id']}" data-name = "${item['name']}" class = "btn editBtn btn-sm bg-gradient-info">Edit</button>
+                    <button data-id = "${item['id']}" data-name = "${item['name']}" data-type = "${item['type']}" class = "btn editBtn btn-sm bg-gradient-info">Edit</button>
                     <button data-id = "${item['id']}"  class ="btn deleteBtn btn-sm bg-gradient-danger">Delete</button>
                      </td>
                 </tr>`)
@@ -76,9 +76,15 @@
         $('.editBtn').on('click', function() {
             let id = $(this).data('id');
             let name = $(this).data('name');
+            let type = $(this).data('type');
             $('#update-modal').modal('show');
             $('#updateID').val(id);
             $('#categoryNameUpdate').val(name);
+            if (type == 1) {
+                $("#productTypeUpdate").prop("checked", true); 
+            } else {
+                $("#expenseTypeUpdate").prop("checked", true); 
+            }
         })
 
         // Delete Btn Handler

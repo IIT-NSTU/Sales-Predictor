@@ -152,7 +152,7 @@ Route::controller(dueController::class)->group(function () {
 
 // Report
 Route::controller(reportController::class)->group(function () {
-    Route::get('/sales-report/{from}/{to}', 'salesReport')->middleware(tokenVerficationMiddleware::class);
+    Route::get('/sales-report/{from}/{to}/{type}', 'salesReport')->middleware(tokenVerficationMiddleware::class);
 });
 
 // Due

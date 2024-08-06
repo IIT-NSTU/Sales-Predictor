@@ -16,7 +16,7 @@
 
                             <div class="d-flex mt-3">
                                 <div class="form-check me-3">
-                                    <input class="form-check-input" name="categoryType" type="radio" id="productTypeUpdate" checked>
+                                    <input class="form-check-input" name="categoryType" type="radio" id="productTypeUpdate">
                                     <label for="productTypeUpdate"> Product </label>
                                 </div>
                                 <div class="form-check">
