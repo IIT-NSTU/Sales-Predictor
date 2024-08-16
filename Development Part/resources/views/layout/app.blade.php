@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Sales Predictor</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('/favicon.ico') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('/favicon.png') }}" />
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/animate.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/fontawesome.css') }}" rel="stylesheet" />

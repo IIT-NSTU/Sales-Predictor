@@ -37,13 +37,13 @@ class reportController extends Controller
                           ->whereRaw("STR_TO_DATE(expenses.date, '%Y-%c-%e %r') BETWEEN STR_TO_DATE(?, '%Y-%c-%e %r') AND STR_TO_DATE(?, '%Y-%c-%e %r')", [$fromDate, $toDate]);
 
         $sale_due = Due::where('user_id', $userId)
-                       ->whereRaw("STR_TO_DATE(dues.date, '%Y-%c-%e %r') BETWEEN STR_TO_DATE(?, '%Y-%c-%e %r') AND STR_TO_DATE(?, '%Y-%c-%e %r')", [$fromDate, $toDate]);                       
+                       ->whereRaw("STR_TO_DATE(dues.date, '%Y-%c-%e %r') BETWEEN STR_TO_DATE(?, '%Y-%c-%e %r') AND STR_TO_DATE(?, '%Y-%c-%e %r')", [$fromDate, $toDate])                      
                        ->whereHas('invoice', function ($query) {
                             $query->where('type', 's');
                         });
    
         $purchase_due = Due::where('user_id', $userId)
-                           ->whereRaw("STR_TO_DATE(dues.date, '%Y-%c-%e %r') BETWEEN STR_TO_DATE(?, '%Y-%c-%e %r') AND STR_TO_DATE(?, '%Y-%c-%e %r')", [$fromDate, $toDate]);                       
+                           ->whereRaw("STR_TO_DATE(dues.date, '%Y-%c-%e %r') BETWEEN STR_TO_DATE(?, '%Y-%c-%e %r') AND STR_TO_DATE(?, '%Y-%c-%e %r')", [$fromDate, $toDate])                    
                            ->whereHas('invoice', function ($query) {
                                 $query->where('type', 'p');
                             });  
@@ -56,15 +56,23 @@ class reportController extends Controller
 
         $sale_list = $invoice_sale->with('customer')->get();
         $purchase_list = $invoice_purchase->with('customer')->get();
-        $expenseList = $expense->get();
-        $sale_due_list = $sale_due->get();      
-        $purchase_due_list = $purchase_due->get();      
+        $expense_list = $expense->with('category')->get();
+        $sale_due_list = $sale_due->with('invoice')->with('customer')->get();      
+        $purchase_due_list = $purchase_due->with('invoice')->with('customer')->get();      
 
         $data = [
             "fromDate" => $fromDate,
             "toDate" => $toDate,
-            
-            "list" => $invoiceList
+            "total_expense" =>$total_expense,
+            "total_sale" => $total_sale,
+            "total_purchase" => $total_purchase,
+            "total_sale_due" => $total_sale_due,
+            "total_purchase_due" => $total_purchase_due,
+            "sale_list" => $sale_list,
+            "purchase_list" => $purchase_list,
+            "expense_list" => $expense_list,
+            "sale_due_list" => $sale_due_list,
+            "purchase_due_list" => $purchase_due_list
         ];
 
         if ($type == 1) {

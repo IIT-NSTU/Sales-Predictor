@@ -1,0 +1,5 @@
+1. Clone the project from github.
+2. Create database named as 'sales_predictor'.
+3. Import SQL file.
+4. Make sure php is properly setup.
+4. Run 'composer install'.
