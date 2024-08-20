@@ -170,7 +170,7 @@
                 <tr>
                     <td>{{ $product['invoice']['date'] }}</td>
                     <td>{{ $product['product']['name'] }}</td>
-                    <td>{{ $product['quantity'] }}</td>
+                    <td>{{ (int) $product['quantity'] }}</td>
                 </tr>
             @endforeach
         </tbody>
@@ -276,7 +276,7 @@
                 <tr>
                     <td>{{ $product['invoice']['date'] }}</td>
                     <td>{{ $product['product']['name'] }}</td>
-                    <td>{{ $product['quantity'] }}</td>
+                    <td>{{ (int) $product['quantity'] }}</td>
                 </tr>
             @endforeach
         </tbody>
