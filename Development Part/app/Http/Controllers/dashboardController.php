@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Customer;
 use App\Models\Invoice;
+use App\Models\InvoiceProduct;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -40,6 +41,6 @@ class dashboardController extends Controller
     function totalSale(Request $request)
     {
         $userId = $request->header('userId');
-        return Invoice::where('user_id', $userId)->count();
+        return InvoiceProduct::where('user_id', $userId)->sum('quantity');
     }
 }

@@ -16,11 +16,10 @@
                             <p class="text-xs mx-0 my-1 text-dark">Name: <span id="CMobile"></span> </p>
                             <p class="text-xs mx-0 my-1 text-dark">Email: <span id="CEmail"></span></p>
                             <p class="text-xs mx-0 my-1 text-dark">Email: <span id="CAddress"></span></p>
-                            <p class="text-xs mx-0 my-1 text-dark">User ID: <span id="CId"></span> </p>
                         </div>
                         <div class="col-4">
                             <img class="w-40" src="{{ 'images/logo3.png' }}">
-                            <p class="text-bold mx-0 my-1 text-dark">Invoice </p>
+                            <p class="text-bold mx-0 my-1 text-dark">Invoice ID: <span id="invId"></span></p>
                             <p class="text-xs mx-0 my-1 text-dark">Date: <span id="date"></span></p>
                         </div>
                     </div>
@@ -65,11 +64,11 @@
             hideLoader();
 
             document.getElementById('CName').innerText = res.data?.data['customer']['name']
-            document.getElementById('CId').innerText = res.data?.data['customer']['id']
             document.getElementById('CEmail').innerText = res.data?.data['customer']['email']
             document.getElementById('CMobile').innerText = res.data?.data['customer']['mobile']
             document.getElementById('CAddress').innerText = res.data?.data['customer']['address']
             document.getElementById('date').innerText = res.data?.data['invoice']['date']
+            document.getElementById('invId').innerText = inv_id
 
             let discountType = " (%)";
             let total = parseFloat(res.data?.data['invoice']['total']);

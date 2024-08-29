@@ -29,7 +29,7 @@ class productController extends Controller
     function productListSale(Request $request)
     {
         $userId = $request->header('userId');
-        return Product::where('user_id', '=', $userId)->where('unit', '>', '0')->get();
+        return Product::where('user_id', '=', $userId)->with('category')->where('unit', '>', '0')->get();
     }
 
     function productById(Request $request)

@@ -154,10 +154,7 @@
                     }
                     chart.push(chartData);
                 }
-
-                console.log(dates);
-                console.log(products);
-                console.log(chart);
+                
                 data.addRows(chart);
                 data.sort([{ column: 0 }]);
             } else {
@@ -175,6 +172,7 @@
                     rows.push(row);
                 });
                 data.addRows(rows);
+                data.sort([{ column: 0 }]);
             }
             hideLoader(); 
         } catch (error) {

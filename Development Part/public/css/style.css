@@ -49,3 +49,10 @@ a:hover {
   margin-left: 15px; /* Space between the icon and the text */
   margin-bottom: 10px;
 }
+.zoom {
+  transition: transform .5s;
+}
+
+.zoom:hover {
+  transform: scale(6); 
+}

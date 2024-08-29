@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 28, 2024 at 12:55 PM
+-- Generation Time: Aug 29, 2024 at 06:33 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -51,7 +51,7 @@ INSERT INTO `categories` (`id`, `name`, `type`, `active`, `user_id`, `created_at
 (17, 'Mixer Grinder', '1', 0, 5, '2024-07-22 01:25:50', '2024-08-03 16:18:05'),
 (18, 'Rechargeable Fan', '1', 1, 5, '2024-07-22 02:17:28', '2024-07-28 23:02:51'),
 (19, 'Extension Socket', '1', 0, 5, '2024-07-28 22:01:47', '2024-07-28 23:02:18'),
-(20, 'Mobile', '1', 1, 5, '2024-07-28 22:27:03', '2024-07-28 22:27:03'),
+(20, 'Mobile', '1', 1, 5, '2024-07-28 22:27:03', '2024-08-29 05:36:50'),
 (21, 'Speaker', '1', 0, 5, '2024-07-28 22:46:14', '2024-07-28 23:02:31'),
 (22, 'LED Light', '1', 0, 5, '2024-07-28 22:52:36', '2024-07-28 23:02:27'),
 (23, 'Accessories', '1', 1, 5, '2024-07-28 23:00:13', '2024-07-28 23:00:13'),
@@ -6459,7 +6459,7 @@ INSERT INTO `products` (`id`, `name`, `price`, `unit`, `img_url`, `details_url`,
 (25, 'WBB-2F0-TDXX-XX', '58990', '10', 'uploads/5-1721012741.jpg', 'https://waltonbd.com/refrigerator-freezer/beverage-cooler/wbb-2f0-tdxx-xx', 14, 5, 1, '2024-07-14 21:05:42', '2024-08-03 07:20:40'),
 (26, 'WBQ-4D0-TDXX-XX', '80990', '10', 'uploads/5-1721012811.jpg', 'https://waltonbd.com/refrigerator-freezer/beverage-cooler/wbq-4d0-tdxx-xx', 14, 5, 1, '2024-07-14 21:06:51', '2024-07-14 21:06:51'),
 (27, 'WBA-2B4-GTXA-XX', '48990', '10', 'uploads/5-1721012857.jpg', 'https://waltonbd.com/refrigerator-freezer/beverage-cooler/wba-2b4-gtxa-xx', 14, 5, 1, '2024-07-14 21:07:37', '2024-07-14 21:07:37'),
-(28, 'WUE-3C4-GEPB-XX (Inverter)', '55200', '6', 'uploads/5-1721012977.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wue-3c4-gepb-xx-inverter', 13, 5, 1, '2024-07-14 21:09:37', '2024-08-06 22:31:35'),
+(28, 'WUE-3C4-GEPB-XX (Inverter)', '55200', '5', 'uploads/5-1721012977.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wue-3c4-gepb-xx-inverter', 13, 5, 1, '2024-07-14 21:09:37', '2024-08-29 05:54:55'),
 (29, 'WCF-1D5-GDEL-LX', '31190', '10', 'uploads/5-1721013024.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-1d5-gdel-lx', 13, 5, 1, '2024-07-14 21:10:24', '2024-07-21 19:46:23'),
 (30, 'WCF-1D5-GDEL-XX', '30690', '10', 'uploads/5-1721013081.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-1d5-gdel-xx', 13, 5, 1, '2024-07-14 21:11:21', '2024-07-14 21:11:21'),
 (31, 'WCF-1D5-RRXX-XX', '29390', '10', 'uploads/5-1721013120.jpg', 'https://waltonbd.com/refrigerator-freezer/freezer/wcf-1d5-rrxx-xx', 13, 5, 1, '2024-07-14 21:12:00', '2024-07-14 21:12:00'),
@@ -6613,7 +6613,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `mobile`, `password`, `otp`, `created_at`, `updated_at`) VALUES
-(5, 'Samir Chandra', 'Deb', 'samirelectronics7@gmail.com', '01791233473', '$2y$10$cuJlZbUCpNtj8K85zCJ3auwHjEZ4dByeXzDk0.Dyt.c/gwM3f43Qy', '0', '2024-06-26 03:31:48', '2024-06-26 03:31:48');
+(5, 'Samir Chandra', 'Deb', 'samirelectronics7@gmail.com', '01791233473', '$2y$10$cuJlZbUCpNtj8K85zCJ3auwHjEZ4dByeXzDk0.Dyt.c/gwM3f43Qy', '0', '2024-06-26 03:31:48', '2024-06-26 03:31:48'),
+(6, 'Prosanto', 'Deb', 'prosantodeb7@gmail.com', '01793222825', '$2y$10$kEKp8V.PHUjGAJHGSUgh4eNuEwnbzSdvP1OQ/4DPw/FGnNocgvq9C', '0', '2024-08-29 05:10:55', '2024-08-29 05:10:55');
 
 --
 -- Indexes for dumped tables
@@ -6728,13 +6729,13 @@ ALTER TABLE `expenses`
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=781;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=782;
 
 --
 -- AUTO_INCREMENT for table `invoice_products`
 --
 ALTER TABLE `invoice_products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4766;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4767;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -6758,7 +6759,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables

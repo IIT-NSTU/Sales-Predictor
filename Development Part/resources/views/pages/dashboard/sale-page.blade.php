@@ -102,6 +102,7 @@
                             <thead class="w-100">
                                 <tr class="text-s">
                                     <td>Product</td>
+                                    <td style="display:none">Category</td>
                                     <td style="text-align:right">Quantity</td>
                                     <td style="text-align:right">Pick</td>
                                 </tr>
@@ -119,6 +120,7 @@
                             <thead class="w-100">
                                 <tr class="text-s">
                                     <td id="customerLabel"></td>
+                                    <td>Mobile</td>
                                     <td>Pick</td>
                                 </tr>
                             </thead>
@@ -221,6 +223,7 @@
                     });
                     hideLoader();
                     successToast(res['data']['message']);
+                    window.location.replace("/invoiceList")
                 } catch (error) {
                     hideLoader();
                     errorToast('Invoice creation failed');
@@ -378,8 +381,9 @@
 
             res.data.forEach(function(item, index) {
                 let row = `<tr class="text-s">
-                        <td style="white-space: normal">${item['name']} (${item['address']}) </td>
-                        <td style="vertical-align: middle"><a data-name="${item['name']}" data-mobile="${item['mobile']}" data-address="${item['address']}" data-id="${item['id']}" class="btn btn-outline-dark addCustomer  text-xs px-2 py-1  btn-sm m-0">Add</a></td>
+                        <td>${item['name']} (${item['address']}) </td>
+                        <td style="white-space: normal">${item['mobile']}</td>
+                        <td><a data-name="${item['name']}" data-mobile="${item['mobile']}" data-address="${item['address']}" data-id="${item['id']}" class="btn btn-outline-dark addCustomer  text-xs px-2 py-1  btn-sm m-0">Add</a></td>
                      </tr>`
                 customerList.append(row)
             })
@@ -402,7 +406,7 @@
 
             new DataTable('#customerTable', {
                 order: [
-                    [0, 'desc']
+                    [0, 'asc']
                 ],
                 lengthMenu: [5, 10, 15, 20, 30, 50, 100],
             });
@@ -417,14 +421,17 @@
             productList.empty();
 
             res.data.forEach(function(item, index) {
+                if (item.category.active == 1) {
                 let row = `<tr class="text-s">
-                        <td><a target="_blank" href="${item['details_url']}"><img class="w-10" src="${item['img_url']}"/> ${item['name']} (${item['price']} BDT)</a></td>
+                        <td><a target="_blank" href="${item['details_url']}"><img class="w-10 zoom" src="${item['img_url']}"/> ${item['name']} (${item['price']} BDT)</a></td>
+                        <td style="display:none">` + item.category.name + `</td>
                         <td style="vertical-align: middle; text-align:right">${item['unit']}</td>
                         <td style="vertical-align: middle; text-align:right">
                             <a data-name="${item['name']}" data-price="${item['price']}" data-qty="${item['unit']}" data-id="${item['id']}" class="btn btn-outline-dark text-xs px-2 py-1 addProduct  btn-sm m-0">Add</a>
                         </td>
                      </tr>`
                 productList.append(row)
+                }
             })
 
 

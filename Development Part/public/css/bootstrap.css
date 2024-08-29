@@ -5025,6 +5025,7 @@ fieldset:disabled .btn {
     margin-right: 1rem;
     font-size: 0.875rem;
     white-space: nowrap;
+    cursor: pointer;
 }
 
 .navbar-nav {

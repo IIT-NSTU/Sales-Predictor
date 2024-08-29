@@ -33,19 +33,19 @@
     <nav class="navbar fixed-top px-0 shadow-sm bg-white">
         <div class="container-fluid">
 
-            <a class="navbar-brand" href="#">
+            <div class="navbar-brand">
                 <span class="icon-nav m-0 h5" onclick="MenuBarClickHandler()">
                     <img class="nav-logo-sm mx-2" src="{{ asset('images/menu.svg') }}" alt="logo" />
                 </span>
-                <img class="nav-logo  mx-2" src="{{ asset('images/logo3.png') }}" alt="logo" />
-            </a>
+                <a href="/"><img class="nav-logo  mx-2" src="{{ asset('images/logo3.png') }}" alt="logo" /></a>
+            </div>
 
             <div class="float-right h-auto d-flex">
                 <div class="user-dropdown">
-                    <img class="icon-nav-img" src="{{ asset('images/user.webp') }}" alt="" />
+                    <img class="icon-nav-img" src="{{ asset('images/profile.png') }}" alt="" />
                     <div class="user-dropdown-content ">
                         <div class="mt-4 text-center">
-                            <img class="icon-nav-img" src="{{ asset('images/user.webp') }}" alt="" />
+                            <img class="icon-nav-img" src="{{ asset('images/profile.png') }}" alt="" />
                             <h6 id="username"></h6>
                             <hr class="user-dropdown-divider  p-0" />
                         </div>

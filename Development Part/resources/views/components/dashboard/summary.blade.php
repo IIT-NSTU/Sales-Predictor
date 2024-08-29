@@ -67,14 +67,14 @@
         </div>
 
         <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 animated fadeIn p-2">
-            <a href="/sales">
+            <a href="/sales-report">
                 <div class="card card-plain h-100 animated fadeIn bg-gradient-primary-light">
                     <div class="p-3">
                         <div class="row">
                             <div class="col-9 col-lg-8 col-md-8 col-sm-9">
                                 <div>
                                     <h3 id="total-sale" class="mb-0 text-capitalize text-white font-weight-bold">00</h3>
-                                    <p class="mb-0 text-lg text-white">Sales</p>
+                                    <p class="mb-0 text-lg text-white">Items Sold</p>
                                 </div>
                             </div>
                             <div class="col-3 col-lg-4 col-md-4 col-sm-3 text-end">

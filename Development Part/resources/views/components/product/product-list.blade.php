@@ -59,6 +59,7 @@
 
         // Render Rows
         data.map((item, index) => {
+        if (item.category.active == 1) {
             tableList.append(`<tr>
                     <td>${item['id']}</td>
                     <td><a href='${item['details_url']}' target="_blank"><img class="w-75 h-auto" alt="" src="${item['img_url']}"></a></td>
@@ -71,6 +72,7 @@
                         <button data-path="${item['img_url']}" data-id="${item['id']}" class="btn deleteBtn btn-sm bg-gradient-danger">Delete</button>
                     </td>
                  </tr>`)
+        }         
         })
 
         // Edit Btn Handler
