@@ -80,6 +80,8 @@ Route::controller(dashboardController::class)->group(function () {
     Route::get('/total-product', 'totalProduct')->middleware(tokenVerficationMiddleware::class);
     Route::get('/total-category', 'totalCategory')->middleware(tokenVerficationMiddleware::class);
     Route::get('/total-sale', 'totalSale')->middleware(tokenVerficationMiddleware::class);
+    Route::get('/prediction-list/{day}', 'predictionList')->middleware(tokenVerficationMiddleware::class);
+    Route::get('/top-product-list', 'topProductList')->middleware(tokenVerficationMiddleware::class);
 });
 
 // User

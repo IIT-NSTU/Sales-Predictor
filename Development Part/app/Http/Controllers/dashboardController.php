@@ -7,7 +7,10 @@ use App\Models\Customer;
 use App\Models\Invoice;
 use App\Models\InvoiceProduct;
 use App\Models\Product;
+use App\Models\Prediction;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use DB;
 
 class dashboardController extends Controller
 {
@@ -42,5 +45,30 @@ class dashboardController extends Controller
     {
         $userId = $request->header('userId');
         return InvoiceProduct::where('user_id', $userId)->sum('quantity');
+    }
+
+    function predictionList(Request $request) {
+        $userId = $request->header('userId');
+        $day = $request->day;
+        $fromDate = Carbon::today();
+        $current = Carbon::now();
+   
+        $toDate = $current->addDays($day);
+        
+        return Prediction::with('product')
+        ->where('user_id', $userId)
+        ->whereRaw("STR_TO_DATE(predictions.date, '%Y-%c-%e %r') BETWEEN STR_TO_DATE(?, '%Y-%c-%e %r') AND STR_TO_DATE(?, '%Y-%c-%e %r')", [$fromDate->toDateString(), $toDate->toDateString()])
+        ->get();
+    }
+
+    function topProductList(Request $request) {
+        $userId = $request->header('userId');
+        return InvoiceProduct::with('product')
+            ->where('user_id', $userId)
+            ->select('product_id', DB::raw('SUM(quantity) as total_quantity'))
+            ->groupBy('product_id')
+            ->orderByDesc('total_quantity')
+            ->limit(10)
+            ->get();
     }
 }
