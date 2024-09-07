@@ -4,21 +4,21 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class RunPythonScript extends Command
+class RunPredictionScript extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'app:run-script';
+    protected $signature = 'app:run-prediction';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Run the Python script using Laravel scheduler';
+    protected $description = 'Run the Python prediction using Laravel scheduler';
 
     /**
      * Execute the console command.
