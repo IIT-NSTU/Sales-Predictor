@@ -10,6 +10,7 @@ use App\Http\Controllers\productController;
 use App\Http\Controllers\reportController;
 use App\Http\Controllers\chartController;
 use App\Http\Controllers\userController;
+use App\Http\Controllers\PythonScriptController;
 use App\Http\Middleware\tokenVerficationMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -82,6 +83,11 @@ Route::controller(dashboardController::class)->group(function () {
     Route::get('/total-sale', 'totalSale')->middleware(tokenVerficationMiddleware::class);
     Route::get('/prediction-list/{day}', 'predictionList')->middleware(tokenVerficationMiddleware::class);
     Route::get('/top-product-list', 'topProductList')->middleware(tokenVerficationMiddleware::class);
+});
+
+// Python Script
+Route::controller(pythonScriptController::class)->group(function () {
+    Route::get('/run-script', 'runScript')->middleware(tokenVerficationMiddleware::class);
 });
 
 // User

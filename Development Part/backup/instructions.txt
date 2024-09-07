@@ -3,3 +3,12 @@
 3. Import SQL file.
 4. Make sure php is properly setup.
 4. Run 'composer install'.
+
+
+Schedule and Command Running
+
+php artisan schedule:list
+php artisan schedule:run
+
+php artisan app:run-script
+Stop Scheduler from Kernel.php

@@ -12,7 +12,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        // Schedule the Python script to run daily at midnight
+        // $schedule->command('app:run-script')->daily();
+        // $schedule->command('app:run-script')->everyMinute();
     }
 
     /**
