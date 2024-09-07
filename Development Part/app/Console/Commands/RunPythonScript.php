@@ -26,7 +26,7 @@ class RunPythonScript extends Command
     public function handle()
     {
         // Define the Python script path using base_path to get the root directory
-        $scriptPath = base_path('python-scripts/example.py');
+        $scriptPath = base_path('python-scripts/prediction.py');
 
         // Quote the script path to handle spaces in the directory names
         $scriptPath = escapeshellarg($scriptPath);
