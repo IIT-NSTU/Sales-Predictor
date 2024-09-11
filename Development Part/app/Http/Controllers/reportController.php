@@ -80,7 +80,7 @@ class reportController extends Controller
             ];                
 
             $pdf = Pdf::loadView('pages.report.product-report', $data);
-            return $pdf->download('product-report.pdf');
+            return $pdf->stream('product-report.pdf');
         } else {
             $invoice_sale = Invoice::where('user_id', $userId)
                           ->whereRaw("STR_TO_DATE(invoices.date, '%Y-%c-%e %r') BETWEEN STR_TO_DATE(?, '%Y-%c-%e %r') AND STR_TO_DATE(?, '%Y-%c-%e %r')", [$fromDate, $toDate])
@@ -133,7 +133,7 @@ class reportController extends Controller
             ];
 
             $pdf = Pdf::loadView('pages.report.revenue-report', $data);
-            return $pdf->download('revenue-report.pdf');
+            return $pdf->stream('revenue-report.pdf');
         }
         
     }

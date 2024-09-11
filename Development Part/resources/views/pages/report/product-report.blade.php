@@ -80,8 +80,10 @@
                 <th>Product Quantity</th>
             </tr>
         </thead>
-        {{ $category_name = $category_sales[0]['category_name']; }}
         @php 
+            if (sizeof($category_sales) > 0) {
+                $category_name = $category_sales[0]['category_name'];
+            }
             $total = 0; 
             $grandTotal = 0; 
         @endphp
@@ -102,10 +104,12 @@
                 {{ $total += $product['total_quantity_sold']; }}
 
             @endforeach
+            @if (sizeof($category_sales) > 0)
                 <tr>
                     <td>{{ $category_name }}</td>
                     <td>{{ $total }}</td>
                 </tr>
+            @endif
                 <tr>
                     <td><b>Total</b></td>
                     <td><b>{{ $grandTotal + $total }}</b></td>
@@ -121,8 +125,10 @@
                 <th>Product Quantity</th>
             </tr>
         </thead>
-        {{ $category_name = $category_sales[0]['category_name']; }}
         @php 
+            if (sizeof($category_sales) > 0) {
+                $category_name = $category_sales[0]['category_name'];
+            }
             $total = 0; 
             $grandTotal = 0; 
         @endphp
@@ -145,10 +151,12 @@
                     {{ $total += $product['total_quantity_sold']; }}
                 </tr>
             @endforeach
+            @if (sizeof($category_sales) > 0)
                 <tr>
                     <td><b>Total {{ $category_name }}</b></td>
                     <td><b>{{ $total }}</b></td>
                 </tr>
+            @endif    
                 <tr>
                     <td><b>Grand Total</b></td>
                     <td><b>{{ $grandTotal + $total }}</b></td>
@@ -186,8 +194,10 @@
                 <th>Product Quantity</th>
             </tr>
         </thead>
-        {{ $category_name = $category_purchase[0]['category_name']; }}
         @php 
+            if (sizeof($category_purchase) > 0) {
+                $category_name = $category_purchase[0]['category_name'];
+            }
             $total = 0; 
             $grandTotal = 0; 
         @endphp
@@ -208,10 +218,12 @@
                 {{ $total += $product['total_quantity_sold']; }}
 
             @endforeach
+            @if (sizeof($category_purchase) > 0)
                 <tr>
                     <td>{{ $category_name }}</td>
                     <td>{{ $total }}</td>
                 </tr>
+            @endif    
                 <tr>
                     <td><b>Total</b></td>
                     <td><b>{{ $grandTotal + $total }}</b></td>
@@ -227,8 +239,10 @@
                 <th>Product Quantity</th>
             </tr>
         </thead>
-        {{ $category_name = $category_purchase[0]['category_name']; }}
         @php 
+            if (sizeof($category_purchase) > 0) {
+                $category_name = $category_purchase[0]['category_name'];
+            }
             $total = 0; 
             $grandTotal = 0; 
         @endphp
@@ -251,10 +265,12 @@
                     {{ $total += $product['total_quantity_sold']; }}
                 </tr>
             @endforeach
+            @if (sizeof($category_purchase) > 0)
                 <tr>
                     <td><b>Total {{ $category_name }}</b></td>
                     <td><b>{{ $total }}</b></td>
                 </tr>
+            @endif
                 <tr>
                     <td><b>Grand Total</b></td>
                     <td><b>{{ $grandTotal + $total }}</b></td>
