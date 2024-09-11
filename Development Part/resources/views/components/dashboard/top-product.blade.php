@@ -5,9 +5,9 @@
             <div class="card bg-white">
                 <div class="card-body">
                     <h4 class="mb-3 text-primary-2">Prediction</h4>
-                    <button class="btn bg-gradient-primary me-3">Today</button>
-                    <button class="btn bg-gradient-primary me-3">7 days</button>
-                    <button class="btn bg-gradient-primary">30 days</button>
+                    <button onclick="getPredictionList(0)" class="btn bg-gradient-primary me-3">Today</button>
+                    <button onclick="getPredictionList(7)" class="btn bg-gradient-primary me-3">7 days</button>
+                    <button onclick="getPredictionList(30)" class="btn bg-gradient-primary">30 days</button>
 
                     <div class="mt-3" id="prediction_data"></div>
                 </div>
@@ -27,26 +27,28 @@
 </div>
 
 <script>
-    const getPredictionList = async () => {
+    const getPredictionList = async (days) => {
         try {
             let currentDate = new Date().toJSON().slice(0, 10);
             prediction_data = document.getElementById('prediction_data');
             html = `<h6>Date : ` + currentDate + `</h6>`;
             html += `<table class="table" style="color:black">`;
-            html += `<tr><td>Model</td><td>Quantity</td></th>`;
-            const res = await axios.get('/prediction-list/0');
+            html += `<tr><th>Model</td><td>Quantity</th></tr>`;
+            const res = await axios.get('/prediction-list/' + days);
+            total = 0;
             res.data.forEach(function(item, index) {
                 html+= `<tr><td>` + item.product.name + `</td><td>` + item.unit + `</td></tr>`;
+                total += item.unit;
             })
+            html+= `<tr><td><b>Total</b></td><td><b>` + total + `</b></td></tr>`;
             html += `</table>`;
 
             prediction_data.innerHTML = html;
         } catch (error) {
             errorToast('Something went wrong');
         }
-
     }
-    getPredictionList();
+    getPredictionList(0);
 
     const getTopProductList = async () => {
         try {
@@ -66,6 +68,5 @@
 
     }
     getTopProductList();
-
     
 </script>    

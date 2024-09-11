@@ -56,8 +56,10 @@ class dashboardController extends Controller
         $toDate = $current->addDays($day);
         
         return Prediction::with('product')
+        ->selectRaw('product_id, SUM(unit) as unit')
         ->where('user_id', $userId)
         ->whereRaw("STR_TO_DATE(predictions.date, '%Y-%c-%e %r') BETWEEN STR_TO_DATE(?, '%Y-%c-%e %r') AND STR_TO_DATE(?, '%Y-%c-%e %r')", [$fromDate->toDateString(), $toDate->toDateString()])
+        ->groupBy('product_id')
         ->get();
     }
 
