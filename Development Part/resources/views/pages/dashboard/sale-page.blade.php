@@ -309,7 +309,9 @@
             document.getElementById('total').innerText = Total;
             document.getElementById('payable').value = Payable;
             document.getElementById('discountAmount').innerText = discountAmount;
+            if( !isNaN(Due) ) {
             document.getElementById('due').innerText = Due;
+            }
         }
 
 
