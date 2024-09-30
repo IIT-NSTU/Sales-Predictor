@@ -8,7 +8,7 @@
                             <div class="col-9 col-lg-8 col-md-8 col-sm-9">
                                 <div>
                                     <h3 id="total-customer" class="mb-0 text-capitalize text-white font-weight-bold">00</h3>
-                                    <p class="mb-0 text-lg text-white">Customer</p>
+                                    <p class="mb-0 text-lg text-white">Customers</p>
                                 </div>
                             </div>
                             <div class="col-3 col-lg-4 col-md-4 col-sm-3 text-end">
@@ -30,7 +30,7 @@
                             <div class="col-9 col-lg-8 col-md-8 col-sm-9">
                                 <div>
                                     <h3 id="total-category" class="mb-0 text-capitalize text-white font-weight-bold">00</h3>
-                                    <p class="mb-0 text-lg text-white">Category</p>
+                                    <p class="mb-0 text-lg text-white">Categories</p>
                                 </div>
                             </div>
                             <div class="col-3 col-lg-4 col-md-4 col-sm-3 text-end">
@@ -52,7 +52,7 @@
                             <div class="col-9 col-lg-8 col-md-8 col-sm-9">
                                 <div>
                                     <h3 id="total-product" class="mb-0 text-capitalize text-white font-weight-bold">00</h3>
-                                    <p class="mb-0 text-lg text-white">Product</p>
+                                    <p class="mb-0 text-lg text-white">Product Types</p>
                                 </div>
                             </div>
                             <div class="col-3 col-lg-4 col-md-4 col-sm-3 text-end">

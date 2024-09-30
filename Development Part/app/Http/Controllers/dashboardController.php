@@ -25,7 +25,7 @@ class dashboardController extends Controller
     function totalCustomer(Request $request)
     {
         $userId = $request->header('userId');
-        return Customer::where('user_id', $userId)->count();
+        return Customer::where('user_id', $userId)->where('type', '=', '1')->count();
     }
 
     function totalProduct(Request $request)
@@ -38,7 +38,10 @@ class dashboardController extends Controller
     function totalCategory(Request $request)
     {
         $userId = $request->header('userId');
-        return Category::where('user_id', $userId)->count();
+        return Category::whereHas('products')
+                        ->where('user_id', $userId)
+                        ->where('active', '=', '1')
+                        ->count();
     }
 
     function totalSale(Request $request)

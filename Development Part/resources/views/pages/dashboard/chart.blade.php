@@ -95,67 +95,52 @@
         data.addColumn('date', 'Date');
 
         const productList = document.getElementById('productList');
+        const categoryList = document.getElementById('categoryList');
         const productID = productList.value;
         const FromDate = document.getElementById('FormDate').value;
         const ToDate = document.getElementById('ToDate').value;
+
+        let dateArray = [];
+        let currentDate = new Date(FromDate);
+
+        while (currentDate <= new Date(ToDate)) {
+            let formattedDate = currentDate.toISOString().split('T')[0];
+            dateArray.push(formattedDate);
+            currentDate.setDate(currentDate.getDate() + 1);
+        }
         
         showLoader();
         try {
             if (productID == 0) {
-                const responses = [];
+                data.addColumn('number', categoryList.options[categoryList.selectedIndex].text);
+                let responseMap = new Map();
+                let rows = [];
                 for (const option of productList.options) {
                     if (option.value != 0) {
-                        data.addColumn('number', option.text);
                         const res = await axios.post('/generate-chart', {
                             product_id: option.value,
                             from_date: FromDate,
                             to_date: ToDate
                         });
-                        responses.push(res.data);
-                    }
-                }
-                const dates = [];
-                const dateObjects = [];
-                const products = [];
-                products.push(dateObjects);
-
-                responses.forEach(item => {
-                    item.forEach(innerItem => {
-                        let date = innerItem.date.split(" ")[0];
-                        if (!dates.includes(date)) {
-                            dates.push(date);
-                            let s = date.split("-");
-                            dateObjects.push(new Date(s[0], s[1] - 1, s[2]));
-                        }
-                    })
-                    const product = [];
-                    products.push(product);
-                });
-
-                let index = 1;
-                responses.forEach(item => {
-                    dates.forEach(date => {
-                        let count = 0;
-                        item.forEach(innerItem => {
-                            if (innerItem.date.split(" ")[0] === date) {
-                                count += parseInt(innerItem.quantity);
+                        res.data.forEach(response => {
+                            let date = new Date(response.date.split(" ")[0]);
+                            date.setDate(date.getDate() + 1); // Adjust date if necessary
+                            targetDate = date.toISOString().split('T')[0];
+                            let quantity = parseInt(response.quantity);
+                            if (responseMap.has(targetDate)) {
+                                quantity += responseMap.get(targetDate)
                             }
-                        })
-                        products[index].push(count);
-                    })
-                    index++;
-                });
-
-                const chart = [];
-                for (let i = 0; i < dates.length; i++) {
-                    const chartData = [];
-                    for (let j = 0; j < products.length; j++) {
-                        chartData.push(products[j][i]);
+                            responseMap.set(targetDate, quantity);
+                        });
                     }
-                    chart.push(chartData);
                 }
-                
-                data.addRows(chart);
+                // Process rows using the map for O(1) lookups
+                dateArray.forEach(item => {
+                    let quantity = responseMap.get(item) || 0; // Get quantity from map, default to 0 if not found
+                    let [year, month, day] = item.split("-").map(Number);
+                    rows.push([new Date(year, month - 1, day), quantity]); // Add row with date and quantity
+                });
+                data.addRows(rows);
                 data.sort([{ column: 0 }]);
             } else {
                 data.addColumn('number', productList.options[productList.selectedIndex].text);
@@ -165,11 +150,18 @@
                     to_date: ToDate
                 });
                 let rows = [];
-                res.data.forEach(item => {
-                    let date = item.date.split(" ")[0];
-                    let s = date.split("-");
-                    let row = [new Date(s[0], s[1] - 1, s[2]), parseInt(item.quantity)];
-                    rows.push(row);
+                // Pre-process response data into a map for quick lookup
+                let responseMap = new Map();
+                res.data.forEach(response => {
+                    let date = new Date(response.date.split(" ")[0]);
+                    date.setDate(date.getDate() + 1); // Adjust date if necessary
+                    responseMap.set(date.toISOString().split('T')[0], parseInt(response.quantity));
+                });
+                // Process rows using the map for O(1) lookups
+                dateArray.forEach(item => {
+                    let quantity = responseMap.get(item) || 0; // Get quantity from map, default to 0 if not found
+                    let [year, month, day] = item.split("-").map(Number);
+                    rows.push([new Date(year, month - 1, day), quantity]); // Add row with date and quantity
                 });
                 data.addRows(rows);
                 data.sort([{ column: 0 }]);
@@ -193,6 +185,7 @@
           vAxis: {
             title: 'Quantity'
           },
+          pointSize: 5
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
