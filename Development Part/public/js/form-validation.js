@@ -55,10 +55,10 @@ class FormValidation {
 
     static checkOtp(otpElement) {
         if (otpElement.value.trim().length === 0) {
-            errorToast('OTP is required');
+            errorToast('Verification Code is required');
             return false;
-        } else if (otpElement.value.trim().length < 4 || otpElement.value.trim().length > 4) {
-            errorToast('OTP length must be 4 digit');
+        } else if (otpElement.value.trim().length < 6 || otpElement.value.trim().length > 6) {
+            errorToast('Verification Code length must be 6 digit');
             return false;
         } else {
             return true;

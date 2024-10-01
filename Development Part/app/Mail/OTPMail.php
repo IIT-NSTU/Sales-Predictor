@@ -28,7 +28,7 @@ class OTPMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'OTP Mail',
+            subject: 'Verification Code from Sales Predictor',
         );
     }
 

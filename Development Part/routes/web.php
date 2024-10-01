@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::controller(userController::class)->group(function () {
     Route::get('/login', 'loginPage');
     Route::get('/register', 'registerPage');
-    Route::get('/send-otp', 'sendOtpPage');
-    Route::get('/verify-otp', 'verifyOtpPage');
+    Route::get('/send-code', 'sendOtpPage');
+    Route::get('/verify-code', 'verifyOtpPage');
     Route::get('/reset-password', 'resetPasswordPage')->middleware(tokenVerficationMiddleware::class);
 });
 

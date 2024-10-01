@@ -88,8 +88,8 @@ class userController extends Controller
 
         if ($count === 1) {
             try {
-                // Generate 4 digit Otp
-                $otp = rand(1000, 9999);
+                // Generate 6 digit Otp
+                $otp = rand(100000, 999999);
 
                 // Send OTP via Email
                 Mail::to($email)->send(new OTPMail($otp));
@@ -101,7 +101,7 @@ class userController extends Controller
 
                 return response()->json([
                     "status" => "success",
-                    "message" => "4 digits otp verification code sent successfully"
+                    "message" => "6 digits verification code sent successfully"
                 ], 200);
 
             } catch (Exception $e) {
@@ -137,7 +137,7 @@ class userController extends Controller
 
             return response()->json([
                 "status" => "success",
-                "message" => "otp verification successful",
+                "message" => "Verification successful",
                 "token" => $token
             ], 200)->cookie('token', $token, 60 * 24 * 30); // expire in 30 days
         } else {
@@ -154,7 +154,7 @@ class userController extends Controller
             $email = $request->header('email');
             $newPassword = $request->input('password');
             User::where('email', '=', $email)->update([
-                'password' => $newPassword
+                'password' => Hash::make($newPassword)
             ]);
 
             return response()->json([

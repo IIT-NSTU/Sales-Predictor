@@ -11,7 +11,7 @@
                     <label>Confirm Password</label>
                     <input id="confirmPassword" placeholder="Confirm Password" class="form-control" type="password" />
                     <br />
-                    <button onclick="handleResetPassword()" class="btn w-100  btn-primary">Next</button>
+                    <button onclick="handleResetPassword()" class="btn w-100  bg-gradient-primary">Next</button>
                 </div>
             </div>
         </div>

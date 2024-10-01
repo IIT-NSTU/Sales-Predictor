@@ -8,7 +8,7 @@
                     <label>Your email address</label>
                     <input id="email" placeholder="User Email" class="form-control" type="email" />
                     <br />
-                    <button onclick="handleVerifyEmail()" class="btn w-100 float-end btn-primary">Next</button>
+                    <button onclick="handleVerifyEmail()" class="btn w-100 float-end bg-gradient-primary">Next</button>
                 </div>
             </div>
         </div>
@@ -35,11 +35,11 @@
 
                 // Redirect to Verify-OTP
                 setTimeout(() => {
-                    window.location.href = '/verify-otp'
+                    window.location.href = '/verify-code'
                 }, 1000)
 
             } catch (error) {
-                errorToast('OTP code sending failed');
+                errorToast('Verification Code sending failed');
                 hideLoader();
             }
         }
