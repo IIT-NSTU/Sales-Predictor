@@ -102,6 +102,8 @@ Route::controller(userController::class)->group(function () {
     Route::post('/reset-password', 'resetPassword')->middleware(tokenVerficationMiddleware::class);
     Route::get('/user-profile-details', 'userProfile')->middleware(tokenVerficationMiddleware::class);
     Route::post('/user-update', 'userUpdate')->middleware(tokenVerficationMiddleware::class);
+    Route::post('/logo-update', 'userLogoUpdate')->middleware(tokenVerficationMiddleware::class);
+    Route::post('/logo-delete', 'userLogoDelete')->middleware(tokenVerficationMiddleware::class);
     Route::post('/update-password', 'updatePassword')->middleware(tokenVerficationMiddleware::class);
 });
 

@@ -203,34 +203,12 @@ class userController extends Controller
     {
         try {
             $email = $request->header('email');
-            $userId = $request->header('userId');
-            $imgUrl = "";
-
-            if ($request->hasFile('img')) {
-                $img = $request->file('img');
-                $currentTime = time();
-                $fileExtension = $img->extension();
-                $imgName = "{$userId}-{$currentTime}.{$fileExtension}";
-                $imgUrl = "uploads/{$imgName}";
-
-                // Upload File
-                $img->move(public_path('uploads'), $imgName);
-            } 
-
-            if ($imgUrl != "") {
-                User::where('email', '=', $email)->update([
-                    'first_name' => $request->input('first_name'),
-                    'last_name' => $request->input('last_name'),
-                    'mobile' => $request->input('mobile'),
-                    'logo_url' => $imgUrl
-                ]);
-            } else {
-                User::where('email', '=', $email)->update([
-                    'first_name' => $request->input('first_name'),
-                    'last_name' => $request->input('last_name'),
-                    'mobile' => $request->input('mobile')
-                ]);
-            }
+            
+            User::where('email', '=', $email)->update([
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
+                'mobile' => $request->input('mobile')
+            ]);
             return response()->json([
                 'status' => 'success',
                 'message' => 'Profile update successful'
@@ -251,5 +229,58 @@ class userController extends Controller
             'message' => '',
             "data" => $user
         ], 200);
+    }
+
+    function userLogoUpdate(Request $request) {
+        $userId = $request->header('userId');
+        $email = $request->header('email');
+
+        $imgUrl = "";
+
+        if ($request->hasFile('img')) {
+            $img = $request->file('img');
+            $currentTime = time();
+            $fileExtension = $img->extension();
+            $imgName = "{$userId}-{$currentTime}.{$fileExtension}";
+            $imgUrl = "uploads/{$imgName}";
+
+            // Upload File
+            $img->move(public_path('uploads'), $imgName);
+        }
+
+        if ($imgUrl != "") {
+            User::where('email', '=', $email)->update([
+                'logo_url' => $imgUrl
+            ]);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Logo updated successfully.'
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Logo update failed'
+            ], 400);
+        }
+    }
+
+    function userLogoDelete(Request $request) {
+        $email = $request->header('email');
+        $count = User::where('email', '=', $email)->select('logo_url')->first();
+
+        if ($count->logo_url != "") {
+            User::where('email', '=', $email)->update([
+                'logo_url' => ""
+            ]);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Logo deleted successfully.'
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Logo deletion failed.'
+            ], 400);
+        }
     }
 }

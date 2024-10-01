@@ -3,7 +3,6 @@
         <div class="col-md-6 mt-3">
             <div class="card animated fadeIn w-100 p-4">
                 <div class="card-body">
-                <form id="save-form">
                     <h4>User Profile</h4>
                     <hr />
                     <label>Email Address</label>
@@ -24,20 +23,9 @@
                     <label>Mobile Number</label>
                     <input id="mobile" placeholder="Mobile" class="form-control" type="number" />
                     <br />   
-                    <label for="logoImg">
-                        <img class="w-15 rounded-sm" id="previewImg"
-                            src="{{ asset('images/default.jpg') }}" />
-                    </label>
-                    <br />
 
-                    <label class="form-label">Image</label>
-                    <input accept="image/jpeg,image/jpg, image/png, image/webp" oninput="handleLogoImgPreviw(event)"
-                        type="file" class="form-control" id="logoImg">
-
-                    <br />
                     <button onclick="handleUpdate()" class="btn w-100  bg-gradient-primary">Update
-                        Profile</button>
-                </form>        
+                        Profile</button>        
                 </div>
             </div>
         </div>
@@ -58,6 +46,36 @@
                     <br />
                     <button onclick="handlePasswordUpdate()" class="btn w-100  bg-gradient-primary">Update Password</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mt-3">
+            <div class="card animated fadeIn w-100 p-4">
+                <form>
+                    <h4>User Logo</h4>
+                    <hr />
+                    <label for="logoImg">
+                    <img class="w-15 rounded-sm" id="previewImg"
+                            src="{{ asset('images/default.jpg') }}" />
+                    </label>
+                    <br />
+
+                    <label class="form-label">Image</label>
+                    <input accept="image/jpeg,image/jpg, image/png, image/webp" oninput="handleLogoImgPreviw(event)"
+                        type="file" class="form-control" id="logoImg">
+
+                    <br />
+                    <div class="row">
+                        <div class="col">
+                            <button onclick="handleLogoDelete()" class="btn w-100  bg-gradient-danger">Delete Logo</button>
+                        </div>
+                        <div class="col">
+                            <button onclick="handleLogoUpdate()" class="btn w-100  bg-gradient-primary">Update Logo</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -104,29 +122,16 @@
         const isFirstNameValid = FormValidation.checkFirstName(firstName);
         const isLastNameValid = FormValidation.checkLastName(lastName);
         const isMobileNumberValid = FormValidation.checkMobileNumber(mobile);
-        const logoImg = document.getElementById('logoImg').files[0];
-
-        // Genarate Form Data
-        const formData = new FormData();
-        if (logoImg) {
-            formData.append('img', logoImg);
-        }
-        formData.append('first_name', firstName.value.trim());
-        formData.append('last_name', lastName.value.trim());
-        formData.append('email', email.value.trim());
-        formData.append('mobile', mobile.value.trim());
-
-        const config = {
-            headers: {
-                'content-type': 'multipart/form-data'
-            }
-        };
 
         if (isEmailValid  && isFirstNameValid && isLastNameValid && isMobileNumberValid) {
             showLoader();
             try {
-                const res = await axios.post('/user-update', formData, config);
-                document.getElementById("previewImg").src = "images/default.jpg";
+                const res = await axios.post('/user-update', {
+                    first_name: firstName.value.trim(),
+                    last_name: lastName.value.trim(),
+                    email: email.value.trim(),
+                    mobile: mobile.value.trim()
+                });
                 successToast(res['data']['message']);
                 hideLoader();
 
@@ -181,5 +186,39 @@
         const previwImg = document.getElementById('previewImg');
         const imgUrl = window.URL.createObjectURL(e.target.files[0]);
         previwImg.src = imgUrl;
+    }
+
+    const handleLogoUpdate = async () => {
+        const logoImg = document.getElementById('logoImg').files[0];
+        // Genarate Form Data
+        const formData = new FormData();
+        if (logoImg) {
+            formData.append('img', logoImg);
+        }
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        };
+
+        try {
+            const res = await axios.post('/logo-update', formData, config);
+            successToast(res['data']['message']);
+            hideLoader();
+        } catch (error) {
+            errorToast('Please provide a logo image.');
+            hideLoader();
+        }
+    }
+
+    const handleLogoDelete = async () => {
+        try {
+            const res = await axios.post('/logo-delete', {});
+            successToast(res['data']['message']);
+            hideLoader();
+        } catch (error) {
+            errorToast('Logo does not exist');
+            hideLoader();
+        }
     }
 </script>
