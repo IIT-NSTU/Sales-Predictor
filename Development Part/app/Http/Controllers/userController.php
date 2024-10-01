@@ -168,16 +168,69 @@ class userController extends Controller
             ], 500);
         }
     }
+
+    function updatePassword(Request $request) {
+        try {
+            $email = $request->header('email');
+            $previousPassword = $request->input('previousPassword');
+            $newPassword = $request->input('password');
+
+            $count = User::where('email', '=', $email)->select('id', 'password')->first();
+            if ($count !== null && Hash::check($previousPassword, $count->password)) {
+                User::where('email', '=', $email)->update([
+                    'password' => Hash::make($newPassword)
+                ]);
+    
+                return response()->json([
+                    "status" => "success",
+                    "message" => "Password reset successfully."
+                ], 200);
+            } else {
+                return response()->json([
+                    "status" => "failed",
+                    "message" => "Previous password doesn't match."
+                ], 401);
+            }
+        } catch (Exception $e) {
+            return response()->json([
+                "status" => "failed",
+                "message" => "something went wrong"
+            ], 500);
+        }
+    }
+
     function userUpdate(Request $request)
     {
         try {
             $email = $request->header('email');
-            User::where('email', '=', $email)->update([
-                'first_name' => $request->input('first_name'),
-                'last_name' => $request->input('last_name'),
-                'mobile' => $request->input('mobile'),
-                'password' => $request->input('password')
-            ]);
+            $userId = $request->header('userId');
+            $imgUrl = "";
+
+            if ($request->hasFile('img')) {
+                $img = $request->file('img');
+                $currentTime = time();
+                $fileExtension = $img->extension();
+                $imgName = "{$userId}-{$currentTime}.{$fileExtension}";
+                $imgUrl = "uploads/{$imgName}";
+
+                // Upload File
+                $img->move(public_path('uploads'), $imgName);
+            } 
+
+            if ($imgUrl != "") {
+                User::where('email', '=', $email)->update([
+                    'first_name' => $request->input('first_name'),
+                    'last_name' => $request->input('last_name'),
+                    'mobile' => $request->input('mobile'),
+                    'logo_url' => $imgUrl
+                ]);
+            } else {
+                User::where('email', '=', $email)->update([
+                    'first_name' => $request->input('first_name'),
+                    'last_name' => $request->input('last_name'),
+                    'mobile' => $request->input('mobile')
+                ]);
+            }
             return response()->json([
                 'status' => 'success',
                 'message' => 'Profile update successful'

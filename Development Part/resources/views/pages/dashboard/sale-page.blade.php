@@ -13,7 +13,7 @@
                             <p class="text-s mx-0 my-1">Address: <span id="CAddress"></span></p>
                         </div>
                         <div class="col-4">
-                            <img class="w-40" src="{{ 'images/logo3.png' }}">
+                            <img class="w-40" id="logo" src="">
                             <p class="text-bold mx-0 my-1 text-dark">Invoice </p>
                             <p class="text-s mx-0 my-1">Date: 
                                 <input id="date" class="" type="text" value="{{ date('Y-m-d h:i:s A') }}" />
@@ -174,6 +174,7 @@
             showLoader();
             await CustomerList(1);
             await ProductList();
+            await setLogo();
             hideLoader();
         })()
 
@@ -448,14 +449,19 @@
             })
 
 
-
-
             new DataTable('#productTable', {
                 order: [
                     [0, 'desc']
                 ],
                 lengthMenu: [5, 10, 15, 20, 30, 50, 100],
             });
+        }
+
+        async function setLogo() {
+            const res = await axios.get('/user-profile-details');
+            const user = res['data']['data'];
+            const logo = document.getElementById('logo');
+            logo.src = user['logo_url'];
         }
     </script>
 @endsection

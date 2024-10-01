@@ -18,7 +18,7 @@
                             <p class="text-xs mx-0 my-1 text-dark">Email: <span id="CAddress"></span></p>
                         </div>
                         <div class="col-4">
-                            <img class="w-40" src="{{ 'images/logo3.png' }}">
+                            <img class="w-40" id="logo" src="">
                             <p class="text-bold mx-0 my-1 text-dark">Invoice ID: <span id="invId"></span></p>
                             <p class="text-xs mx-0 my-1 text-dark">Date: <span id="date"></span></p>
                         </div>
@@ -69,6 +69,7 @@
             document.getElementById('CAddress').innerText = res.data?.data['customer']['address']
             document.getElementById('date').innerText = res.data?.data['invoice']['date']
             document.getElementById('invId').innerText = inv_id
+            document.getElementById('logo').src = res.data?.data['logo']['logo_url']
 
             let discountType = " (%)";
             let total = parseFloat(res.data?.data['invoice']['total']);

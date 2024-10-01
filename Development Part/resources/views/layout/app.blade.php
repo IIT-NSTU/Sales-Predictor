@@ -37,7 +37,7 @@
                 <span class="icon-nav m-0 h5" onclick="MenuBarClickHandler()">
                     <img class="nav-logo-sm mx-2" src="{{ asset('images/menu.svg') }}" alt="logo" />
                 </span>
-                <a href="/"><img class="nav-logo  mx-2" src="{{ asset('images/logo3.png') }}" alt="logo" /></a>
+                <a href="/"><img class="nav-logo mx-2 d-none" id="userLogo" alt="logo" /></a>
             </div>
 
             <div class="float-right h-auto d-flex">
@@ -142,10 +142,16 @@
             }
         }
         const username = document.getElementById('username');
+        const userLogo = document.getElementById('userLogo');
         const showUserName = async () => {
             const res = await axios.get('/user-profile-details');
             const user = res['data']['data'];
             username.innerText = user['first_name'] + " " + user['last_name'] ;
+
+            if (user['logo_url'] != '') {
+                userLogo.src = user['logo_url'];
+                userLogo.classList.toggle("d-none");
+            }
         }
         showUserName();
     </script>

@@ -19,7 +19,7 @@
                             <p class="text-xs mx-0 my-1 text-dark">User ID: <span id="CDId"></span> </p>
                         </div>
                         <div class="col-4">
-                            <img class="w-40" src="{{ 'images/logo3.png' }}">
+                            <img class="w-40" id="logo" src="">
                             <p class="text-bold mx-0 my-1 text-dark">Due Record</p>
                             <p class="text-xs mx-0 my-1 text-dark">Date: <span id="date"></span> </p>
                         </div>
@@ -111,6 +111,7 @@
             document.getElementById('payable').innerText = payable;
             document.getElementById('paid').innerText = paid;
             document.getElementById('initial_due').innerText = initial_due;
+            document.getElementById('logo').src = res.data?.data['logo']['logo_url'];
 
             let dueList = $('#dueList');
 

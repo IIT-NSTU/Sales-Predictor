@@ -7,6 +7,7 @@ use App\Models\Invoice;
 use App\Models\InvoiceProduct;
 use App\Models\Product;
 use App\Models\Due;
+use App\Models\User;
 use DB;
 use Exception;
 use Illuminate\Http\Request;
@@ -123,13 +124,16 @@ class invoiceController extends Controller
                                       ->where('user_id', $userId)
                                       ->get();
 
+            $logo = User::where('id', $userId)->select('logo_url')->first();                          
+
             return response()->json([
                 "status" => "success",
                 "message" => "",
                 "data" => [
                     "customer" => $invoice->customer,
                     "invoice" => $invoice,
-                    "products" => $products
+                    "products" => $products,
+                    "logo" => $logo
                 ]
             ], 200);
 
@@ -157,6 +161,8 @@ class invoiceController extends Controller
                       ->where('customer_id', $request->input('customer_id'))
                       ->where('user_id', $userId)
                       ->get();
+            
+            $logo = User::where('id', $userId)->select('logo_url')->first();
 
             return response()->json([
                 "status" => "success",
@@ -164,7 +170,8 @@ class invoiceController extends Controller
                 "data" => [
                     "customer" => $invoice->customer,
                     "invoice" => $invoice,
-                    "dues" => $dues
+                    "dues" => $dues,
+                    "logo" => $logo
                 ]
             ], 200);
 
