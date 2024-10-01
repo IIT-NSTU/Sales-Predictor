@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 15, 2024 at 09:11 PM
+-- Generation Time: Oct 01, 2024 at 07:26 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -1581,7 +1581,8 @@ INSERT INTO `invoices` (`id`, `type`, `total`, `discount`, `payable`, `paid`, `i
 (777, 's', 220900.00, 0.00, 220900.00, 220900.00, 0.00, 0.00, '2022-4-11 10:12:05 AM', 1, 5, 5, '2024-08-28 12:34:53', '2024-08-28 12:34:53'),
 (778, 's', 180100.00, 0.00, 180100.00, 180100.00, 0.00, 0.00, '2022-4-12 03:10:38 PM', 1, 5, 5, '2024-08-28 12:34:53', '2024-08-28 12:34:53'),
 (779, 's', 360300.00, 0.00, 360300.00, 360300.00, 0.00, 0.00, '2022-4-13 03:17:31 PM', 1, 5, 5, '2024-08-28 12:34:53', '2024-08-28 12:34:53'),
-(780, 's', 58750.00, 0.00, 58750.00, 58750.00, 0.00, 0.00, '2022-4-14 10:27:12 AM', 1, 5, 5, '2024-08-28 12:34:53', '2024-08-28 12:34:53');
+(780, 's', 58750.00, 0.00, 58750.00, 58750.00, 0.00, 0.00, '2022-4-14 10:27:12 AM', 1, 5, 5, '2024-08-28 12:34:53', '2024-08-28 12:34:53'),
+(783, 's', 117790.00, 10.00, 106011.00, 80000.00, 26011.00, 26011.00, '2024-09-16 12:08:59 PM', 1, 5, 120, '2024-09-16 06:10:59', '2024-09-16 06:10:59');
 
 -- --------------------------------------------------------
 
@@ -6360,7 +6361,9 @@ INSERT INTO `invoice_products` (`id`, `invoice_id`, `product_id`, `user_id`, `qu
 (4762, 780, 76, 5, '1.0', '1220.0', '2024-08-28 12:37:40', '2024-08-28 12:37:40'),
 (4763, 780, 83, 5, '2.0', '10980.0', '2024-08-28 12:37:40', '2024-08-28 12:37:40'),
 (4764, 780, 126, 5, '1.0', '41790.0', '2024-08-28 12:37:40', '2024-08-28 12:37:40'),
-(4765, 780, 118, 5, '1.0', '44790.0', '2024-08-28 12:37:40', '2024-08-28 12:37:40');
+(4765, 780, 118, 5, '1.0', '44790.0', '2024-08-28 12:37:40', '2024-08-28 12:37:40'),
+(4768, 783, 153, 5, '1', '29790.00', '2024-09-16 06:10:59', '2024-09-16 06:10:59'),
+(4769, 783, 102, 5, '1', '88000.00', '2024-09-16 06:10:59', '2024-09-16 06:10:59');
 
 -- --------------------------------------------------------
 
@@ -6391,7 +6394,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (32, '2024_07_19_235040_create_dues_table', 4),
 (33, '2024_07_21_095620_add_type_to_categories_table', 5),
 (34, '2024_07_21_112345_create_expenses_table', 5),
-(35, '2024_09_06_202743_create_predictions_table', 6);
+(35, '2024_09_06_202743_create_predictions_table', 6),
+(36, '2024_10_01_111604_add_logo_url_to_users_table', 7);
 
 -- --------------------------------------------------------
 
@@ -6650,7 +6654,7 @@ INSERT INTO `products` (`id`, `name`, `price`, `unit`, `img_url`, `details_url`,
 (99, 'WSN-VENTURI-18A (1.5 Ton)', '49900', '10', 'uploads/5-1722513571.jpg', 'https://waltonbd.com/split-ac/5275-watts-18000-btu-hr/wsn-venturi-18a', 28, 5, 1, '2024-08-01 05:59:31', '2024-08-01 05:59:31'),
 (100, 'WSI-COATEC SUPERSAVER-18C (1.5 Ton)', '108500', '10', 'uploads/5-1722513866.jpg', 'https://waltonbd.com/wsi-coatec-supersaver-18c-solar-hybrid', 28, 5, 1, '2024-08-01 06:04:26', '2024-08-01 06:54:05'),
 (101, 'WSI-INVERNA-12C (1 Ton)', '67300', '10', 'uploads/5-1722514178.jpg', 'https://waltonbd.com/wsi-inverna-extreme-saver-12c-smart-6-star', 28, 5, 1, '2024-08-01 06:09:38', '2024-08-01 06:54:55'),
-(102, 'WSI-KRYSTALINE-24C (2 Ton)', '88000', '10', 'uploads/5-1722514341.jpg', 'https://waltonbd.com/wsi-krystaline-24c-smart-defender', 28, 5, 1, '2024-08-01 06:12:21', '2024-08-01 06:55:54'),
+(102, 'WSI-KRYSTALINE-24C (2 Ton)', '88000', '9', 'uploads/5-1722514341.jpg', 'https://waltonbd.com/wsi-krystaline-24c-smart-defender', 28, 5, 1, '2024-08-01 06:12:21', '2024-09-16 06:10:59'),
 (103, 'WSN-RIVERINE-24B (2 Ton)', '76500', '10', 'uploads/5-1722514645.jpg', 'https://waltonbd.com/split-ac/7034-watts-24000-btu-hr/wsn-riverine-24b', 28, 5, 1, '2024-08-01 06:17:25', '2024-08-01 06:17:25'),
 (104, 'WFE-3B0-GDEL-XX (320 Ltr)', '48690', '10', 'uploads/5-1722516161.jpg', 'https://waltonbd.com/refrigerator-freezer/direct-cool-refrigerator/wfe-3b0-gdel-xx', 11, 5, 1, '2024-08-01 06:42:41', '2024-08-01 06:42:41'),
 (105, 'WFE-3B0-GDXX-XX Inverter (320 Ltr)', '48690', '10', 'uploads/5-1722516403.jpg', 'https://waltonbd.com/wfe-3b0-gdxx-xx-inverter', 11, 5, 1, '2024-08-01 06:46:43', '2024-08-01 06:51:02'),
@@ -6701,7 +6705,7 @@ INSERT INTO `products` (`id`, `name`, `price`, `unit`, `img_url`, `details_url`,
 (150, 'WFD-1F3-RXXX (163 Ltr)', '31690', '10', 'uploads/5-1722599586.jpg', 'https://waltonbd.com/wfd-1f3-rxxx-xx', 11, 5, 1, '2024-08-02 05:53:06', '2024-08-02 05:53:06'),
 (151, 'WFD-1D4-GDSH-XX (144 Ltr)', '29990', '10', 'uploads/5-1722599719.jpg', 'https://waltonbd.com/refrigerator-freezer/direct-cool-refrigerator/wfd-1d4-gdsh-xx', 11, 5, 1, '2024-08-02 05:55:19', '2024-08-02 05:55:19'),
 (152, 'WFD-1D4-GDEH-XX (144 Ltr)', '30190', '10', 'uploads/5-1722599793.jpg', 'https://waltonbd.com/wfd-1d4-gdeh-xx', 11, 5, 1, '2024-08-02 05:56:33', '2024-08-02 05:56:33'),
-(153, 'WFD-1D4-GDEL-XX (144 Ltr)', '29790', '10', 'uploads/5-1722599862.jpg', 'https://waltonbd.com/wfd-1d4-gdel-xx', 11, 5, 1, '2024-08-02 05:57:42', '2024-08-02 05:57:42'),
+(153, 'WFD-1D4-GDEL-XX (144 Ltr)', '29790', '9', 'uploads/5-1722599862.jpg', 'https://waltonbd.com/wfd-1d4-gdel-xx', 11, 5, 1, '2024-08-02 05:57:42', '2024-09-16 06:10:59'),
 (154, 'WFB-2E4-ELXX-XX (254 Ltr)', '41390', '10', 'uploads/5-1722600125.jpg', 'https://waltonbd.com/wfb-2e4-elxx-xx', 11, 5, 1, '2024-08-02 06:02:05', '2024-08-02 06:02:05'),
 (155, 'WFD-1B6-GDEH-XX', '27990', '10', 'uploads/5-1722600469.jpg', 'https://waltonbd.com/refrigerator-freezer/direct-cool-refrigerator/wfd-1b6-gdeh-xx', 11, 5, 1, '2024-08-02 06:07:49', '2024-08-02 06:07:49'),
 (156, 'WFD-1B6-GDEL-XX', '27490', '10', 'uploads/5-1722600534.jpg', 'https://waltonbd.com/wfd-1b6-gdel-xx', 11, 5, 1, '2024-08-02 06:08:54', '2024-08-02 06:08:54'),
@@ -6726,6 +6730,8 @@ CREATE TABLE `users` (
   `mobile` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `otp` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_verified` varchar(1) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `logo_url` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -6734,9 +6740,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `mobile`, `password`, `otp`, `created_at`, `updated_at`) VALUES
-(5, 'Samir Chandra', 'Deb', 'samirelectronics7@gmail.com', '01791233473', '$2y$10$cuJlZbUCpNtj8K85zCJ3auwHjEZ4dByeXzDk0.Dyt.c/gwM3f43Qy', '0', '2024-06-26 03:31:48', '2024-06-26 03:31:48'),
-(6, 'Prosanto', 'Deb', 'prosantodeb7@gmail.com', '01793222825', '$2y$10$kEKp8V.PHUjGAJHGSUgh4eNuEwnbzSdvP1OQ/4DPw/FGnNocgvq9C', '0', '2024-08-29 05:10:55', '2024-08-29 05:10:55');
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `mobile`, `password`, `otp`, `is_verified`, `logo_url`, `created_at`, `updated_at`) VALUES
+(5, 'Samir Chandra', 'Deb', 'samirelectronics7@gmail.com', '01793222825', '$2y$10$GpEKPCcXB8x2CVLFvgApguEX.JsRqwDq72IIDaWCw3N4F/TLjtilO', '0', '', 'uploads/5-1727810350.png', '2024-06-26 03:31:48', '2024-10-01 19:19:10'),
+(6, 'Prosanto', 'Deb', 'prosantodeb7@gmail.com', '01793222825', '$2y$10$kEKp8V.PHUjGAJHGSUgh4eNuEwnbzSdvP1OQ/4DPw/FGnNocgvq9C', '0', '', '', '2024-08-29 05:10:55', '2024-08-29 05:10:55');
 
 --
 -- Indexes for dumped tables
@@ -6859,19 +6865,19 @@ ALTER TABLE `expenses`
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=783;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=784;
 
 --
 -- AUTO_INCREMENT for table `invoice_products`
 --
 ALTER TABLE `invoice_products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4768;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4770;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
