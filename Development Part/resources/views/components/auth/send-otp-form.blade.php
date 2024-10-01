@@ -39,7 +39,7 @@
                 }, 1000)
 
             } catch (error) {
-                errorToast('Verification Code sending failed');
+                errorToast(error.response.data.message);
                 hideLoader();
             }
         }

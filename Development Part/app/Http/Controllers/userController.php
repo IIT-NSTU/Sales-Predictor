@@ -107,13 +107,13 @@ class userController extends Controller
             } catch (Exception $e) {
                 return response()->json([
                     "status" => "failed",
-                    "message" => "email sending failed"
+                    "message" => "Email sending failed"
                 ], 500);
             }
         } else {
             return response()->json([
                 "status" => "failed",
-                "message" => "unauthorized"
+                "message" => "User is not registered in this system."
             ], 401);
         }
     }
@@ -124,11 +124,11 @@ class userController extends Controller
         $otp = $request->input('otp');
         $count = User::where('email', '=', $email)
             ->where('otp', '=', $otp)
-            ->count();
+            ->first();
 
-        if ($count === 1) {
+        if ($count) {
             // Generate JWT 
-            $token = JWTToken::createToken($email, 0, 'resetPassword');
+            $token = JWTToken::createToken($request->input('email'), $count->id, 'login');
 
             // Reset easting OTP from Database
             User::where('email', '=', $email)->update([
@@ -159,7 +159,7 @@ class userController extends Controller
 
             return response()->json([
                 "status" => "success",
-                "message" => "Request successful"
+                "message" => "Password reset successfully."
             ], 200);
         } catch (Exception $e) {
             return response()->json([
