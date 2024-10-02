@@ -67,9 +67,17 @@ class invoiceController extends Controller
                 $dbProduct = Product::where('id', '=', $product['id'])
                 ->where('user_id', '=', $userId)->first();
 
-                $dbProduct->update([
-                    "unit" => $dbProduct['unit'] - $product['quantity']
-                ]);
+                if ($type == 's') {
+                    $dbProduct->update([
+                        "unit" => $dbProduct['unit'] - $product['quantity']
+                    ]);
+                } else {
+                    $dbProduct->update([
+                        "unit" => $dbProduct['unit'] + $product['quantity']
+                    ]);
+                }
+
+                
             }
             DB::commit();
 
@@ -190,15 +198,26 @@ class invoiceController extends Controller
 
         DB::beginTransaction();
         try {
+            $invoice = Invoice::where('id', $request->input('invoice_id'))
+                ->where('user_id', $userId)->first();
+
             $invoiceProducts = InvoiceProduct::where('invoice_id', $request->input('invoice_id'))
                                 ->where('user_id', $userId)->get();
             
             foreach ($invoiceProducts as $invoiceProduct) {
                 $product = Product::where('id', $invoiceProduct->product_id)->first();
                 $previousUnit = $product->unit;
-                Product::where('id', '=', $invoiceProduct->product_id)->update([
-                    'unit' => intval($previousUnit) + intval($invoiceProduct->quantity)
-                ]);
+                if ($invoice->type == 's') {
+                    Product::where('id', '=', $invoiceProduct->product_id)->update([
+                        'unit' => intval($previousUnit) + intval($invoiceProduct->quantity)
+                    ]);
+                } else {
+                    if ((intval($previousUnit) - intval($invoiceProduct->quantity)) >= 0) {
+                        Product::where('id', '=', $invoiceProduct->product_id)->update([
+                            'unit' => intval($previousUnit) - intval($invoiceProduct->quantity)
+                        ]);
+                    }
+                }
             }                
 
             InvoiceProduct::where('invoice_id', $request->input('invoice_id'))

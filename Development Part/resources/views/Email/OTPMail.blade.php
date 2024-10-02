@@ -4,7 +4,7 @@
             <a href="" style="font-size:1.4em;color: #00466a;text-decoration:none;font-weight:600">Sales Predictor</a>
         </div>
         <p style="font-size:1.1em">Hi,</p>
-        <p>Thank you for choosing Sales Predictor. Use the following verification code to reset your password. </p>
+        <p>Thank you for choosing Sales Predictor. Use the following verification code for authentication. </p>
         <h2
             style="background: #00466a;margin: 0 auto;width: max-content;padding: 0 10px;color: #fff;border-radius: 4px;">
             {{ $otp }}</h2>

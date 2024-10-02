@@ -32,7 +32,7 @@
                         <div class="row m-0 p-0">
                             <div class="col-md-4 p-2">
                                 <button onclick="handleRegistration()"
-                                    class="btn mt-3 w-100  btn-primary">Complete</button>
+                                    class="btn mt-3 w-100  bg-gradient-primary">Complete</button>
                             </div>
                         </div>
                     </div>
@@ -66,15 +66,18 @@
                     mobile: mobile.value.trim(),
                     password: password.value.trim(),
                 });
+                // Save email in Session
+                sessionStorage.setItem('email', email.value.trim())
+                
                 successToast(res['data']['message']);
                 hideLoader();
 
                 // Redirect to Login
                 setTimeout(() => {
-                    window.location.href = '/login'
+                    window.location.href = '/verify-reg-code'
                 }, 1000)
             } catch (error) {
-                errorToast('Registration failed');
+                errorToast(error.response.data.message);
                 hideLoader();
             }
         }

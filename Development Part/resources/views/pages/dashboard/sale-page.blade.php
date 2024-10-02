@@ -309,9 +309,11 @@
             
             document.getElementById('total').innerText = Total;
             document.getElementById('payable').value = Payable;
-            document.getElementById('discountAmount').innerText = discountAmount;
             if( !isNaN(Due) ) {
-            document.getElementById('due').innerText = Due;
+                document.getElementById('due').innerText = Due;
+            }
+            if( !isNaN(discountAmount) ) {
+                document.getElementById('discountAmount').innerText = discountAmount;
             }
         }
 
@@ -384,7 +386,7 @@
 
             res.data.forEach(function(item, index) {
                 let row = `<tr class="text-s">
-                        <td>${item['name']} (${item['address']}) </td>
+                        <td style="white-space: normal">${item['name']} (${item['address']}) </td>
                         <td style="white-space: normal">${item['mobile']}</td>
                         <td><a data-name="${item['name']}" data-mobile="${item['mobile']}" data-address="${item['address']}" data-id="${item['id']}" class="btn btn-outline-dark addCustomer  text-xs px-2 py-1  btn-sm m-0">Add</a></td>
                      </tr>`

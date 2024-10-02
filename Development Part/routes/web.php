@@ -21,6 +21,7 @@ Route::controller(userController::class)->group(function () {
     Route::get('/register', 'registerPage');
     Route::get('/send-code', 'sendOtpPage');
     Route::get('/verify-code', 'verifyOtpPage');
+    Route::get('/verify-reg-code', 'verifyRegOtpPage');
     Route::get('/reset-password', 'resetPasswordPage')->middleware(tokenVerficationMiddleware::class);
 });
 

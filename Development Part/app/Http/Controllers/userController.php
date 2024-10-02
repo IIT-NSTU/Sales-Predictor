@@ -32,6 +32,11 @@ class userController extends Controller
         return view('pages.auth.verify-otp-page');
     }
 
+    function verifyRegOtpPage()
+    {
+        return view('pages.auth.verify-reg-otp-page');
+    }
+
     function resetPasswordPage()
     {
         return view('pages.auth.reset-password-page');
@@ -41,15 +46,43 @@ class userController extends Controller
     {
         try {
             $request['password'] = Hash::make($request['password']);
-            User::create($request->input());
+            
+            $email = $request->input('email');
+
+            $check = User::where('email', '=', $email)->where('is_verified', '=', '1')->count();
+            if ($check === 1) {
+                return response()->json([
+                    "status" => "failed",
+                    "message" => "Email already exists."
+                ], 400);
+            }
+
+            $count = User::where('email', '=', $email)->count();
+
+            if ($count !== 1) {
+                User::create($request->input());
+            }
+            
+            // Generate 6 digit Otp
+            $otp = rand(100000, 999999);
+
+            // Send OTP via Email
+            Mail::to($email)->send(new OTPMail($otp));
+
+            // Update on Database
+            User::where('email', '=', $email)->Update([
+                'otp' => $otp
+            ]);
+
             return response()->json([
                 "status" => "success",
-                "message" => "Registration successful"
-            ], 201);
+                "message" => "6 digits verification code sent successfully"
+            ], 200);
+
         } catch (Exception $e) {
             return response()->json([
                 "status" => "failed",
-                "message" => $e
+                "message" => "Registration Failed"
             ], 400);
         }
 
@@ -57,9 +90,9 @@ class userController extends Controller
 
     function userLogin(Request $request)
     {
-        $count = User::where('email', '=', $request->input('email'))->select('id', 'password')->first();
+        $count = User::where('email', '=', $request->input('email'))->select('id', 'password', 'is_verified')->first();
 
-        if ($count !== null && Hash::check($request->input('password'), $count->password)) {
+        if ($count !== null && Hash::check($request->input('password'), $count->password) && $count->is_verified == 1) {
             $token = JWTToken::createToken($request->input('email'), $count->id, 'login');
 
             return response()->json([
@@ -70,7 +103,7 @@ class userController extends Controller
         } else {
             return response()->json([
                 "status" => "failed",
-                "message" => $count
+                "message" => 'unauthorized'
             ], 401);
         }
     }
@@ -84,7 +117,8 @@ class userController extends Controller
     function sendOTPCode(Request $request)
     {
         $email = $request->input('email');
-        $count = User::where('email', '=', $email)->count();
+        $count = User::where('email', '=', $email)
+                     ->where('is_verified', '=', '1')->count();
 
         if ($count === 1) {
             try {
@@ -132,7 +166,8 @@ class userController extends Controller
 
             // Reset easting OTP from Database
             User::where('email', '=', $email)->update([
-                'otp' => '0'
+                'otp' => '0',
+                'is_verified' => '1'
             ]);
 
             return response()->json([

@@ -20,7 +20,7 @@
                                 <label class="form-label">Price</label>
                                 <input type="text" class="form-control" id="productPriceUpdate">
                                 <label class="form-label">Unit</label>
-                                <input type="text" class="form-control" id="productUnitUpdate">
+                                <input type="text" class="form-control" id="productUnitUpdate" disabled>
                                 <br />
                               <label for="productImgUpdate">
                                 <img class="w-15" id="oldImg" src="{{ asset('images/default.jpg') }}" />

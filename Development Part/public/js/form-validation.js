@@ -48,6 +48,9 @@ class FormValidation {
         if (mobileNumberElement.value.trim() === '') {
             errorToast('Mobile number is required');
             return false;
+        } else if (mobileNumberElement.value.trim().length != 11) {
+            errorToast('Mobile number must be have 11 digits.');
+            return false;
         } else {
             return true;
         }

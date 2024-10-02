@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
-    protected $fillable = ['first_name', 'last_name', 'email', 'mobile', 'password', 'otp'];
+    protected $fillable = ['first_name', 'last_name', 'email', 'mobile', 'password', 'otp', 'is_verified', 'logo_url'];
     
     // Set Default Value
     protected $attributes = [
-        'otp' => '0'
+        'otp' => '0',
+        'is_verified' => '0',
+        'logo_url' => ''
     ];
 }
