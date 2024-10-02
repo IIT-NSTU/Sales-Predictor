@@ -190,8 +190,22 @@ class invoiceController extends Controller
 
         DB::beginTransaction();
         try {
+            $invoiceProducts = InvoiceProduct::where('invoice_id', $request->input('invoice_id'))
+                                ->where('user_id', $userId)->get();
+            
+            foreach ($invoiceProducts as $invoiceProduct) {
+                $product = Product::where('id', $invoiceProduct->product_id)->first();
+                $previousUnit = $product->unit;
+                Product::where('id', '=', $invoiceProduct->product_id)->update([
+                    'unit' => intval($previousUnit) + intval($invoiceProduct->quantity)
+                ]);
+            }                
+
             InvoiceProduct::where('invoice_id', $request->input('invoice_id'))
                 ->where('user_id', $userId)->delete();
+
+            Due::where('invoice_id', $request->input('invoice_id'))
+                ->where('user_id', $userId)->delete();     
 
             Invoice::where('id', $request->input('invoice_id'))
                 ->where('user_id', $userId)->delete();
