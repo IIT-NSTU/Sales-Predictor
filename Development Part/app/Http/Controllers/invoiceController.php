@@ -100,7 +100,11 @@ class invoiceController extends Controller
     {
         $userId = $request->header('userId');
         try {
-            $list = Invoice::where('user_id', $userId)->with('customer')->get();
+            $list = Invoice::with('customer')
+            ->where('user_id', $userId)
+            ->where('total', '>', '0')
+            ->orderByRaw("STR_TO_DATE(date, '%Y-%m-%d') ASC") 
+            ->get();
             return response()->json([
                 "status" => "success",
                 "message" => "",

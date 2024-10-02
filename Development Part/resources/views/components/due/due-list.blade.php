@@ -11,7 +11,7 @@
                 <table class="table text-dark" id="tableData">
                     <thead>
                         <tr class="bg-light">
-                            <th>No</th>
+                            <th>Invoice ID</th>
                             <th>Name</th>
                             <th>Phone</th>
                             <th>Address</th>
@@ -56,7 +56,7 @@
         data.map((item, index) => {
             if (item.dues_count > 0 || item.remaining_due > 0) {
             tableList.append(`<tr>
-                   <td>${index+1}</td>
+                   <td>${item.id}</td>
                     <td> ${item.customer.name} </td>
                     <td style="white-space: normal"> ${item.customer.mobile} </td>
                     <td style="white-space: normal"> ${item.customer.address} </td>
