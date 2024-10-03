@@ -245,6 +245,11 @@
             } else if (purchaseRadio.checked) {
                 CustomerList(2);
             }
+
+            $("#CName").text("");
+            $("#CMobile").text("");
+            $("#CAddress").text("");
+            $("#CId").text("");
         }
 
         function ShowInvoiceItem() {

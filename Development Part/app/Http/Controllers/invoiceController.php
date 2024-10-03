@@ -56,6 +56,26 @@ class invoiceController extends Controller
             $products = $request->input('products');
 
             foreach ($products as $product) {
+
+                $dbProduct = Product::where('id', '=', $product['id'])
+                ->where('user_id', '=', $userId)->first();
+
+                if ($type == 's') {
+                    if ($dbProduct->unit >= $product['quantity']) {
+                        $dbProduct->update([
+                            "unit" => $dbProduct['unit'] - $product['quantity']
+                        ]);
+                    } else {
+                        return response()->json([
+                            "status" => "failed",
+                            "message" => "Invoice creation failed"
+                        ], 400);
+                    }
+                } else {
+                    $dbProduct->update([
+                        "unit" => $dbProduct['unit'] + $product['quantity']
+                    ]);
+                }
                 InvoiceProduct::create([
                     "invoice_id" => $invoiceId,
                     "product_id" => $product['id'],
@@ -63,20 +83,6 @@ class invoiceController extends Controller
                     "quantity" => $product['quantity'],
                     "user_id" => $userId
                 ]);
-
-                $dbProduct = Product::where('id', '=', $product['id'])
-                ->where('user_id', '=', $userId)->first();
-
-                if ($type == 's') {
-                    $dbProduct->update([
-                        "unit" => $dbProduct['unit'] - $product['quantity']
-                    ]);
-                } else {
-                    $dbProduct->update([
-                        "unit" => $dbProduct['unit'] + $product['quantity']
-                    ]);
-                }
-
                 
             }
             DB::commit();
