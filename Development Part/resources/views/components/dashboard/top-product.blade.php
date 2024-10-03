@@ -33,14 +33,14 @@
             prediction_data = document.getElementById('prediction_data');
             html = `<h6>Date : ` + currentDate + `</h6>`;
             html += `<table class="table" style="color:black">`;
-            html += `<tr><th>Model</td><td>Quantity</th></tr>`;
+            html += `<tr><th>Model</th><th style="text-align: center">Quantity</th></tr>`;
             const res = await axios.get('/prediction-list/' + days);
             total = 0;
             res.data.forEach(function(item, index) {
-                html+= `<tr><td>` + item.product.name + `</td><td>` + item.unit + `</td></tr>`;
+                html+= `<tr><td>` + item.product.name + `</td><td style="text-align: center">` + item.unit + `</td></tr>`;
                 total += item.unit;
             })
-            html+= `<tr><td><b>Total</b></td><td><b>` + total + `</b></td></tr>`;
+            html+= `<tr><td><b>Total</b></td><td style="text-align: center"><b>` + total + `</b></td></tr>`;
             html += `</table>`;
 
             prediction_data.innerHTML = html;
@@ -58,7 +58,7 @@
                 productList.innerHTML += 
                 `<li class="list-group-item d-flex justify-content-between align-items-center">
                         ` + item.product.name + `
-                    <span class="badge bg-gradient-primary-light">` + item.total_quantity + ` Purchases</span>
+                    <span class="badge bg-dark">` + item.total_quantity + ` Purchases</span>
                 </li>`;
             })
     

@@ -21,7 +21,7 @@
                         </select>
                     </div>
                 </div>
-                <button onclick="SalesReport()" class="btn mt-3 bg-gradient-primary">Download</button>
+                <button onclick="SalesReport()" class="btn mt-3 bg-gradient-primary">Generate Report</button>
             </div>
         </div>
     </div>

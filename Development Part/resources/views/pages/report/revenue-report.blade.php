@@ -75,7 +75,7 @@
             <tr>
                 <th colspan="2">Income</th>
                 <th colspan="2">Cost</th>
-                <th>Revenue</th>
+                <th>Balance</th>
             </tr>
         </thead>
         <tbody>
@@ -88,9 +88,9 @@
                     - $total_purchase - $total_purchase_due - $total_expense }}</b></td>
             </tr>
             <tr style="background-color: #ffffff">
-                <td>Sales Due</td>
+                <td>Sales Due Collected</td>
                 <td class="nright">{{ $total_sale_due }}</td>
-                <td>Purchase Due</td>
+                <td>Purchase Due Paid</td>
                 <td class="nright">{{ $total_purchase_due }}</td>
             </tr>
             <tr>

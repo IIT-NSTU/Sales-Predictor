@@ -199,6 +199,10 @@
                 errorToast('Please enter positive discount.')
             } else if (paid.length === 0) {
                 errorToast('Paid amount required')
+            } else if (payable.length === 0) {
+                errorToast('Payable amount required')
+            } else if (parseFloat(payable) < 0) {
+                errorToast('Please enter positive payable amount.')
             } else if (parseFloat(paid) < 0) {
                 errorToast('Please enter positive paid amount.')
             } else if (parseFloat(due) < 0) {
@@ -280,6 +284,7 @@
                 document.getElementById('discountAmount').innerText = total - payable;
                 document.getElementById('discount').value = total - payable;
                 document.getElementById('discountType').value = 2;
+                calculateGrandTotal();
             }
         }
 
@@ -325,6 +330,7 @@
             let PQty = parseInt(document.getElementById('PQty').value);
             let PAcQty = document.getElementById('PAcQty').value;
             let PTotalPrice = (parseFloat(PPrice) * parseFloat(PQty)).toFixed(2);
+            const purchaseRadio = document.getElementById('invoiceTypePurchase');
             if (PId.length === 0) {
                 errorToast("Product ID Required");
             } else if (PName.length === 0) {
@@ -343,7 +349,7 @@
                     }
                 })
 
-                if (PAcQty >= (totalItem + PQty)) {
+                if (purchaseRadio.checked || PAcQty >= (totalItem + PQty)) {
                     let item = {
                     id: PId,
                     product_name: PName,
