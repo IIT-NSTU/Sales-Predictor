@@ -27,8 +27,9 @@ class reportController extends Controller
         $toDate = $request->to;
 
         if ($type == 1) {
-            $category_sales = InvoiceProduct::whereHas('invoice', function ($query) use ($fromDate, $toDate) {
+            $category_sales = InvoiceProduct::whereHas('invoice', function ($query) use ($fromDate, $toDate, $userId) {
                 $query->where('type', 's')
+                      ->where('user_id', $userId)
                       ->whereRaw("STR_TO_DATE(invoices.date, '%Y-%c-%e %r') BETWEEN STR_TO_DATE(?, '%Y-%c-%e %r') AND STR_TO_DATE(?, '%Y-%c-%e %r')", [$fromDate, $toDate]);
             })
             ->join('products', 'invoice_products.product_id', '=', 'products.id')
@@ -40,8 +41,9 @@ class reportController extends Controller
             ->get();                             
 
             $product_sale = InvoiceProduct::where('user_id', $userId)
-                            ->whereHas('invoice', function ($query) use ($fromDate, $toDate) {
+                            ->whereHas('invoice', function ($query) use ($fromDate, $toDate, $userId) {
                                 $query->where('type', 's');
+                                $query->where('user_id', $userId);
                                 $query->whereRaw("STR_TO_DATE(invoices.date, '%Y-%c-%e %r') BETWEEN STR_TO_DATE(?, '%Y-%c-%e %r') AND STR_TO_DATE(?, '%Y-%c-%e %r')", [$fromDate, $toDate]);
                             })
                             ->with('invoice')
@@ -49,8 +51,9 @@ class reportController extends Controller
                             ->get(); 
 
 
-            $category_purchase = InvoiceProduct::whereHas('invoice', function ($query) use ($fromDate, $toDate) {
+            $category_purchase = InvoiceProduct::whereHas('invoice', function ($query) use ($fromDate, $toDate, $userId) {
                 $query->where('type', 'p')
+                      ->where('user_id', $userId)
                       ->whereRaw("STR_TO_DATE(invoices.date, '%Y-%c-%e %r') BETWEEN STR_TO_DATE(?, '%Y-%c-%e %r') AND STR_TO_DATE(?, '%Y-%c-%e %r')", [$fromDate, $toDate]);
             })
             ->join('products', 'invoice_products.product_id', '=', 'products.id')
@@ -61,9 +64,9 @@ class reportController extends Controller
             ->orderBy('categories.id')
             ->get();  
 
-            $product_purchase = InvoiceProduct::where('user_id', $userId)
-                        ->whereHas('invoice', function ($query) use ($fromDate, $toDate) {
+            $product_purchase = InvoiceProduct::whereHas('invoice', function ($query) use ($fromDate, $toDate, $userId) {
                             $query->where('type', 'p');
+                            $query->where('user_id', $userId);
                             $query->whereRaw("STR_TO_DATE(invoices.date, '%Y-%c-%e %r') BETWEEN STR_TO_DATE(?, '%Y-%c-%e %r') AND STR_TO_DATE(?, '%Y-%c-%e %r')", [$fromDate, $toDate]);
                         })
                         ->with('invoice')
